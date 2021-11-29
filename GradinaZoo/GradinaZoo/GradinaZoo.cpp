@@ -26,7 +26,7 @@ const unsigned int SCR_HEIGHT = 720;
 GLuint VAO, VBO, EBO;
 unsigned int VertexShaderId, FragmentShaderId, ProgramId;
 GLuint ProjMatrixLocation, ViewMatrixLocation, WorldMatrixLocation;
-unsigned int texture1Location, texture2Location;
+unsigned int texture1Location, texture2Location, textureOption;
 
 
 Camera* pCamera = nullptr;
@@ -59,9 +59,20 @@ const GLchar* FragmentShader =
    "in vec2 TexCoord;\n"\
    "uniform sampler2D texture1;\n"\
    "uniform sampler2D texture2;\n"\
+   "uniform int textureOption = 2;\n"\
    "void main()\n"\
    "{\n"\
-   "  FragColor = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.5);\n"\
+   "  switch(textureOption)\n"\
+   "  {\n"\
+   "  case 0:\n"\
+   "    FragColor = texture(texture1, TexCoord);\n"\
+   "    break;\n"\
+   "  case 1:\n"\
+   "    FragColor = texture(texture2, TexCoord);\n"\
+   "    break;\n"\
+   "  default:\n"\
+   "    break;\n"\
+   "  }\n"\
    "}\n"
 };
 
@@ -245,51 +256,131 @@ void RenderCube()
 
 void RenderFunction()
 {
-	glm::vec3 cubePositions[] = {
-	   glm::vec3(-0.5f,  0.0f,  0.5f),
-	   glm::vec3(0.5f, 0.0f,  0.5f),
-	   glm::vec3(0.5f, 0.0f,  -0.5f),
-	   glm::vec3(-0.5f,  0.0f,  -0.5f),
+	glm::vec3 cubeBrickPositions[] = {
+	   glm::vec3(-1.0f,0.0f,-5.0f),
+	   glm::vec3(0.0f,0.0f,-5.0f),
+	   glm::vec3(-1.0f,0.0f,-4.0f),
+	   glm::vec3(0.0f,0.0f,-4.0f),
+	   glm::vec3(-1.0f,0.0f,-3.0f),
+	   glm::vec3(0.0f,0.0f,-3.0f),
+	   glm::vec3(-1.0f,0.0f,-2.0f),
+	   glm::vec3(0.0f,0.0f,-2.0f),
+	   glm::vec3(-1.0f,0.0f,-1.0f),
+	   glm::vec3(0.0f,0.0f,-1.0f),
+	   glm::vec3(-1.0f,0.0f,0.0f),
+	   glm::vec3(0.0f,0.0f,0.0f),
+		glm::vec3(-1.0f,0.0f,5.0f),
+	   glm::vec3(0.0f,0.0f,5.0f),
+	   glm::vec3(-1.0f,0.0f,4.0f),
+	   glm::vec3(0.0f,0.0f,4.0f),
+	   glm::vec3(-1.0f,0.0f,3.0f),
+	   glm::vec3(0.0f,0.0f,3.0f),
+	   glm::vec3(-1.0f,0.0f,2.0f),
+	   glm::vec3(0.0f,0.0f,2.0f),
+	   glm::vec3(-1.0f,0.0f,1.0f),
+	   glm::vec3(0.0f,0.0f,1.0f),
 
-	   glm::vec3(-0.5f,  0.0f,  1.0f),
-	   glm::vec3(0.5f, 0.0f,  1.0f),
-	   glm::vec3(-0.5f,  0.0f,  1.5f),
-	   glm::vec3(0.5f, 0.0f,  1.5f),
-	   glm::vec3(-0.5f,  0.0f,  2.0f),
-	   glm::vec3(0.5f, 0.0f,  2.0f),
-	   glm::vec3(-0.5f,  0.0f,  2.5f),
-	   glm::vec3(0.5f, 0.0f,  2.5f),
+	};
 
-	   glm::vec3(-0.5f,  0.0f,  -1.0f),
-	   glm::vec3(0.5f, 0.0f,  -1.0f),
-	   glm::vec3(-0.5f,  0.0f,  -1.5f),
-	   glm::vec3(0.5f, 0.0f,  -1.5f),
-	   glm::vec3(-0.5f,  0.0f,  -2.0f),
-	   glm::vec3(0.5f, 0.0f,  -2.0f),
-	   glm::vec3(-0.5f,  0.0f,  -2.5f),
-	   glm::vec3(0.5f, 0.0f,  -2.5f),
+	glm::vec3 cubeGrassPositions[] = {
+		glm::vec3(-5.0f,0.0f,-5.0f),
+		glm::vec3(-4.0f,0.0f,-5.0f),
+		glm::vec3(-3.0f,0.0f,-5.0f),
+		glm::vec3(-2.0f,0.0f,-5.0f),
+		glm::vec3(4.0f,0.0f,-5.0f),
+		glm::vec3(3.0f,0.0f,-5.0f),
+		glm::vec3(2.0f,0.0f,-5.0f),
+		glm::vec3(1.0f,0.0f,-5.0f),
 
-	   glm::vec3(-0.5f,  0.0f,  0.5f),
-	   glm::vec3(-0.5f,  0.0f,  -0.5f),
-	   glm::vec3(-1.0f,  0.0f,  0.5f),
-	   glm::vec3(-1.0f,  0.0f,  -0.5f),
-	   glm::vec3(-1.5f,  0.0f,  0.5f),
-	   glm::vec3(-1.5f,  0.0f,  -0.5f),
-	   glm::vec3(-2.0f,  0.0f,  0.5f),
-	   glm::vec3(-2.0f,  0.0f,  -0.5f),
-	   glm::vec3(-2.5f,  0.0f,  0.5f),
-	   glm::vec3(-2.5f,  0.0f,  -0.5f),
+		glm::vec3(-5.0f,0.0f,-4.0f),
+		glm::vec3(-4.0f,0.0f,-4.0f),
+		glm::vec3(-3.0f,0.0f,-4.0f),
+		glm::vec3(-2.0f,0.0f,-4.0f),
+		glm::vec3(4.0f,0.0f,-4.0f),
+		glm::vec3(3.0f,0.0f,-4.0f),
+		glm::vec3(2.0f,0.0f,-4.0f),
+		glm::vec3(1.0f,0.0f,-4.0f),
 
-	   glm::vec3(0.5f,  0.0f,  0.5f),
-	   glm::vec3(0.5f,  0.0f,  -0.5f),
-	   glm::vec3(1.0f,  0.0f,  0.5f),
-	   glm::vec3(1.0f,  0.0f,  -0.5f),
-	   glm::vec3(1.5f,  0.0f,  0.5f),
-	   glm::vec3(1.5f,  0.0f,  -0.5f),
-	   glm::vec3(2.0f,  0.0f,  0.5f),
-	   glm::vec3(2.0f,  0.0f,  -0.5f),
-	   glm::vec3(2.5f,  0.0f,  0.5f),
-	   glm::vec3(2.5f,  0.0f,  -0.5f),
+		glm::vec3(-5.0f,0.0f,-3.0f),
+		glm::vec3(-4.0f,0.0f,-3.0f),
+		glm::vec3(-3.0f,0.0f,-3.0f),
+		glm::vec3(-2.0f,0.0f,-3.0f),
+		glm::vec3(4.0f,0.0f,-3.0f),
+		glm::vec3(3.0f,0.0f,-3.0f),
+		glm::vec3(2.0f,0.0f,-3.0f),
+		glm::vec3(1.0f,0.0f,-3.0f),
+
+		glm::vec3(-5.0f,0.0f,-2.0f),
+		glm::vec3(-4.0f,0.0f,-2.0f),
+		glm::vec3(-3.0f,0.0f,-2.0f),
+		glm::vec3(-2.0f,0.0f,-2.0f),
+		glm::vec3(4.0f,0.0f,-2.0f),
+		glm::vec3(3.0f,0.0f,-2.0f),
+		glm::vec3(2.0f,0.0f,-2.0f),
+		glm::vec3(1.0f,0.0f,-2.0f),
+
+		glm::vec3(-5.0f,0.0f,-1.0f),
+		glm::vec3(-4.0f,0.0f,-1.0f),
+		glm::vec3(-3.0f,0.0f,-1.0f),
+		glm::vec3(-2.0f,0.0f,-1.0f),
+		glm::vec3(4.0f,0.0f,-1.0f),
+		glm::vec3(3.0f,0.0f,-1.0f),
+		glm::vec3(2.0f,0.0f,-1.0f),
+		glm::vec3(1.0f,0.0f,-1.0f),
+
+		glm::vec3(-5.0f,0.0f,0.0f),
+		glm::vec3(-4.0f,0.0f,0.0f),
+		glm::vec3(-3.0f,0.0f,0.0f),
+		glm::vec3(-2.0f,0.0f,0.0f),
+		glm::vec3(4.0f,0.0f,0.0f),
+		glm::vec3(3.0f,0.0f,0.0f),
+		glm::vec3(2.0f,0.0f,0.0f),
+		glm::vec3(1.0f,0.0f,0.0f),
+
+		glm::vec3(-5.0f,0.0f,5.0f),
+		glm::vec3(-4.0f,0.0f,5.0f),
+		glm::vec3(-3.0f,0.0f,5.0f),
+		glm::vec3(-2.0f,0.0f,5.0f),
+		glm::vec3(4.0f,0.0f,5.0f),
+		glm::vec3(3.0f,0.0f,5.0f),
+		glm::vec3(2.0f,0.0f,5.0f),
+		glm::vec3(1.0f,0.0f,5.0f),
+
+		glm::vec3(-5.0f,0.0f,4.0f),
+		glm::vec3(-4.0f,0.0f,4.0f),
+		glm::vec3(-3.0f,0.0f,4.0f),
+		glm::vec3(-2.0f,0.0f,4.0f),
+		glm::vec3(4.0f,0.0f,4.0f),
+		glm::vec3(3.0f,0.0f,4.0f),
+		glm::vec3(2.0f,0.0f,4.0f),
+		glm::vec3(1.0f,0.0f,4.0f),
+
+		glm::vec3(-5.0f,0.0f,3.0f),
+		glm::vec3(-4.0f,0.0f,3.0f),
+		glm::vec3(-3.0f,0.0f,3.0f),
+		glm::vec3(-2.0f,0.0f,3.0f),
+		glm::vec3(4.0f,0.0f,3.0f),
+		glm::vec3(3.0f,0.0f,3.0f),
+		glm::vec3(2.0f,0.0f,3.0f),
+		glm::vec3(1.0f,0.0f,3.0f),
+
+		glm::vec3(-5.0f,0.0f,2.0f),
+		glm::vec3(-4.0f,0.0f,2.0f),
+		glm::vec3(-3.0f,0.0f,2.0f),
+		glm::vec3(-2.0f,0.0f,2.0f),
+		glm::vec3(4.0f,0.0f,2.0f),
+		glm::vec3(3.0f,0.0f,2.0f),
+		glm::vec3(2.0f,0.0f,2.0f),
+		glm::vec3(1.0f,0.0f,2.0f),
+
+		glm::vec3(-5.0f,0.0f,1.0f),
+		glm::vec3(-4.0f,0.0f,1.0f),
+		glm::vec3(-3.0f,0.0f,1.0f),
+		glm::vec3(-2.0f,0.0f,1.0f),
+		glm::vec3(4.0f,0.0f,1.0f),
+		glm::vec3(3.0f,0.0f,1.0f),
+		glm::vec3(2.0f,0.0f,1.0f),
+		glm::vec3(1.0f, 0.0f, 1.0f),
 	};
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -316,10 +407,19 @@ void RenderFunction()
 	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, glm::value_ptr(view));*/
 
 	glBindVertexArray(VAO);
-
-	for (unsigned int i = 0; i < sizeof(cubePositions) / sizeof(cubePositions[0]); i++) {
+	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 1);//set which texture to use
+	for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
 		// calculate the model matrix for each object and pass it to shader before drawing
-		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), cubePositions[i]);
+		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), cubeBrickPositions[i]);
+		glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, glm::value_ptr(worldTransf));
+
+		RenderCube();
+	}
+
+	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 0);//set which texture to use
+	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
+		// calculate the model matrix for each object and pass it to shader before drawing
+		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), cubeGrassPositions[i]);
 		glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, glm::value_ptr(worldTransf));
 
 		RenderCube();
