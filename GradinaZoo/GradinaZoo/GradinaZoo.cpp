@@ -26,7 +26,7 @@ const unsigned int SCR_HEIGHT = 720;
 GLuint VAO, VBO, EBO;
 unsigned int VertexShaderId, FragmentShaderId, ProgramId;
 GLuint ProjMatrixLocation, ViewMatrixLocation, WorldMatrixLocation;
-unsigned int texture1Location, texture2Location, textureOption;
+unsigned int texture1Location, texture2Location, texture3Location;
 
 
 Camera* pCamera = nullptr;
@@ -59,6 +59,7 @@ const GLchar* FragmentShader =
    "in vec2 TexCoord;\n"\
    "uniform sampler2D texture1;\n"\
    "uniform sampler2D texture2;\n"\
+   "uniform sampler2D texture3;\n"\
    "uniform int textureOption = 2;\n"\
    "void main()\n"\
    "{\n"\
@@ -70,6 +71,9 @@ const GLchar* FragmentShader =
    "  case 1:\n"\
    "    FragColor = texture(texture2, TexCoord);\n"\
    "    break;\n"\
+	"  case 2:\n"\
+	"    FragColor = texture(texture3, TexCoord);\n"\
+	"    break;\n"\
    "  default:\n"\
    "    break;\n"\
    "  }\n"\
@@ -161,6 +165,7 @@ void CreateShaders()
 
 	glUniform1i(glGetUniformLocation(ProgramId, "texture1"), 0);
 	glUniform1i(glGetUniformLocation(ProgramId, "texture2"), 1);
+	glUniform1i(glGetUniformLocation(ProgramId, "texture3"), 2);
 
 	glUniform1i(glGetUniformLocation(ProgramId, "mixValue"), 0.5);
 }
@@ -183,6 +188,10 @@ void CreateTextures(const std::string& strExePath)
 	// -------------------------
 	// texture 1
 	// ---------
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glGenTextures(1, &texture1Location);
 	glBindTexture(GL_TEXTURE_2D, texture1Location);
 	// set the texture wrapping parameters
@@ -218,6 +227,27 @@ void CreateTextures(const std::string& strExePath)
 	if (data) {
 		// note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else {
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+
+	glGenTextures(1, &texture3Location);
+	glBindTexture(GL_TEXTURE_2D, texture3Location);
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// load image, create texture and generate mipmaps
+	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+	data = stbi_load((strExePath + "\\..\\Textures\\BarsWtihDoor.png").c_str(), &width, &height, &nrChannels, 0);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
@@ -383,6 +413,11 @@ void RenderFunction()
 		glm::vec3(1.0f, 0.0f, 1.0f),
 	};
 
+	glm::vec3 barsDoorPositions[] = {
+		glm::vec3(0.5f,0.5f,1.0f),
+		glm::vec3(-1.5f,0.5f,-2.0f),
+	};
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(ProgramId);
@@ -392,6 +427,8 @@ void RenderFunction()
 	glBindTexture(GL_TEXTURE_2D, texture1Location);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture2Location);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, texture3Location);
 
 	glm::mat4 projection = pCamera->GetProjectionMatrix();
 	glUniformMatrix4fv(ProjMatrixLocation, 1, GL_FALSE, glm::value_ptr(projection));
@@ -407,6 +444,15 @@ void RenderFunction()
 	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, glm::value_ptr(view));*/
 
 	glBindVertexArray(VAO);
+	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 0);//set which texture to use
+	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
+		// calculate the model matrix for each object and pass it to shader before drawing
+		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), cubeGrassPositions[i]);
+		glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, glm::value_ptr(worldTransf));
+
+		RenderCube();
+	}
+
 	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 1);//set which texture to use
 	for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
 		// calculate the model matrix for each object and pass it to shader before drawing
@@ -416,10 +462,12 @@ void RenderFunction()
 		RenderCube();
 	}
 
-	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 0);//set which texture to use
-	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
+	glUniform1i(glGetUniformLocation(ProgramId, "textureOption"), 2);//set which texture to use
+	for (unsigned int i = 0; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
 		// calculate the model matrix for each object and pass it to shader before drawing
-		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), cubeGrassPositions[i]);
+		glm::mat4 worldTransf = glm::translate(glm::mat4(1.0), barsDoorPositions[i]);
+		worldTransf = glm::rotate(worldTransf, 1.571f,glm::vec3(0.0f,0.0f,1.0f));
+		worldTransf = glm::rotate(worldTransf, 1.571f, glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, glm::value_ptr(worldTransf));
 
 		RenderCube();
