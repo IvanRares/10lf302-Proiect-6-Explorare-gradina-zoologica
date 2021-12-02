@@ -39,34 +39,34 @@ public:
 	Camera(const int width, const int height, const glm::vec3& position);
 
 	void Set(const int width, const int height, const glm::vec3& position);
-	
+
 
 	void Reset(const int width, const int height);
-	
+
 
 	void Reshape(int windowWidth, int windowHeight);
-	
+
 
 	const glm::mat4 GetViewMatrix() const;
 
 	const glm::mat4 GetProjectionMatrix() const;
-	
+
 
 	void ProcessKeyboard(ECameraMovementType direction, float deltaTime);
-	
+
 
 	void MouseControl(float xPos, float yPos);
-	
+
 
 	void ProcessMouseScroll(float yOffset);
-	
+
 
 private:
 	void ProcessMouseMovement(float xOffset, float yOffset, bool constrainPitch = true);
-	
+
 
 	void UpdateCameraVectors();
-	
+
 
 protected:
 	const float cameraSpeedFactor = 2.5f;
