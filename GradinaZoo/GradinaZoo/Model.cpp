@@ -65,11 +65,12 @@ Mesh* Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	return new Mesh(vertices.data(),vertices.size(),indices.data(),indices.size());
 }
 
-Model::Model(const char* path, Material* material, Texture* ovTexDif, Texture* ovTexSpec)
+Model::Model(const char* path, Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId)
 {
 	this->material = material;
 	this->overrideTextureDiffuse = ovTexDif;
 	this->overrideTextureSpecular = ovTexSpec;
+	this->textureId = textureId;
 	Assimp::Importer import;
 	const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
@@ -81,10 +82,11 @@ Model::Model(const char* path, Material* material, Texture* ovTexDif, Texture* o
 	ProcessNode(scene->mRootNode, scene);
 }
 
-Model::Model(glm::vec3 position, Material* material, Texture* ovTexDif, Texture* ovTexSpec, std::vector<Mesh*> meshes)
+Model::Model(glm::vec3 position, Material* material, Texture* ovTexDif, Texture* ovTexSpec, std::vector<Mesh*> meshes, unsigned int textureId)
 {
 	this->position = position;
 	this->material = material;
+	this->textureId = textureId;
 	overrideTextureDiffuse = ovTexDif;
 	overrideTextureSpecular = ovTexSpec;
 	for (auto* i : meshes)
@@ -123,9 +125,17 @@ void Model::Render(Shader* shader)
 	for (auto& i : meshes)
 	{
 		//Activate texture
-		overrideTextureDiffuse->Bind(0);
-		overrideTextureSpecular->Bind(1);
+		overrideTextureDiffuse->Bind(textureId);
+		overrideTextureSpecular->Bind(textureId);
 
 		i->Render(shader);
+	}
+}
+
+void Model::SetPosition(const glm::vec3& position)
+{
+	for (auto& i : meshes)
+	{
+		i->SetPosition(position);
 	}
 }

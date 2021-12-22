@@ -3,20 +3,23 @@
 
 enum shaderEnums {
 	shaderCoreProgram = 0
+
 };
 
 enum textureEnum {
 	texGrass0 = 0,
 	texBricks0,
 	texBars1,
-	texBars2
+	texBars2,
+	texBird
 };
 
 enum materialEnum {
 	material0=0,
 	material1,
 	material2,
-	material3
+	material3,
+	material4
 };
 
 enum meshEnum {
