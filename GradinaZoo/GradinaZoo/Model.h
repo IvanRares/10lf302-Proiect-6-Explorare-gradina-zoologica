@@ -29,5 +29,11 @@ public:
 	void Render(Shader* shader);
 
 	void SetPosition(const glm::vec3& position);
+
+	void SetRotation(const glm::vec3& rotation);
+
+	void SetScale(const glm::vec3& scale);
+
+	void SetOrigin(const glm::vec3 origin);
 };
 

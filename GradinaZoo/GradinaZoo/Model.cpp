@@ -139,3 +139,27 @@ void Model::SetPosition(const glm::vec3& position)
 		i->SetPosition(position);
 	}
 }
+
+void Model::SetRotation(const glm::vec3& rotation)
+{
+	for (auto& i : meshes)
+	{
+		i->SetRotation(rotation);
+	}
+}
+
+void Model::SetScale(const glm::vec3& scale)
+{
+	for (auto& i : meshes)
+	{
+		i->SetScale(scale);
+	}
+}
+
+void Model::SetOrigin(const glm::vec3 origin)
+{
+	for (auto& i : meshes)
+	{
+		i->SetOrigin(origin);
+	}
+}
