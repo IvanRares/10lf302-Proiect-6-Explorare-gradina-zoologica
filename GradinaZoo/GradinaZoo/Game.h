@@ -31,12 +31,12 @@ private:
 	const int windowWidth, windowHeight;
 	int framebufferWidth, framebufferHeight;
 	glm::mat4 ViewMatrix,ProjectionMatrix;
-	glm::vec3 camPosition, worldUp, camFront;
-	float fov, nearPlane, farPlane;
+	glm::vec3 camPosition;;
 	std::vector<Shader*> shaders;
 	std::vector<Texture*> textures;
 	std::vector<Material*> materials;
 	std::vector<Mesh*> meshes;
+	std::vector<Model*> models;
 	std::vector<glm::vec3*> lights;
 
 	void InitializeGLFW();
@@ -47,7 +47,8 @@ private:
 	void InitializeShaders();
 	void InitializeTextures();
 	void InitializeMaterials();
-	void InitializeMeshes();
+	void InitializeObjectModels();
+	void InitializeModels();
 	void InitializeLights();
 	void InitializeUniforms();
 

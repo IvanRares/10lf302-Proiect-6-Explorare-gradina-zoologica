@@ -2,7 +2,7 @@
 //Camera Game::camera = nullptr;
 double Game::deltaTime = 0.0f;
 double Game::lastFrame = 0.0f;
-Camera *Game::camera = nullptr;
+Camera* Game::camera = nullptr;
 
 void Game::InitializeGLFW()
 {
@@ -68,14 +68,8 @@ void Game::InitializeOpenGLOptions()
 
 void Game::InitializeMatrices()
 {
-	ViewMatrix = glm::mat4(1.f);
-	ViewMatrix = glm::lookAt(camPosition, camPosition + camFront, worldUp);
-
-	ProjectionMatrix = glm::mat4(1.f);
-	ProjectionMatrix = glm::perspective(glm::radians(fov),
-		static_cast<float>(framebufferWidth) / framebufferHeight,
-		nearPlane,
-		farPlane);
+	ViewMatrix = camera->GetViewMatrix();
+	ProjectionMatrix = camera->GetProjectionMatrix();
 }
 
 void Game::InitializeShaders()
@@ -86,10 +80,11 @@ void Game::InitializeShaders()
 void Game::InitializeTextures()
 {
 	//Texture 0
-	textures.push_back(new Texture("Textures\\grass.jpg", GL_TEXTURE_2D, GL_RGB));
-
+	//textures.push_back(new Texture("Textures\\grass.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Bird\\12213_bird_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 	//Texture 1
-	textures.push_back(new Texture("Textures\\Bricks.jpg", GL_TEXTURE_2D, GL_RGB));
+	//textures.push_back(new Texture("Textures\\Bricks.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Bird\\Map__7_Normal Bump.jpg", GL_TEXTURE_2D, GL_RGB));
 
 	//Texture 2
 	textures.push_back(new Texture("Textures\\bars.png", GL_TEXTURE_2D, GL_RGBA));
@@ -100,24 +95,41 @@ void Game::InitializeTextures()
 
 void Game::InitializeMaterials()
 {
-	materials.push_back(new Material (glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 0, 0));
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 1, 1));
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 2, 2));
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 3, 3));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 0, 0));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 1, 1));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 2, 2));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 3, 3));
 }
 
-void Game::InitializeMeshes()
+void Game::InitializeObjectModels()
 {
-	QuadDown squareDown;
-	meshes.push_back(new Mesh(&squareDown, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
-	Quad square;
-	meshes.push_back(new Mesh(&square, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
+	//std::vector<Vertex> mesh = loadObj("Models\\Bird\\12213_Bird_v1_l3.obj");
+}
+
+void Game::InitializeModels()
+{
+	//std::vector<Mesh*> meshes;
+	//QuadDown squareDown;
+	//this->meshes.push_back(new Mesh(&squareDown, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
+	//meshes.push_back(new Mesh(&squareDown, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
+	//Quad square;
+	//this->meshes.push_back(new Mesh(&square, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
+	//meshes.push_back(new Mesh(&square, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
+	////std::vector<Vertex> mesh = loadObj("Models\\Bird\\12213_Bird_v1_l3.obj");
+	////meshes.push_back(new Mesh(mesh.data(), mesh.size(), NULL, 0, glm::vec3(1.f, 0.f, 0.f)));
+	//meshes[0]->Rotate(glm::vec3(0.f, 0.f, 1.f));
+	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material0], textures[texGrass0], textures[texGrass0]));
+	//models.push_back(new Model(glm::vec3(0.f), materials[material0], textures[texGrass0], textures[texGrass0], meshes));
+
+	/*for (auto*& i : meshes)
+		delete i;
+	meshes.clear();*/
 }
 
 void Game::InitializeLights()
 {
 	//Lights
-	lights.push_back(new glm::vec3 (0.f, 2.f, 0.f));
+	lights.push_back(new glm::vec3(0.f, 2.f, 0.f));
 }
 
 void Game::InitializeUniforms()
@@ -148,21 +160,10 @@ void Game::UpdateUniforms(const int& materialID)
 Game::Game(const char* title, const int width, const int height, bool resizable) :windowWidth(width), windowHeight(height)
 {
 	window = nullptr;
-	//camera = nullptr;
-	camera = new Camera(windowWidth,windowHeight, glm::vec3(0.5, 0.5, 10));
 	framebufferWidth = 0;
 	framebufferHeight = 0;
-
-	worldUp = glm::vec3(0.f, 1.f, 0.f);
-	camFront = glm::vec3(0.f, 0.f, -1.f);
-	camPosition = glm::vec3(0.f, 0.f, 1.f);
-
-	fov = 90.f;
-	nearPlane = 0.1f;
-	farPlane = 1000.f;
-
-	//deltaTime = 0.0f;
-	//lastFrame = 0.0f;
+	camPosition = glm::vec3(0.5f, 0.5f, 10.f);
+	camera = new Camera(windowWidth, windowHeight, camPosition);
 
 	InitializeGLFW();
 	InitializeWindow(title, resizable);
@@ -172,7 +173,8 @@ Game::Game(const char* title, const int width, const int height, bool resizable)
 	InitializeShaders();
 	InitializeTextures();
 	InitializeMaterials();
-	InitializeMeshes();
+	InitializeObjectModels();
+	InitializeModels();
 	InitializeLights();
 	InitializeUniforms();
 }
@@ -182,16 +184,18 @@ Game::~Game()
 	glfwDestroyWindow(window);
 	glfwTerminate();
 
-	for (int i = 0; i < shaders.size(); i++)
-		delete shaders[i];
-	for (int i = 0; i < textures.size(); i++)
-		delete textures[i];
-	for (int i = 0; i < materials.size(); i++)
-		delete materials[i];
-	for (int i = 0; i < meshes.size(); i++)
-		delete meshes[i];
-	for (int i = 0; i < lights.size(); i++)
-		delete lights[i];
+	for (auto*& i : shaders)
+		delete i;
+	for (auto*& i : textures)
+		delete i;
+	for (auto*& i : materials)
+		delete i;
+	for (auto*& i : meshes)
+		delete i;
+	for (auto*& i : models)
+		delete i;
+	for (auto*& i : lights)
+		delete i;
 	delete camera;
 }
 
@@ -385,32 +389,33 @@ void Game::Render()
 	shaders[shaderCoreProgram]->Use();
 
 	//Activate texture
-	textures[texGrass0]->Bind(0);
-	textures[texBricks0]->Bind(1);
-	textures[texBars1]->Bind(2);
-	textures[texBars2]->Bind(3);
 
-	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
-		meshes[meshQuadDown]->SetPosition(cubeGrassPositions[i]);
-		meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	}
-	UpdateUniforms(material1);
-	for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
-		meshes[meshQuadDown]->SetPosition(cubeBrickPositions[i]);
-		meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	}
-	UpdateUniforms(material3);
-	for (unsigned int i = 0; i < 2; i++) {
-		meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-		meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	}
-	UpdateUniforms(material2);
-	for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
-		meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-		meshes[meshQuad]->SetRotation(glm::vec3(0.f, 90.f, 0.f));
-		meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	}
-	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
+	//for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
+	//	meshes[meshQuadDown]->SetPosition(cubeGrassPositions[i]);
+	//	textures[texGrass0]->Bind(0);
+	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
+	//	//models[0]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material1);
+	//for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
+	//	meshes[meshQuadDown]->SetPosition(cubeBrickPositions[i]);
+	//	textures[texBricks0]->Bind(1);
+	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material3);
+	//for (unsigned int i = 0; i < 2; i++) {
+	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
+	//	textures[texBars2]->Bind(3);
+	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material2);
+	//for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
+	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
+	//	meshes[meshQuad]->SetRotation(glm::vec3(0.f, 90.f, 0.f));
+	//	textures[texBars1]->Bind(2);
+	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
+	//}
+	models[0]->Render(shaders[shaderCoreProgram]);
 
 	//End Draw
 	glfwSwapBuffers(window);

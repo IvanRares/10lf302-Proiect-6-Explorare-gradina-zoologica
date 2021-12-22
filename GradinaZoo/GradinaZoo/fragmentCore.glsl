@@ -10,7 +10,6 @@ struct Material
 };
 
 in vec3 vsPosition;
-in vec3 vsColor;
 in vec2 vsTexCoord;
 in vec3 vsNormal;
 
