@@ -15,7 +15,7 @@ uniform mat4 ProjectionMatrix;
 void main()
 {
 	vsPosition = vec4(ModelMatrix * vec4(vertexPosition,1.f)).xyz;
-	vsTexCoord = vec2(vertexTexCoord.x, vertexTexCoord.y * -1.f);
+	vsTexCoord = vec2(vertexTexCoord.x, vertexTexCoord.y);
 	vsNormal = mat3(ModelMatrix) * vertexNormal;
 
 	gl_Position = ProjectionMatrix * ViewMatrix * ModelMatrix * vec4(vertexPosition,1.f);
