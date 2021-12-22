@@ -35,5 +35,11 @@ public:
 	void SetScale(const glm::vec3& scale);
 
 	void SetOrigin(const glm::vec3 origin);
+
+	void Move(const glm::vec3& position);
+
+	void Rotate(const glm::vec3& rotation);
+
+	void Scale(const glm::vec3& scale);
 };
 
