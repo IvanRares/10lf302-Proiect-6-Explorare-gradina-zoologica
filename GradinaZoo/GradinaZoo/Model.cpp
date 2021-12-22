@@ -21,12 +21,10 @@ Mesh* Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 {
 	std::vector<Vertex> vertices;
 	std::vector<GLuint> indices;
-	std::vector<Texture> textures;
 	Vertex tempVertex;
 	glm::vec3 tempVec3;
 	glm::vec2 tempVec2;
 	aiFace face;
-	aiMaterial* material;
 	for (int i = 0; i < mesh->mNumVertices; i++)
 	{
 		tempVec3.x = mesh->mVertices[i].x;
@@ -34,10 +32,14 @@ Mesh* Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		tempVec3.z = mesh->mVertices[i].z;
 		tempVertex.position = tempVec3;
 
-		tempVec3.x = mesh->mNormals[i].x;
-		tempVec3.y = mesh->mNormals[i].y;
-		tempVec3.z = mesh->mNormals[i].z;
-		tempVertex.normal = tempVec3;
+		if (mesh->mNormals)
+		{
+			tempVec3.x = mesh->mNormals[i].x;
+			tempVec3.y = mesh->mNormals[i].y;
+			tempVec3.z = mesh->mNormals[i].z;
+			tempVertex.normal = tempVec3;
+		}
+		else tempVertex.normal = glm::vec3(0.f, 0.f, 1.f);
 
 		if (mesh->mTextureCoords[0])
 		{
@@ -57,11 +59,6 @@ Mesh* Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 			indices.push_back(face.mIndices[j]);
 		}
 	}
-	/*if (mesh->mMaterialIndex >= 0)
-	{
-		material = scene->mMaterials[mesh->mMaterialIndex];
-		vector<Texture> diffuse
-	}*/
 	return new Mesh(vertices.data(),vertices.size(),indices.data(),indices.size());
 }
 
