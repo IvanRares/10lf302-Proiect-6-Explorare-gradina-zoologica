@@ -62,7 +62,10 @@ void main()
 	//Attenuation
 
 	//Final Light
+	vec4 texColor = texture(material.diffuseTex, vsTexCoord);
+	if(texColor.a < 0.1)
+		discard;
 
-	fsColor = texture(material.diffuseTex, vsTexCoord)
+	fsColor = texColor
 	* (vec4(ambientFinal,1.f) + vec4(diffuseFinal,1.f) + vec4(specularFinal,1.f));
 }

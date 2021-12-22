@@ -306,6 +306,7 @@ void Game::InitializeModels()
 	meshes.clear();
 
 	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird],texBird));
+	models.back()->Move(glm::vec3(0.f,3.f,0.f));
 	models.back()->SetScale(glm::vec3(0.01f));
 	models.back()->SetRotation(glm::vec3(-90.f,0.f,0.f));
 }
@@ -313,7 +314,7 @@ void Game::InitializeModels()
 void Game::InitializeLights()
 {
 	//Lights
-	lights.push_back(new glm::vec3(0.f, 2.f, 0.f));
+	lights.push_back(new glm::vec3(0.f, 5.f, 0.f));
 }
 
 void Game::InitializeUniforms()
@@ -420,6 +421,8 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
+	models.back()->Move(glm::vec3(glm::sin(currentFrame)*0.1f,0.f, glm::cos(currentFrame) * 0.1f));
+	models.back()->Rotate(glm::vec3(0.f, 0.f, 1.f));
 	glfwSwapBuffers(window);
 	glFlush();
 
