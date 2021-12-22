@@ -131,7 +131,6 @@ glm::vec3 cubeBrickPositions[] = {
 
 };
 
-<<<<<<< Updated upstream
 glm::vec3 barsDoorPositions[] = {
 	glm::vec3(0.5f,0.5f,1.0f),
 	glm::vec3(-1.5f,0.5f,-2.0f),
@@ -161,8 +160,6 @@ glm::vec3(-1.5f,0.5f,4.0f),
 glm::vec3(-1.5f,0.5f,5.0f),
 
 };
-=======
->>>>>>> Stashed changes
 
 void Game::InitializeGLFW()
 {
@@ -241,42 +238,46 @@ void Game::InitializeShaders()
 void Game::InitializeTextures()
 {
 	//Texture 0
-	textures.push_back(new Texture("Textures\\grass.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture(std::vector<std::string>{"Textures\\skybox\\right.jpg", "Textures\\skybox\\left.jpg", "Textures\\skybox\\top.jpg",
+		"Textures\\skybox\\bottom.jpg", "Textures\\skybox\\front.jpg", "Textures\\skybox\\back.jpg"}, GL_TEXTURE_CUBE_MAP));
 
 	//Texture 1
-	textures.push_back(new Texture("Textures\\Bricks.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\grass.jpg", GL_TEXTURE_2D, GL_RGB));
 
 	//Texture 2
-	textures.push_back(new Texture("Textures\\bars.png", GL_TEXTURE_2D, GL_RGBA));
+	textures.push_back(new Texture("Textures\\Bricks.jpg", GL_TEXTURE_2D, GL_RGB));
 
 	//Texture 3
-	textures.push_back(new Texture("Textures\\BarsWtihDoor.png", GL_TEXTURE_2D, GL_RGBA));
+	textures.push_back(new Texture("Textures\\bars.png", GL_TEXTURE_2D, GL_RGBA));
 
 	//Texture 4
-	textures.push_back(new Texture("Models\\Bird\\12213_bird_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\BarsWtihDoor.png", GL_TEXTURE_2D, GL_RGBA));
 
 	//Texture 5
-	textures.push_back(new Texture("Models\\Tree2\\10445_Oak_Tree_v1_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Bird\\12213_bird_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 
 	//Texture 6
+	textures.push_back(new Texture("Models\\Tree2\\10445_Oak_Tree_v1_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+
+	//Texture 7
 	textures.push_back(new Texture("Models\\Bench\\Bench_2K_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 
 }
 
 void Game::InitializeMaterials()
 {
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 0, 0));
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 1, 1));
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 2, 2));
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 3, 3));
-	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 4, 4));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 4, 4));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 5, 5));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 6, 6));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 7, 7));
 }
 
-void Game::InitializeObjectModels()
+void Game::InitializeSkybox()
 {
-	//std::vector<Vertex> mesh = loadObj("Models\\Bird\\12213_Bird_v1_l3.obj");
+	skybox = new SkyBox(textures[texSkybox]);
 }
 
 void Game::InitializeModels()
@@ -349,13 +350,14 @@ void Game::InitializeUniforms()
 
 	shaders[shaderCoreProgram]->SetVec3F(*lights[0], "lightPos0");
 	shaders[shaderCoreProgram]->SetVec3F(camPosition, "cameraPos");
+
+	shaders[shaderSkybox]->SetMat4fv(ViewMatrix, "view");
+	shaders[shaderSkybox]->SetMat4fv(ProjectionMatrix, "projection");
+	shaders[shaderSkybox]->Set1i(texSkybox, "skybox");
 }
 
-void Game::UpdateUniforms(const int& materialID)
+void Game::UpdateUniforms()
 {
-	//Update uniforms
-	materials[materialID]->SendToShader(*shaders[shaderCoreProgram]);
-
 	//Update framebuffer size and projection matrix
 	glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
 
@@ -381,8 +383,8 @@ Game::Game(const char* title, const int width, const int height, bool resizable)
 	InitializeMatrices();
 	InitializeShaders();
 	InitializeTextures();
+	InitializeSkybox();
 	InitializeMaterials();
-	InitializeObjectModels();
 	InitializeModels();
 	InitializeLights();
 	InitializeUniforms();
@@ -406,6 +408,7 @@ Game::~Game()
 	for (auto*& i : lights)
 		delete i;
 	delete camera;
+	delete skybox;
 }
 
 int Game::GetWindowShouldClose()
@@ -433,12 +436,11 @@ void Game::Render()
 
 	//Clear
 	glClearColor(0.f, 0.f, 0.f, 1.f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	UpdateUniforms(material0);
+	UpdateUniforms();
 
-	//glDepthMask(GL_FALSE);
-	//shaders[1]->Use();
+	skybox->Render(shaders[shaderSkybox], camera);
 	
 
 	//Use a program
@@ -449,44 +451,6 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
-<<<<<<< Updated upstream
-	/*models.back()->Move(glm::vec3(glm::sin(currentFrame)*0.1f,0.f, glm::cos(currentFrame) * 0.1f));
-	models.back()->Rotate(glm::vec3(0.f, 0.f, 1.f));*/
-=======
-
-
-
-	//Activate texture
-
-	//for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
-	//	meshes[meshQuadDown]->SetPosition(cubeGrassPositions[i]);
-	//	textures[texGrass0]->Bind(0);
-	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	//	//models[0]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material1);
-	//for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
-	//	meshes[meshQuadDown]->SetPosition(cubeBrickPositions[i]);
-	//	textures[texBricks0]->Bind(1);
-	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material3);
-	//for (unsigned int i = 0; i < 2; i++) {
-	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-	//	textures[texBars2]->Bind(3);
-	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material2);
-	//for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
-	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-	//	meshes[meshQuad]->SetRotation(glm::vec3(0.f, 90.f, 0.f));
-	//	textures[texBars1]->Bind(2);
-	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	//}
-	//models[0]->Render(shaders[shaderCoreProgram]);
-
-	//End Draw
->>>>>>> Stashed changes
 	glfwSwapBuffers(window);
 	glFlush();
 

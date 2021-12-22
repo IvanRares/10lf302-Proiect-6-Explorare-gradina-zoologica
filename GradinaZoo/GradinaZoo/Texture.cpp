@@ -10,8 +10,9 @@ Texture::Texture(const char* filename, GLenum type, GLenum rgbType)
 	loadFromFile(filename);
 }
 
-Texture::Texture(std::vector<std::string> filenames)
+Texture::Texture(std::vector<std::string> filenames, GLenum type)
 {
+	this->type = type;
 	loadFromFile(filenames);
 }
 
@@ -40,14 +41,19 @@ void Texture::Unbind()
 void Texture::loadFromFile(std::vector<std::string> filename)
 {
 	glGenTextures(1, &id);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, id);
-
-	int width, height, nrChannels;
+	glBindTexture(type, id);
+	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	int nrChannels;
 	for (unsigned int i = 0; i < filename.size(); i++)
 	{
 		unsigned char* data = stbi_load(filename[i].c_str(), &width, &height, &nrChannels, 0);
 		if (data)
 		{
+			stbi_set_flip_vertically_on_load(false);
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
 				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
 			);
@@ -59,11 +65,6 @@ void Texture::loadFromFile(std::vector<std::string> filename)
 			stbi_image_free(data);
 		}
 	}
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 	glActiveTexture(0);
 	glBindTexture(type, 0);

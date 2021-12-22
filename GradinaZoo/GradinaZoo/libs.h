@@ -18,6 +18,7 @@
 #include"Mesh.h"
 #include"Camera.h"
 #include "Model.h"
+#include "SkyBox.h"
 
 #pragma comment (lib, "glfw3dll.lib")
 #pragma comment (lib, "glew32.lib")

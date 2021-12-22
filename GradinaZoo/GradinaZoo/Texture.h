@@ -14,7 +14,7 @@ private:
 	unsigned int type,rgbType;
 public:
 	Texture(const char* filename, GLenum type,GLenum rgbType);
-	Texture(std::vector<std::string> filenames);
+	Texture(std::vector<std::string> filenames, GLenum type);
 	~Texture();
 	GLuint GetID()const;
 	void Bind(const GLint textureUnit);

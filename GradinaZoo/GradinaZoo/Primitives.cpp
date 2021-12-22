@@ -94,60 +94,55 @@ QuadDown::QuadDown() :Primitives()
 	Set(vertices, nrOfVertices, indices, nrOfIndices);
 }
 
-//Cube::Cube()
-//{
-//	Vertex vertices[] =
-//	{
-//		glm::vec3(- 1.0f,  1.0f, -1.0f),
-//	glm::vec3(-1.0f, -1.0f, -1.0f,
-//	 glm::vec3(1.0f, -1.0f, -1.0f,
-//	glm::vec3(1.0f, -1.0f, -1.0f,
-//	glm::vec3(1.0f,  1.0f, -1.0f,
-//	glm::vec3(-1.0f,  1.0f, -1.0f,
-//
-//	glm::vec3(-1.0f, -1.0f,  1.0f,
-//	glm::vec3(-1.0f, -1.0f, -1.0f,
-//	glm::vec3(-1.0f,  1.0f, -1.0f,
-//	glm::vec3(-1.0f,  1.0f, -1.0f,
-//	glm::vec3(-1.0f,  1.0f,  1.0f,
-//	glm::vec3(-1.0f, -1.0f,  1.0f,
-//
-//	 glm::vec3(1.0f, -1.0f, -1.0f,
-//	 glm::vec3(1.0f, -1.0f,  1.0f,
-//	 glm::vec3(1.0f,  1.0f,  1.0f,
-//	glm::vec3(1.0f,  1.0f,  1.0f,
-//	glm::vec3(1.0f,  1.0f, -1.0f,
-//	glm::vec3(1.0f, -1.0f, -1.0f,
-//
-//	-1.0f, -1.0f,  1.0f,
-//	-1.0f,  1.0f,  1.0f,
-//	 1.0f,  1.0f,  1.0f,
-//	 1.0f,  1.0f,  1.0f,
-//	 1.0f, -1.0f,  1.0f,
-//	-1.0f, -1.0f,  1.0f,
-//
-//	-1.0f,  1.0f, -1.0f,
-//	 1.0f,  1.0f, -1.0f,
-//	 1.0f,  1.0f,  1.0f,
-//	 1.0f,  1.0f,  1.0f,
-//	-1.0f,  1.0f,  1.0f,
-//	-1.0f,  1.0f, -1.0f,
-//
-//	-1.0f, -1.0f, -1.0f,
-//	-1.0f, -1.0f,  1.0f,
-//	 1.0f, -1.0f, -1.0f,
-//	 1.0f, -1.0f, -1.0f,
-//	-1.0f, -1.0f,  1.0f,
-//	 1.0f, -1.0f,  1.0f
-//
-//	};
-//	unsigned nrOfVertices = sizeof(vertices) / sizeof(Vertex);
-//
-//	GLuint indices[] =
-//	{
-//		0,1,2,
-//		0,2,3
-//	};
-//	unsigned nrOfIndices = sizeof(indices) / sizeof(GLuint);
-//	Set(vertices, nrOfVertices, indices, nrOfIndices);
-//}
+SkyboxCube::SkyboxCube()
+{
+	vertices = {
+	glm::vec3(-1.0f, -1.0f,  1.0f),
+	glm::vec3(1.0f, -1.0f,  1.0f),
+	glm::vec3(1.0f, -1.0f, -1.0f),
+	glm::vec3(-1.0f, -1.0f, -1.0f),
+	glm::vec3(-1.0f,  1.0f,  1.0f),
+	glm::vec3(1.0f,  1.0f,  1.0f),
+	glm::vec3(1.0f,  1.0f, -1.0f),
+	glm::vec3(-1.0f,  1.0f, -1.0f)
+	};
+
+	indices = {
+	1, 2, 6,
+	6, 5, 1,
+	0, 4, 7,
+	7, 3, 0,
+	4, 5, 6,
+	6, 7, 4,
+	0, 3, 2,
+	2, 1, 0,
+	0, 1, 5,
+	5, 4, 0,
+	3, 7, 6,
+	6, 2, 3
+	};
+}
+
+SkyboxCube::~SkyboxCube()
+{
+}
+
+glm::vec3* SkyboxCube::GetVertices()
+{
+	return vertices.data();
+}
+
+GLuint* SkyboxCube::GetIndices()
+{
+	return indices.data();
+}
+
+const unsigned SkyboxCube::GetNrOfVertices()
+{
+	return vertices.size();
+}
+
+const unsigned SkyboxCube::GetNrOfIndices()
+{
+	return indices.size();
+}

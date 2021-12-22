@@ -40,7 +40,17 @@ public:
 	QuadDown();
 };
 
-//class Cube :public Primitives {
-//public:
-//	Cube();
-//};
+class SkyboxCube
+{
+private:
+	std::vector<glm::vec3> vertices;
+	std::vector<GLuint> indices;
+public:
+	SkyboxCube();
+	~SkyboxCube();
+
+	glm::vec3* GetVertices();
+	GLuint* GetIndices();
+	const unsigned GetNrOfVertices();
+	const unsigned GetNrOfIndices();
+};

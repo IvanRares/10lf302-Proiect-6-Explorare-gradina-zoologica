@@ -2,33 +2,28 @@
 #include <string>
 #include <vector>
 #include "Texture.h"
+#include "Primitives.h"
+#include "Shader.h"
+#include "Camera.h"
 
 class SkyBox
 {
 public:
-    
-    unsigned int textureID;
-    unsigned int loadCubemap(std::vector<std::string> faces);
-    void Render();
-    void Bind();
+	SkyBox(Texture *texture);
+	~SkyBox();
+	
+	void Update(Shader* shader, Camera* camera);
+	void Render(Shader* shader,Camera* camera);
+	void Bind();
 
-    int width, height, nrChannels;
-    unsigned char* data;
-    
+	int width, height, nrChannels;
+	unsigned char* data;
+
 
 private:
+	GLuint VAO, VBO, EBO;
+	void InitVAO();
+	Texture* texture;
 
-    std::vector<std::string> faces
-    {
-        "right.jpg",
-            "left.jpg",
-            "top.jpg",
-            "bottom.jpg",
-            "front.jpg",
-            "back.jpg"
-    };
-
-    Texture* texture =new Texture(faces);
-    
 };
 
