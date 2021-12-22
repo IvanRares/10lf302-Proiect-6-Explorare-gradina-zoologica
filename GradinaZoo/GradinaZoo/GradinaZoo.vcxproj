@@ -72,14 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\_external\glew-2.1.0\include;..\..\..\_external\glm;..\..\..\_external\glfw-3.3.4.bin.WIN32\include\GLFW;..\..\..\_external\stb-master;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\_external\glfw-3.3.4.bin.WIN32\lib-vc2019;..\..\..\_external\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\_external\glew-2.1.0\include;..\..\..\_external\glm;..\..\..\_external\glfw-3.3.4.bin.WIN32\include\GLFW;..\..\..\_external\stb-master;..\..\..\_external\assimp\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\_external\glfw-3.3.4.bin.WIN32\lib-vc2019;..\..\..\_external\glew-2.1.0\lib\Release\Win32;..\..\..\_external\assimp\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\..\..\_external\glew-2.1.0\include;..\..\..\_external\glm;..\..\..\_external\glfw-3.3.4\include\GLFW;..\..\..\_external\stb-master;..\..\..\_external\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\_external\glfw-3.3.4\lib-vc2019;..\..\..\_external\glew-2.1.0\lib\Release\x64;..\..\..\_external\assimp\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,6 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,6 +149,7 @@
     <ClCompile Include="GradinaZoo.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -156,6 +160,7 @@
     <ClInclude Include="libs.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />

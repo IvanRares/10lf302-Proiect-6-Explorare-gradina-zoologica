@@ -17,7 +17,9 @@
 #include<gtc\type_ptr.hpp>
 #include"Mesh.h"
 #include"Camera.h"
+#include "Model.h"
 
 #pragma comment (lib, "glfw3dll.lib")
 #pragma comment (lib, "glew32.lib")
 #pragma comment (lib, "OpenGL32.lib")
+#pragma comment (lib, "assimp-vc142-mtd.lib")
