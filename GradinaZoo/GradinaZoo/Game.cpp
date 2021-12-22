@@ -251,6 +251,9 @@ void Game::InitializeTextures()
 	//Texture 4
 	textures.push_back(new Texture("Models\\Bird\\12213_bird_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 
+	//Texture 5
+	textures.push_back(new Texture("Models\\Tree2\\10445_Oak_Tree_v1_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+
 }
 
 void Game::InitializeMaterials()
@@ -260,6 +263,7 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 2, 2));
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 3, 3));
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 4, 4));
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 5, 5));
 }
 
 void Game::InitializeObjectModels()
@@ -269,7 +273,17 @@ void Game::InitializeObjectModels()
 
 void Game::InitializeModels()
 {
+
+
 	std::vector<Mesh*> meshes;
+	
+	models.push_back(new Model("Models\\Tree2\\10445_Oak_Tree_v1_max2010_iteration-1.obj", materials[material5], textures[texTree1], textures[texTree1], texTree1));
+	models.back()->SetPosition(glm::vec3(1.0f, 0.0f, -5.0f));
+	models.back()->SetScale(glm::vec3(0.005f));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
+	models.back()->Move(glm::vec3(-1.4f, 0.f, 0.f));
+
+	
 	QuadDown squareDown;
 	Quad square;
 	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) 
@@ -305,10 +319,17 @@ void Game::InitializeModels()
 		delete i;
 	meshes.clear();
 
+
+
+
 	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird],texBird));
 	models.back()->Move(glm::vec3(0.f,3.f,0.f));
 	models.back()->SetScale(glm::vec3(0.01f));
 	models.back()->SetRotation(glm::vec3(-90.f,0.f,0.f));
+
+
+	
+
 }
 
 void Game::InitializeLights()
@@ -421,8 +442,8 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
-	models.back()->Move(glm::vec3(glm::sin(currentFrame)*0.1f,0.f, glm::cos(currentFrame) * 0.1f));
-	models.back()->Rotate(glm::vec3(0.f, 0.f, 1.f));
+	/*models.back()->Move(glm::vec3(glm::sin(currentFrame)*0.1f,0.f, glm::cos(currentFrame) * 0.1f));
+	models.back()->Rotate(glm::vec3(0.f, 0.f, 1.f));*/
 	glfwSwapBuffers(window);
 	glFlush();
 
