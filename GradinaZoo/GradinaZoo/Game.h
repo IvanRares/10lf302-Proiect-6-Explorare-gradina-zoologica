@@ -29,6 +29,7 @@ enum meshEnum {
 	meshQuad
 };
 
+
 class Game
 {
 private:
@@ -56,6 +57,8 @@ private:
 	void InitializeModels();
 	void InitializeLights();
 	void InitializeUniforms();
+
+	unsigned int loadCubemap(std::vector<std::string> faces);
 
 	void UpdateUniforms(const int& materialID);
 public:

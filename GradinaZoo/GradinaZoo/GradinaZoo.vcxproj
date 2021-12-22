@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\_external\glew-2.1.0\include;..\..\..\_external\glm;..\..\..\_external\glfw-3.3.4\include\GLFW;..\..\..\_external\stb-master;..\..\..\_external\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\_external\glfw-3.3.4\lib-vc2019;..\..\..\_external\glew-2.1.0\lib\Release\x64;..\..\..\_external\assimp\code\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\_external\glew-2.1.0\include;..\..\..\_external\glm;..\..\..\_external\glfw-3.3.6.bin.WIN64\include\GLFW;..\..\..\_external\stb-master;..\..\..\_external\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\_external\glfw-3.3.6.bin.WIN64\lib-vc2019;..\..\..\_external\glew-2.1.0\lib\Release\x64;..\..\..\_external\assimp\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -152,6 +152,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,11 +164,14 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentCore.glsl" />
+    <None Include="skybox.fs" />
+    <None Include="skybox.vs" />
     <None Include="vertexCore.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

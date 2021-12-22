@@ -4,6 +4,7 @@ int main()
 {
 	Game game("Gradina Zoo", 1280, 720, true);
 	//Main loop
+
 	while (!game.GetWindowShouldClose())
 	{
 		game.Update();

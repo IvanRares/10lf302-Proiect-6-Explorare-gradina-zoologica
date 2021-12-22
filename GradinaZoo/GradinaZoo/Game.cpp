@@ -118,7 +118,7 @@ glm::vec3 cubeBrickPositions[] = {
 	   glm::vec3(0.0f,0.0f,-1.0f),
 	   glm::vec3(-1.0f,0.0f,0.0f),
 	   glm::vec3(0.0f,0.0f,0.0f),
-		glm::vec3(-1.0f,0.0f,5.0f),
+	   glm::vec3(-1.0f,0.0f,5.0f),
 	   glm::vec3(0.0f,0.0f,5.0f),
 	   glm::vec3(-1.0f,0.0f,4.0f),
 	   glm::vec3(0.0f,0.0f,4.0f),
@@ -131,6 +131,7 @@ glm::vec3 cubeBrickPositions[] = {
 
 };
 
+<<<<<<< Updated upstream
 glm::vec3 barsDoorPositions[] = {
 	glm::vec3(0.5f,0.5f,1.0f),
 	glm::vec3(-1.5f,0.5f,-2.0f),
@@ -160,6 +161,8 @@ glm::vec3(-1.5f,0.5f,4.0f),
 glm::vec3(-1.5f,0.5f,5.0f),
 
 };
+=======
+>>>>>>> Stashed changes
 
 void Game::InitializeGLFW()
 {
@@ -232,6 +235,7 @@ void Game::InitializeMatrices()
 void Game::InitializeShaders()
 {
 	shaders.push_back(new Shader("vertexCore.glsl", "fragmentCore.glsl"));
+	shaders.push_back(new Shader("skybox.vs", "skybox.fs"));
 }
 
 void Game::InitializeTextures()
@@ -434,6 +438,10 @@ void Game::Render()
 
 	UpdateUniforms(material0);
 
+	//glDepthMask(GL_FALSE);
+	//shaders[1]->Use();
+	
+
 	//Use a program
 	shaders[shaderCoreProgram]->Use();
 
@@ -442,8 +450,44 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
+<<<<<<< Updated upstream
 	/*models.back()->Move(glm::vec3(glm::sin(currentFrame)*0.1f,0.f, glm::cos(currentFrame) * 0.1f));
 	models.back()->Rotate(glm::vec3(0.f, 0.f, 1.f));*/
+=======
+
+
+
+	//Activate texture
+
+	//for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
+	//	meshes[meshQuadDown]->SetPosition(cubeGrassPositions[i]);
+	//	textures[texGrass0]->Bind(0);
+	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
+	//	//models[0]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material1);
+	//for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
+	//	meshes[meshQuadDown]->SetPosition(cubeBrickPositions[i]);
+	//	textures[texBricks0]->Bind(1);
+	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material3);
+	//for (unsigned int i = 0; i < 2; i++) {
+	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
+	//	textures[texBars2]->Bind(3);
+	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
+	//}
+	//UpdateUniforms(material2);
+	//for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
+	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
+	//	meshes[meshQuad]->SetRotation(glm::vec3(0.f, 90.f, 0.f));
+	//	textures[texBars1]->Bind(2);
+	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
+	//}
+	//models[0]->Render(shaders[shaderCoreProgram]);
+
+	//End Draw
+>>>>>>> Stashed changes
 	glfwSwapBuffers(window);
 	glFlush();
 

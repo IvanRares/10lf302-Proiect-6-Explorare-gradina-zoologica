@@ -39,3 +39,8 @@ class QuadDown :public Primitives
 public:
 	QuadDown();
 };
+
+//class Cube :public Primitives {
+//public:
+//	Cube();
+//};

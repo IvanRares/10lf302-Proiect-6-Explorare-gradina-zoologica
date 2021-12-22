@@ -93,3 +93,61 @@ QuadDown::QuadDown() :Primitives()
 	unsigned nrOfIndices = sizeof(indices) / sizeof(GLuint);
 	Set(vertices, nrOfVertices, indices, nrOfIndices);
 }
+
+//Cube::Cube()
+//{
+//	Vertex vertices[] =
+//	{
+//		glm::vec3(- 1.0f,  1.0f, -1.0f),
+//	glm::vec3(-1.0f, -1.0f, -1.0f,
+//	 glm::vec3(1.0f, -1.0f, -1.0f,
+//	glm::vec3(1.0f, -1.0f, -1.0f,
+//	glm::vec3(1.0f,  1.0f, -1.0f,
+//	glm::vec3(-1.0f,  1.0f, -1.0f,
+//
+//	glm::vec3(-1.0f, -1.0f,  1.0f,
+//	glm::vec3(-1.0f, -1.0f, -1.0f,
+//	glm::vec3(-1.0f,  1.0f, -1.0f,
+//	glm::vec3(-1.0f,  1.0f, -1.0f,
+//	glm::vec3(-1.0f,  1.0f,  1.0f,
+//	glm::vec3(-1.0f, -1.0f,  1.0f,
+//
+//	 glm::vec3(1.0f, -1.0f, -1.0f,
+//	 glm::vec3(1.0f, -1.0f,  1.0f,
+//	 glm::vec3(1.0f,  1.0f,  1.0f,
+//	glm::vec3(1.0f,  1.0f,  1.0f,
+//	glm::vec3(1.0f,  1.0f, -1.0f,
+//	glm::vec3(1.0f, -1.0f, -1.0f,
+//
+//	-1.0f, -1.0f,  1.0f,
+//	-1.0f,  1.0f,  1.0f,
+//	 1.0f,  1.0f,  1.0f,
+//	 1.0f,  1.0f,  1.0f,
+//	 1.0f, -1.0f,  1.0f,
+//	-1.0f, -1.0f,  1.0f,
+//
+//	-1.0f,  1.0f, -1.0f,
+//	 1.0f,  1.0f, -1.0f,
+//	 1.0f,  1.0f,  1.0f,
+//	 1.0f,  1.0f,  1.0f,
+//	-1.0f,  1.0f,  1.0f,
+//	-1.0f,  1.0f, -1.0f,
+//
+//	-1.0f, -1.0f, -1.0f,
+//	-1.0f, -1.0f,  1.0f,
+//	 1.0f, -1.0f, -1.0f,
+//	 1.0f, -1.0f, -1.0f,
+//	-1.0f, -1.0f,  1.0f,
+//	 1.0f, -1.0f,  1.0f
+//
+//	};
+//	unsigned nrOfVertices = sizeof(vertices) / sizeof(Vertex);
+//
+//	GLuint indices[] =
+//	{
+//		0,1,2,
+//		0,2,3
+//	};
+//	unsigned nrOfIndices = sizeof(indices) / sizeof(GLuint);
+//	Set(vertices, nrOfVertices, indices, nrOfIndices);
+//}
