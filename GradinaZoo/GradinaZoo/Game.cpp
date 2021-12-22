@@ -131,6 +131,36 @@ glm::vec3 cubeBrickPositions[] = {
 
 };
 
+glm::vec3 barsDoorPositions[] = {
+	glm::vec3(0.5f,0.5f,1.0f),
+	glm::vec3(-1.5f,0.5f,-2.0f),
+	// x y z
+
+glm::vec3(0.5f,0.5f,-5.0f),
+glm::vec3(0.5f,0.5f,-4.0f),
+glm::vec3(0.5f,0.5f,-3.0f),
+glm::vec3(0.5f,0.5f,-2.0f),
+glm::vec3(0.5f,0.5f,-1.0f),
+glm::vec3(0.5f,0.5f,0.0f),
+glm::vec3(0.5f,0.5f,2.0f),
+glm::vec3(0.5f,0.5f,3.0f),
+glm::vec3(0.5f,0.5f,4.0f),
+glm::vec3(0.5f,0.5f,5.0f),
+
+
+glm::vec3(-1.5f,0.5f,-5.0f),
+glm::vec3(-1.5f,0.5f,-4.0f),
+glm::vec3(-1.5f,0.5f,-3.0f),
+glm::vec3(-1.5f,0.5f,-1.0f),
+glm::vec3(-1.5f,0.5f,0.0f),
+glm::vec3(-1.5f,0.5f,1.0f),
+glm::vec3(-1.5f,0.5f,2.0f),
+glm::vec3(-1.5f,0.5f,3.0f),
+glm::vec3(-1.5f,0.5f,4.0f),
+glm::vec3(-1.5f,0.5f,5.0f),
+
+};
+
 void Game::InitializeGLFW()
 {
 	//Init glfw
@@ -241,31 +271,43 @@ void Game::InitializeModels()
 {
 	std::vector<Mesh*> meshes;
 	QuadDown squareDown;
-	//this->meshes.push_back(new Mesh(&squareDown, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
-	
-	meshes.push_back(new Mesh(&squareDown, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
-	
-	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
-		meshes.push_back(new Mesh(&squareDown, cubeBrickPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
+	Quad square;
+	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) 
+	{
+		meshes.push_back(new Mesh(&squareDown, cubeGrassPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material0], textures[texGrass0], textures[texGrass0], meshes,texGrass0));
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
 
-
-	//Quad square;
-	//this->meshes.push_back(new Mesh(&square, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
-	//meshes.push_back(new Mesh(&square, glm::vec3(0.f), glm::vec3(0.f), glm::vec3(1.f)));
-	////std::vector<Vertex> mesh = loadObj("Models\\Bird\\12213_Bird_v1_l3.obj");
-	////meshes.push_back(new Mesh(mesh.data(), mesh.size(), NULL, 0, glm::vec3(1.f, 0.f, 0.f)));
-	//meshes[0]->Rotate(glm::vec3(0.f, 0.f, 1.f));
-	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird],texBird));
-	//models.push_back(new Model(glm::vec3(0.f), materials[material0], textures[texGrass0], textures[texGrass0], meshes));
-
-	/*for (auto*& i : meshes)
+	for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
+		meshes.push_back(new Mesh(&squareDown, cubeBrickPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
+	}
+	models.push_back(new Model(glm::vec3(0.f), materials[material1], textures[texBricks0], textures[texBricks0], meshes, texBricks0));
+	for (auto*& i : meshes)
 		delete i;
-	meshes.clear();*/
+	meshes.clear();
+
+	for (unsigned int i = 0; i < 2; i++) {
+		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f,90.f,0.f), glm::vec3(1.f)));
+	}
+	models.push_back(new Model(glm::vec3(0.f), materials[material3], textures[texBars2], textures[texBars2], meshes, texBars2));
+	for (auto*& i : meshes)
+		delete i;
+	meshes.clear();
+
+	for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
+		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
+		}
+	models.push_back(new Model(glm::vec3(0.f), materials[material2], textures[texBars1], textures[texBars1], meshes, texBars1));
+	for (auto*& i : meshes)
+		delete i;
+	meshes.clear();
+
+	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird],texBird));
+	models.back()->SetScale(glm::vec3(0.01f));
+	models.back()->SetRotation(glm::vec3(-90.f,0.f,0.f));
 }
 
 void Game::InitializeLights()
@@ -358,40 +400,6 @@ void Game::Update()
 	UpdateInput(window);
 }
 
-
-
-
-
-glm::vec3 barsDoorPositions[] = {
-	glm::vec3(0.5f,0.5f,1.0f),
-	glm::vec3(-1.5f,0.5f,-2.0f),
-	// x y z
-
-glm::vec3(0.5f,0.5f,-5.0f),
-glm::vec3(0.5f,0.5f,-4.0f),
-glm::vec3(0.5f,0.5f,-3.0f),
-glm::vec3(0.5f,0.5f,-2.0f),
-glm::vec3(0.5f,0.5f,-1.0f),
-glm::vec3(0.5f,0.5f,0.0f),
-glm::vec3(0.5f,0.5f,2.0f),
-glm::vec3(0.5f,0.5f,3.0f),
-glm::vec3(0.5f,0.5f,4.0f),
-glm::vec3(0.5f,0.5f,5.0f),
-
-
-glm::vec3(-1.5f,0.5f,-5.0f),
-glm::vec3(-1.5f,0.5f,-4.0f),
-glm::vec3(-1.5f,0.5f,-3.0f),
-glm::vec3(-1.5f,0.5f,-1.0f),
-glm::vec3(-1.5f,0.5f,0.0f),
-glm::vec3(-1.5f,0.5f,1.0f),
-glm::vec3(-1.5f,0.5f,2.0f),
-glm::vec3(-1.5f,0.5f,3.0f),
-glm::vec3(-1.5f,0.5f,4.0f),
-glm::vec3(-1.5f,0.5f,5.0f),
-
-};
-
 void Game::Render()
 {
 	double currentFrame = glfwGetTime();
@@ -412,37 +420,6 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
-
-	//Activate texture
-
-	//for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) {
-	//	meshes[meshQuadDown]->SetPosition(cubeGrassPositions[i]);
-	//	textures[texGrass0]->Bind(0);
-	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	//	//models[0]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material1);
-	//for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
-	//	meshes[meshQuadDown]->SetPosition(cubeBrickPositions[i]);
-	//	textures[texBricks0]->Bind(1);
-	//	meshes[meshQuadDown]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material3);
-	//for (unsigned int i = 0; i < 2; i++) {
-	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-	//	textures[texBars2]->Bind(3);
-	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	//}
-	//UpdateUniforms(material2);
-	//for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
-	//	meshes[meshQuad]->SetPosition(barsDoorPositions[i]);
-	//	meshes[meshQuad]->SetRotation(glm::vec3(0.f, 90.f, 0.f));
-	//	textures[texBars1]->Bind(2);
-	//	meshes[meshQuad]->Render(shaders[shaderCoreProgram]);
-	//}
-	//models[0]->Render(shaders[shaderCoreProgram]);
-
-	//End Draw
 	glfwSwapBuffers(window);
 	glFlush();
 

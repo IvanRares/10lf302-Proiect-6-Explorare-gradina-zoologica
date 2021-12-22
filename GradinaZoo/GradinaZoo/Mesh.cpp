@@ -40,11 +40,10 @@ void Mesh::UpdateUniforms(Shader* shader)
 void Mesh::UpdateModelMatrix()
 {
 	ModelMatrix = glm::mat4(1.f);
-	ModelMatrix = glm::translate(ModelMatrix, origin);
+	ModelMatrix = glm::translate(ModelMatrix, position);
 	ModelMatrix = glm::rotate(ModelMatrix, glm::radians(rotation.x), glm::vec3(1.f, 0.f, 0.f));
 	ModelMatrix = glm::rotate(ModelMatrix, glm::radians(rotation.y), glm::vec3(0.f, 1.f, 0.f));
 	ModelMatrix = glm::rotate(ModelMatrix, glm::radians(rotation.z), glm::vec3(0.f, 0.f, 1.f));
-	ModelMatrix = glm::translate(ModelMatrix, position - origin);
 	ModelMatrix = glm::scale(ModelMatrix, scale);
 }
 

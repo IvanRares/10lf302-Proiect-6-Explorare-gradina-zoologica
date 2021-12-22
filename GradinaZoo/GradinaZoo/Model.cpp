@@ -96,8 +96,9 @@ Model::Model(glm::vec3 position, Material* material, Texture* ovTexDif, Texture*
 
 	for (auto& i : this->meshes)
 	{
-		i->Move(this->position);
-		i->SetOrigin(this->position);
+		//i->Move(this->position);
+		//i->SetOrigin(this->position);
+		//i->Rotate(glm::vec3(180.f, 0.f, 0.f));
 	}
 }
 
