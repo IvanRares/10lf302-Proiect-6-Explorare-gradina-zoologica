@@ -153,6 +153,7 @@
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="Sun.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
@@ -172,6 +174,8 @@
     <None Include="fragmentCore.glsl" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
+    <None Include="sun.fs" />
+    <None Include="sun.vs" />
     <None Include="vertexCore.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

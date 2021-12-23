@@ -65,7 +65,12 @@ void main()
 	vec4 texColor = texture(material.diffuseTex, vsTexCoord);
 	if(texColor.a < 0.1)
 		discard;
-
+	if(lightPos0.y<0.3)
+	{
+		ambientFinal = vec3(0.4f);
+		diffuseFinal = vec3(0.4f);
+		specularFinal = vec3(0.4f);
+	}
 	fsColor = texColor
 	* (vec4(ambientFinal,1.f) + vec4(diffuseFinal,1.f) + vec4(specularFinal,1.f));
 }

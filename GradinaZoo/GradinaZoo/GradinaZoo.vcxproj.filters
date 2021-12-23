@@ -45,6 +45,9 @@
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -80,6 +83,9 @@
     <ClInclude Include="SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentCore.glsl">
@@ -92,6 +98,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="skybox.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sun.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sun.fs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

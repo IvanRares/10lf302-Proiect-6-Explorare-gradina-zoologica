@@ -234,6 +234,7 @@ void Game::InitializeShaders()
 {
 	shaders.push_back(new Shader("vertexCore.glsl", "fragmentCore.glsl"));
 	shaders.push_back(new Shader("skybox.vs", "skybox.fs"));
+	shaders.push_back(new Shader("sun.vs", "sun.fs"));
 }
 
 void Game::InitializeTextures()
@@ -417,7 +418,12 @@ void Game::InitializeModels()
 void Game::InitializeLights()
 {
 	//Lights
-	lights.push_back(new glm::vec3(0.f, 5.f, 0.f));
+	lights.push_back(new glm::vec3(0.f, 100.f, 0.f));
+}
+
+void Game::InitializeSun()
+{
+	sun = Sun(*lights.back());
 }
 
 void Game::InitializeUniforms()
@@ -432,6 +438,8 @@ void Game::InitializeUniforms()
 	shaders[shaderSkybox]->SetMat4fv(ViewMatrix, "view");
 	shaders[shaderSkybox]->SetMat4fv(ProjectionMatrix, "projection");
 	shaders[shaderSkybox]->Set1i(texSkybox, "skybox");
+
+	shaders[shaderSkybox]->SetMat4fv(glm::mat4(1.f), "model");
 }
 
 void Game::UpdateUniforms()
@@ -444,6 +452,10 @@ void Game::UpdateUniforms()
 
 	ViewMatrix = camera->GetViewMatrix();
 	shaders[shaderCoreProgram]->SetMat4fv(ViewMatrix, "ViewMatrix");
+	shaders[shaderCoreProgram]->SetVec3F(sun.GetLightPos(), "lightPos0");
+
+	shaders[shaderSun]->SetMat4fv(camera->GetProjectionMatrix(), "projection");
+	shaders[shaderSun]->SetMat4fv(camera->GetViewMatrix(), "view");
 }
 
 Game::Game(const char* title, const int width, const int height, bool resizable) :windowWidth(width), windowHeight(height)
@@ -465,6 +477,7 @@ Game::Game(const char* title, const int width, const int height, bool resizable)
 	InitializeMaterials();
 	InitializeModels();
 	InitializeLights();
+	InitializeSun();
 	InitializeUniforms();
 }
 
@@ -520,7 +533,6 @@ void Game::Render()
 
 	skybox->Render(shaders[shaderSkybox], camera);
 
-
 	//Use a program
 	shaders[shaderCoreProgram]->Use();
 
@@ -529,6 +541,14 @@ void Game::Render()
 	{
 		i->Render(shaders[shaderCoreProgram]);
 	}
+
+	models[6]->SetPosition(glm::vec3(1.5f, 0.5f, 0.5f));
+	models[6]->Render(shaders[shaderCoreProgram]);
+	models[6]->SetPosition(glm::vec3(0.5f, 0.5f, 0.5f));
+	models[6]->Render(shaders[shaderCoreProgram]);
+
+	sun.Render(shaders[shaderSun], currentFrame);
+
 	glfwSwapBuffers(window);
 	glFlush();
 

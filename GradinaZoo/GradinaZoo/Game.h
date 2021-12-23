@@ -3,7 +3,8 @@
 
 enum shaderEnums {
 	shaderCoreProgram = 0,
-	shaderSkybox
+	shaderSkybox,
+	shaderSun
 };
 
 enum textureEnum {
@@ -46,6 +47,7 @@ private:
 	std::vector<Model*> models;
 	std::vector<glm::vec3*> lights;
 	SkyBox* skybox;
+	Sun sun;
 
 	void InitializeGLFW();
 	void InitializeWindow(const char* title, bool resizable);
@@ -58,6 +60,7 @@ private:
 	void InitializeMaterials();
 	void InitializeModels();
 	void InitializeLights();
+	void InitializeSun();
 	void InitializeUniforms();
 
 	void UpdateUniforms();

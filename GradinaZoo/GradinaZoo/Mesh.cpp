@@ -165,7 +165,7 @@ void Mesh::Render(Shader* shader)
 	}
 	else
 		glDrawElements(GL_TRIANGLES, nrOfIndices, GL_UNSIGNED_INT, 0);
-
+	
 	glBindVertexArray(0);
 	glUseProgram(0);
 	glActiveTexture(0);
