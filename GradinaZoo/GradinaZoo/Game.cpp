@@ -291,8 +291,6 @@ void Game::InitializeSkybox()
 
 void Game::InitializeModels()
 {
-
-
 	std::vector<Mesh*> meshes;
 	QuadDown squareDown;
 	Quad square;
@@ -341,49 +339,41 @@ void Game::InitializeModels()
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float) distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float) distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float) distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, -45.f, 0.f), glm::vec3(0.5f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material8], textures[texGrass1], textures[texGrass1], meshes, texGrass1));
 	models.back()->Move(glm::vec3(0.f, 0.12f, 0.f));

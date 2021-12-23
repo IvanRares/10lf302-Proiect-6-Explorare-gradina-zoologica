@@ -32,6 +32,10 @@ enum materialEnum {
 	material8
 };
 
+enum modelEnum {
+
+};
+
 class Game
 {
 private:
