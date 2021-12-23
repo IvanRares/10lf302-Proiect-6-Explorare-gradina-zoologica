@@ -681,22 +681,18 @@ void Game::Render()
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -3.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -9.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -16.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -23.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -30.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -35.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -42.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -48.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -56.f));
@@ -707,28 +703,85 @@ void Game::Render()
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -3.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-	
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -9.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -16.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -23.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -30.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -35.5f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -42.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
-
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -48.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
 	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -56.f));
 	models[bench]->Render(shaders[shaderCoreProgram]);
+	/////
+	models[bench]->SetRotation(glm::vec3(0.f, 0.f, 0.f));
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -7.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
 
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -7.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
 
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -20.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -20.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -33.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -33.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -46.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -46.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -59.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -59.2f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetRotation(glm::vec3(0.f, 180.f, 0.f));
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -5.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -5.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -18.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -18.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -31.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -31.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -44.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -44.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(2.5f, 0.f, -57.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-3.5f, 0.f, -57.8f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	/////
 	models[bird]->SetPosition(glm::vec3(-3.5f, 0.41f, 3.70f));
 	models[bird]->Render(shaders[shaderCoreProgram]);
 
