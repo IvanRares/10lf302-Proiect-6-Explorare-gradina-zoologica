@@ -6,136 +6,186 @@ double Game::lastFrame = 0.0f;
 Camera* Game::camera = nullptr;
 
 glm::vec3 cubeGrassPositions[] = {
-		glm::vec3(-5.0f,0.0f,-5.0f),
-		glm::vec3(-4.0f,0.0f,-5.0f),
-		glm::vec3(-3.0f,0.0f,-5.0f),
-		glm::vec3(-2.0f,0.0f,-5.0f),
-		glm::vec3(4.0f,0.0f,-5.0f),
-		glm::vec3(3.0f,0.0f,-5.0f),
-		glm::vec3(2.0f,0.0f,-5.0f),
-		glm::vec3(1.0f,0.0f,-5.0f),
+	//stanga (spate-fata)
+	// 1
+	glm::vec3(-5.0f,0.0f,-5.0f),
+	glm::vec3(-4.0f,0.0f,-5.0f),
+	glm::vec3(-3.0f,0.0f,-5.0f),
+	glm::vec3(-2.0f,0.0f,-5.0f),
+	// 2
+	glm::vec3(-5.0f,0.0f,-4.0f),
+	glm::vec3(-4.0f,0.0f,-4.0f),
+	glm::vec3(-3.0f,0.0f,-4.0f),
+	glm::vec3(-2.0f,0.0f,-4.0f),
+	// 3
+	glm::vec3(-5.0f,0.0f,-3.0f),
+	glm::vec3(-4.0f,0.0f,-3.0f),
+	glm::vec3(-3.0f,0.0f,-3.0f),
+	glm::vec3(-2.0f,0.0f,-3.0f),
+	// 4
+	glm::vec3(-5.0f,0.0f,-2.0f),
+	glm::vec3(-4.0f,0.0f,-2.0f),
+	glm::vec3(-3.0f,0.0f,-2.0f),
+	glm::vec3(-2.0f,0.0f,-2.0f),
+	// 5
+	glm::vec3(-5.0f,0.0f,-1.0f),
+	glm::vec3(-4.0f,0.0f,-1.0f),
+	glm::vec3(-3.0f,0.0f,-1.0f),
+	glm::vec3(-2.0f,0.0f,-1.0f),
+	// 6
+	glm::vec3(-5.0f,0.0f,0.0f),
+	glm::vec3(-4.0f,0.0f,0.0f),
+	glm::vec3(-3.0f,0.0f,0.0f),
+	glm::vec3(-2.0f,0.0f,0.0f),
+	// 7
+	glm::vec3(-5.0f,0.0f,5.0f),
+	glm::vec3(-4.0f,0.0f,5.0f),
+	glm::vec3(-3.0f,0.0f,5.0f),
+	glm::vec3(-2.0f,0.0f,5.0f),
+	// 8
+	glm::vec3(-5.0f,0.0f,4.0f),
+	glm::vec3(-4.0f,0.0f,4.0f),
+	glm::vec3(-3.0f,0.0f,4.0f),
+	glm::vec3(-2.0f,0.0f,4.0f),
+	// 9
+	glm::vec3(-5.0f,0.0f,3.0f),
+	glm::vec3(-4.0f,0.0f,3.0f),
+	glm::vec3(-3.0f,0.0f,3.0f),
+	glm::vec3(-2.0f,0.0f,3.0f),
+	// 10
+	glm::vec3(-5.0f,0.0f,2.0f),
+	glm::vec3(-4.0f,0.0f,2.0f),
+	glm::vec3(-3.0f,0.0f,2.0f),
+	glm::vec3(-2.0f,0.0f,2.0f),
+	// 11
+	glm::vec3(-5.0f,0.0f,1.0f),
+	glm::vec3(-4.0f,0.0f,1.0f),
+	glm::vec3(-3.0f,0.0f,1.0f),
+	glm::vec3(-2.0f,0.0f,1.0f),
 
-		glm::vec3(-5.0f,0.0f,-4.0f),
-		glm::vec3(-4.0f,0.0f,-4.0f),
-		glm::vec3(-3.0f,0.0f,-4.0f),
-		glm::vec3(-2.0f,0.0f,-4.0f),
-		glm::vec3(4.0f,0.0f,-4.0f),
-		glm::vec3(3.0f,0.0f,-4.0f),
-		glm::vec3(2.0f,0.0f,-4.0f),
-		glm::vec3(1.0f,0.0f,-4.0f),
-
-		glm::vec3(-5.0f,0.0f,-3.0f),
-		glm::vec3(-4.0f,0.0f,-3.0f),
-		glm::vec3(-3.0f,0.0f,-3.0f),
-		glm::vec3(-2.0f,0.0f,-3.0f),
-		glm::vec3(4.0f,0.0f,-3.0f),
-		glm::vec3(3.0f,0.0f,-3.0f),
-		glm::vec3(2.0f,0.0f,-3.0f),
-		glm::vec3(1.0f,0.0f,-3.0f),
-
-		glm::vec3(-5.0f,0.0f,-2.0f),
-		glm::vec3(-4.0f,0.0f,-2.0f),
-		glm::vec3(-3.0f,0.0f,-2.0f),
-		glm::vec3(-2.0f,0.0f,-2.0f),
-		glm::vec3(4.0f,0.0f,-2.0f),
-		glm::vec3(3.0f,0.0f,-2.0f),
-		glm::vec3(2.0f,0.0f,-2.0f),
-		glm::vec3(1.0f,0.0f,-2.0f),
-
-		glm::vec3(-5.0f,0.0f,-1.0f),
-		glm::vec3(-4.0f,0.0f,-1.0f),
-		glm::vec3(-3.0f,0.0f,-1.0f),
-		glm::vec3(-2.0f,0.0f,-1.0f),
-		glm::vec3(4.0f,0.0f,-1.0f),
-		glm::vec3(3.0f,0.0f,-1.0f),
-		glm::vec3(2.0f,0.0f,-1.0f),
-		glm::vec3(1.0f,0.0f,-1.0f),
-
-		glm::vec3(-5.0f,0.0f,0.0f),
-		glm::vec3(-4.0f,0.0f,0.0f),
-		glm::vec3(-3.0f,0.0f,0.0f),
-		glm::vec3(-2.0f,0.0f,0.0f),
-		glm::vec3(4.0f,0.0f,0.0f),
-		glm::vec3(3.0f,0.0f,0.0f),
-		glm::vec3(2.0f,0.0f,0.0f),
-		glm::vec3(1.0f,0.0f,0.0f),
-
-		glm::vec3(-5.0f,0.0f,5.0f),
-		glm::vec3(-4.0f,0.0f,5.0f),
-		glm::vec3(-3.0f,0.0f,5.0f),
-		glm::vec3(-2.0f,0.0f,5.0f),
-		glm::vec3(4.0f,0.0f,5.0f),
-		glm::vec3(3.0f,0.0f,5.0f),
-		glm::vec3(2.0f,0.0f,5.0f),
-		glm::vec3(1.0f,0.0f,5.0f),
-
-		glm::vec3(-5.0f,0.0f,4.0f),
-		glm::vec3(-4.0f,0.0f,4.0f),
-		glm::vec3(-3.0f,0.0f,4.0f),
-		glm::vec3(-2.0f,0.0f,4.0f),
-		glm::vec3(4.0f,0.0f,4.0f),
-		glm::vec3(3.0f,0.0f,4.0f),
-		glm::vec3(2.0f,0.0f,4.0f),
-		glm::vec3(1.0f,0.0f,4.0f),
-
-		glm::vec3(-5.0f,0.0f,3.0f),
-		glm::vec3(-4.0f,0.0f,3.0f),
-		glm::vec3(-3.0f,0.0f,3.0f),
-		glm::vec3(-2.0f,0.0f,3.0f),
-		glm::vec3(4.0f,0.0f,3.0f),
-		glm::vec3(3.0f,0.0f,3.0f),
-		glm::vec3(2.0f,0.0f,3.0f),
-		glm::vec3(1.0f,0.0f,3.0f),
-
-		glm::vec3(-5.0f,0.0f,2.0f),
-		glm::vec3(-4.0f,0.0f,2.0f),
-		glm::vec3(-3.0f,0.0f,2.0f),
-		glm::vec3(-2.0f,0.0f,2.0f),
-		glm::vec3(4.0f,0.0f,2.0f),
-		glm::vec3(3.0f,0.0f,2.0f),
-		glm::vec3(2.0f,0.0f,2.0f),
-		glm::vec3(1.0f,0.0f,2.0f),
-
-		glm::vec3(-5.0f,0.0f,1.0f),
-		glm::vec3(-4.0f,0.0f,1.0f),
-		glm::vec3(-3.0f,0.0f,1.0f),
-		glm::vec3(-2.0f,0.0f,1.0f),
-		glm::vec3(4.0f,0.0f,1.0f),
-		glm::vec3(3.0f,0.0f,1.0f),
-		glm::vec3(2.0f,0.0f,1.0f),
-		glm::vec3(1.0f, 0.0f, 1.0f),
+	//dreapta
+	// 1
+	glm::vec3(4.0f,0.0f,-5.0f),
+	glm::vec3(3.0f,0.0f,-5.0f),
+	glm::vec3(2.0f,0.0f,-5.0f),
+	glm::vec3(1.0f,0.0f,-5.0f),
+	// 2
+	glm::vec3(4.0f,0.0f,-4.0f),
+	glm::vec3(3.0f,0.0f,-4.0f),
+	glm::vec3(2.0f,0.0f,-4.0f),
+	glm::vec3(1.0f,0.0f,-4.0f),
+	// 3
+	glm::vec3(4.0f,0.0f,-3.0f),
+	glm::vec3(3.0f,0.0f,-3.0f),
+	glm::vec3(2.0f,0.0f,-3.0f),
+	glm::vec3(1.0f,0.0f,-3.0f),
+	// 4
+	glm::vec3(4.0f,0.0f,-2.0f),
+	glm::vec3(3.0f,0.0f,-2.0f),
+	glm::vec3(2.0f,0.0f,-2.0f),
+	glm::vec3(1.0f,0.0f,-2.0f),
+	// 5
+	glm::vec3(4.0f,0.0f,-1.0f),
+	glm::vec3(3.0f,0.0f,-1.0f),
+	glm::vec3(2.0f,0.0f,-1.0f),
+	glm::vec3(1.0f,0.0f,-1.0f),
+	// 6
+	glm::vec3(4.0f,0.0f,0.0f),
+	glm::vec3(3.0f,0.0f,0.0f),
+	glm::vec3(2.0f,0.0f,0.0f),
+	glm::vec3(1.0f,0.0f,0.0f),
+	// 7
+	glm::vec3(4.0f,0.0f,5.0f),
+	glm::vec3(3.0f,0.0f,5.0f),
+	glm::vec3(2.0f,0.0f,5.0f),
+	glm::vec3(1.0f,0.0f,5.0f),
+	// 8
+	glm::vec3(4.0f,0.0f,4.0f),
+	glm::vec3(3.0f,0.0f,4.0f),
+	glm::vec3(2.0f,0.0f,4.0f),
+	glm::vec3(1.0f,0.0f,4.0f),
+	// 9
+	glm::vec3(4.0f,0.0f,3.0f),
+	glm::vec3(3.0f,0.0f,3.0f),
+	glm::vec3(2.0f,0.0f,3.0f),
+	glm::vec3(1.0f,0.0f,3.0f),
+	// 10
+	glm::vec3(4.0f, 0.0f, 2.0f),
+	glm::vec3(3.0f, 0.0f, 2.0f),
+	glm::vec3(2.0f, 0.0f, 2.0f),
+	glm::vec3(1.0f, 0.0f, 2.0f),
+	// 11
+	glm::vec3(4.0f, 0.0f, 1.0f),
+	glm::vec3(3.0f, 0.0f, 1.0f),
+	glm::vec3(2.0f, 0.0f, 1.0f),
+	glm::vec3(1.0f, 0.0f, 1.0f)
 };
 
-glm::vec3 cubeBrickPositions[] = {
-	   glm::vec3(-1.0f,0.0f,-5.0f),
-	   glm::vec3(0.0f,0.0f,-5.0f),
-	   glm::vec3(-1.0f,0.0f,-4.0f),
-	   glm::vec3(0.0f,0.0f,-4.0f),
-	   glm::vec3(-1.0f,0.0f,-3.0f),
-	   glm::vec3(0.0f,0.0f,-3.0f),
-	   glm::vec3(-1.0f,0.0f,-2.0f),
-	   glm::vec3(0.0f,0.0f,-2.0f),
-	   glm::vec3(-1.0f,0.0f,-1.0f),
-	   glm::vec3(0.0f,0.0f,-1.0f),
-	   glm::vec3(-1.0f,0.0f,0.0f),
-	   glm::vec3(0.0f,0.0f,0.0f),
-	   glm::vec3(-1.0f,0.0f,5.0f),
-	   glm::vec3(0.0f,0.0f,5.0f),
-	   glm::vec3(-1.0f,0.0f,4.0f),
-	   glm::vec3(0.0f,0.0f,4.0f),
-	   glm::vec3(-1.0f,0.0f,3.0f),
-	   glm::vec3(0.0f,0.0f,3.0f),
-	   glm::vec3(-1.0f,0.0f,2.0f),
-	   glm::vec3(0.0f,0.0f,2.0f),
-	   glm::vec3(-1.0f,0.0f,1.0f),
-	   glm::vec3(0.0f,0.0f,1.0f),
+glm::vec3 cubeBrickPerpendicularPositions[] =
+{
+	//stanga
+	// 1
+	glm::vec3(-5.0f,0.0f,-7.0f),
+	glm::vec3(-4.0f,0.0f,-7.0f),
+	glm::vec3(-3.0f,0.0f,-7.0f),
+	glm::vec3(-2.0f,0.0f,-7.0f),
+	//2
+	glm::vec3(-5.0f,0.0f,-6.0f),
+	glm::vec3(-4.0f,0.0f,-6.0f),
+	glm::vec3(-3.0f,0.0f,-6.0f),
+	glm::vec3(-2.0f,0.0f,-6.0f),
+	//dreapta
+	// 1
+	glm::vec3(4.0f,0.0f,-7.0f),
+	glm::vec3(3.0f,0.0f,-7.0f),
+	glm::vec3(2.0f,0.0f,-7.0f),
+	glm::vec3(1.0f,0.0f,-7.0f),
+	// 2
+	glm::vec3(4.0f,0.0f,-6.0f),
+	glm::vec3(3.0f,0.0f,-6.0f),
+	glm::vec3(2.0f,0.0f,-6.0f),
+	glm::vec3(1.0f,0.0f,-6.0f)
+};
 
+
+glm::vec3 cubeBrickPositions[] = {
+
+	glm::vec3(-1.0f,0.0f,-6.0f),
+	glm::vec3(0.0f,0.0f,-6.0f),
+	glm::vec3(-1.0f,0.0f,-7.0f),
+	glm::vec3(0.0f,0.0f,-7.0f),
+
+
+	glm::vec3(-1.0f,0.0f,-5.0f),
+	glm::vec3(0.0f,0.0f,-5.0f),
+	glm::vec3(-1.0f,0.0f,-4.0f),
+	glm::vec3(0.0f,0.0f,-4.0f),
+	glm::vec3(-1.0f,0.0f,-3.0f),
+	glm::vec3(0.0f,0.0f,-3.0f),
+	glm::vec3(-1.0f,0.0f,-2.0f),
+	glm::vec3(0.0f,0.0f,-2.0f),
+	glm::vec3(-1.0f,0.0f,-1.0f),
+	glm::vec3(0.0f,0.0f,-1.0f),
+	glm::vec3(-1.0f,0.0f,0.0f),
+	glm::vec3(0.0f,0.0f,0.0f),
+	glm::vec3(-1.0f,0.0f,5.0f),
+	glm::vec3(0.0f,0.0f,5.0f),
+	glm::vec3(-1.0f,0.0f,4.0f),
+	glm::vec3(0.0f,0.0f,4.0f),
+	glm::vec3(-1.0f,0.0f,3.0f),
+	glm::vec3(0.0f,0.0f,3.0f),
+	glm::vec3(-1.0f,0.0f,2.0f),
+	glm::vec3(0.0f,0.0f,2.0f),
+	glm::vec3(-1.0f,0.0f,1.0f),
+	glm::vec3(0.0f,0.0f,1.0f)
 };
 
 glm::vec3 barsDoorPositions[] = {
 	glm::vec3(0.5f,0.5f,1.0f),
-	glm::vec3(-1.5f,0.5f,-2.0f),
-	// x y z
+	glm::vec3(-1.5f,0.5f,-2.0f)
+};
+
+glm::vec3 barsPositions[] = {
 
 glm::vec3(0.5f,0.5f,-5.0f),
 glm::vec3(0.5f,0.5f,-4.0f),
@@ -158,8 +208,29 @@ glm::vec3(-1.5f,0.5f,1.0f),
 glm::vec3(-1.5f,0.5f,2.0f),
 glm::vec3(-1.5f,0.5f,3.0f),
 glm::vec3(-1.5f,0.5f,4.0f),
-glm::vec3(-1.5f,0.5f,5.0f),
+glm::vec3(-1.5f,0.5f,5.0f)
+};
 
+
+glm::vec3 barsPerpendicularPositions[] = {
+
+		glm::vec3(-5.0f,0.5f,-5.5f),
+		glm::vec3(-4.0f,0.5f,-5.5f),
+		glm::vec3(-3.0f,0.5f,-5.5f),
+		glm::vec3(-2.0f,0.5f,-5.5f),
+		glm::vec3(-5.0f,0.5f,-7.5f),
+		glm::vec3(-4.0f,0.5f,-7.5f),
+		glm::vec3(-3.0f,0.5f,-7.5f),
+		glm::vec3(-2.0f,0.5f,-7.5f),
+
+		glm::vec3(4.0f,0.5f,-5.5f),
+		glm::vec3(3.0f,0.5f,-5.5f),
+		glm::vec3(2.0f,0.5f,-5.5f),
+		glm::vec3(1.0f,0.5f,-5.5f),
+		glm::vec3(4.0f,0.5f,-7.5f),
+		glm::vec3(3.0f,0.5f,-7.5f),
+		glm::vec3(2.0f,0.5f,-7.5f),
+		glm::vec3(1.0f,0.5f,-7.5f)
 };
 
 void Game::InitializeGLFW()
@@ -294,6 +365,9 @@ void Game::InitializeModels()
 	std::vector<Mesh*> meshes;
 	QuadDown squareDown;
 	Quad square;
+	Model* tempModel;
+	int numOfTiles = 4;
+
 	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++)
 	{
 		meshes.push_back(new Mesh(&squareDown, cubeGrassPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
@@ -302,6 +376,13 @@ void Game::InitializeModels()
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
+
 
 	for (unsigned int i = 0; i < sizeof(cubeBrickPositions) / sizeof(cubeBrickPositions[0]); i++) {
 		meshes.push_back(new Mesh(&squareDown, cubeBrickPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
@@ -310,22 +391,72 @@ void Game::InitializeModels()
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
 
-	for (unsigned int i = 0; i < 2; i++) {
+
+	for (unsigned int i = 0; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
 		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material3], textures[texBars2], textures[texBars2], meshes, texBars2));
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
 
-	for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
-		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
+
+	for (unsigned int i = 0; i < sizeof(cubeBrickPerpendicularPositions) / sizeof(cubeBrickPerpendicularPositions[0]); i++) {
+		meshes.push_back(new Mesh(&squareDown, cubeBrickPerpendicularPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
+	}
+	models.push_back(new Model(glm::vec3(0.f), materials[material1], textures[texBricks0], textures[texBricks0], meshes, texBricks0));
+	for (auto*& i : meshes)
+		delete i;
+	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
+
+	for (unsigned int i = 0; i < sizeof(barsPositions) / sizeof(barsPositions[0]); i++) {
+		meshes.push_back(new Mesh(&square, barsPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material2], textures[texBars1], textures[texBars1], meshes, texBars1));
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
+
+
+
+	for (unsigned int i = 0; i < sizeof(barsPerpendicularPositions) / sizeof(barsPerpendicularPositions[0]); i++) {
+		meshes.push_back(new Mesh(&square, barsPerpendicularPositions[i], glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.f)));
+	}
+	models.push_back(new Model(glm::vec3(0.f), materials[material2], textures[texBars1], textures[texBars1], meshes, texBars1));
+	for (auto*& i : meshes)
+		delete i;
+	meshes.clear();
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
 
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(12, 35);
@@ -333,24 +464,24 @@ void Game::InitializeModels()
 	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++)
 	{
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i], glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.8f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 
-		double position = (float) distribution(generator)/100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(1.f), glm::vec3(0.8f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.8f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.8f)));
+		double position = (float)distribution(generator) / 100;
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
-		position = (float) distribution(generator) / 100;
+		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
-		position = (float) distribution(generator) / 100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(1.f), glm::vec3(1.f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(1.f)));
+		position = (float)distribution(generator) / 100;
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
-		position = (float) distribution(generator) / 100;
+		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
@@ -361,14 +492,14 @@ void Game::InitializeModels()
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(1.f), glm::vec3(0.3f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.3f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.3f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.8f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.8f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
@@ -376,18 +507,23 @@ void Game::InitializeModels()
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material8], textures[texGrass1], textures[texGrass1], meshes, texGrass1));
-	models.back()->Move(glm::vec3(0.f, 0.15f, 0.f));
+	models.back()->Move(glm::vec3(0.f, 0.12f, 0.f));
 	models.back()->Scale(glm::vec3(1.f, 0.5f, 1.f));
 
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
-
+	for (int i = 0; i < numOfTiles; i++)
+	{
+		tempModel = new Model(*models.back());
+		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
+		models.push_back(tempModel);
+	}
 
 	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird], texBird));
-	models.back()->Move(glm::vec3(0.32f, 0.21f, 3.72f));
+	models.back()->Move(glm::vec3(0.f, 3.f, 0.f));
 	models.back()->SetScale(glm::vec3(0.01f));
-	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 90.f));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 
 	models.push_back(new Model("Models\\Tree2\\10445_Oak_Tree_v1_max2010_iteration-1.obj", materials[material5], textures[texTree1], textures[texTree1], texTree1));
 	models.back()->SetPosition(glm::vec3(1.0f, 0.0f, -5.0f));
@@ -397,20 +533,12 @@ void Game::InitializeModels()
 
 	models.push_back(new Model("Models\\Bench\\Cgtuts_Wood_Bench_OBJ.obj", materials[material6], textures[texBench], textures[texBench], texBench));
 	models.back()->SetScale(glm::vec3(0.002f));
-	models.back()->SetRotation(glm::vec3(0.f, -90, 0.f));
+
 
 	models.push_back(new Model("Models\\45_cottage_free_other\\Cottage_FREE.obj", materials[material7], textures[texBarrack], textures[texBarrack], texBarrack));
 	models.back()->SetScale(glm::vec3(0.6f));
 	models.back()->Move(glm::vec3(-0.58f, 0.f, 9.f));
 
-	models.push_back(new Model("Models\\Bench\\Cgtuts_Wood_Bench_OBJ.obj", materials[material6], textures[texBench], textures[texBench], texBench));
-	models.back()->SetScale(glm::vec3(0.002f));
-	models.back()->SetRotation(glm::vec3(0.f, 90, 0.f));
-
-	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird], texBird));
-	models.back()->Move(glm::vec3(0.2f, 0.21f, 3.72f));
-	models.back()->SetScale(glm::vec3(0.01f));
-	models.back()->SetRotation(glm::vec3(-90.f, 0.f,140.f));
 }
 
 void Game::InitializeLights()
@@ -540,29 +668,29 @@ void Game::Render()
 		i->Render(shaders[shaderCoreProgram]);
 	}
 
-	models[6]->SetPosition(glm::vec3(2.5f, 0.f, 3.5f));
-	models[6]->Render(shaders[shaderCoreProgram]);
+	models[bird]->SetPosition(glm::vec3(2.5f, 0.f, 3.5f));
+	models[bird]->Render(shaders[shaderCoreProgram]);
 
-	models[6]->SetPosition(glm::vec3(-3.5f, 0.f, 3.5f));
-	models[6]->Render(shaders[shaderCoreProgram]);
+	models[bird]->SetPosition(glm::vec3(-3.5f, 0.f, 3.5f));
+	models[bird]->Render(shaders[shaderCoreProgram]);
 
-	models[7]->SetPosition(glm::vec3(0.2f, 0.f, 3.5f));
-	models[7]->Render(shaders[shaderCoreProgram]);
+	models[tree]->SetPosition(glm::vec3(0.2f, 0.f, 3.5f));
+	models[tree]->Render(shaders[shaderCoreProgram]);
 
-	models[7]->SetPosition(glm::vec3(0.2f, 0.f, -2.6f));
-	models[7]->Render(shaders[shaderCoreProgram]);
+	models[tree]->SetPosition(glm::vec3(0.2f, 0.f, -2.6f));
+	models[tree]->Render(shaders[shaderCoreProgram]);
 
-	models[9]->SetPosition(glm::vec3(-1.2f, 0.f, 3.5f));
-	models[9]->Render(shaders[shaderCoreProgram]);
+	models[bird]->SetPosition(glm::vec3(-1.2f, 0.f, 3.5f));
+	models[bird]->Render(shaders[shaderCoreProgram]);
 
-	models[9]->SetPosition(glm::vec3(-1.2f, 0.f, -2.6f));
+	/*models[9]->SetPosition(glm::vec3(-1.2f, 0.f, -2.6f));
 	models[9]->Render(shaders[shaderCoreProgram]);
 
 	models[10]->SetPosition(glm::vec3(-3.5f, 0.41f, 3.70f));
 	models[10]->Render(shaders[shaderCoreProgram]);
 
 	models[10]->SetPosition(glm::vec3(0.2f, 0.21f, 3.72f));
-	models[10]->Render(shaders[shaderCoreProgram]);
+	models[10]->Render(shaders[shaderCoreProgram]);*/
 
 
 

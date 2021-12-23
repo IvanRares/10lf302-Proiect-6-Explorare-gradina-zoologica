@@ -33,7 +33,17 @@ enum materialEnum {
 };
 
 enum modelEnum {
-
+	Grass=0,
+	Brick=5,
+	barsDoor=10,
+	BrickPerpendicular=15,
+	bars=20,
+	barsPerpendicular=25,
+	grass3d=30,
+	bird=35,
+	tree,
+	bench,
+	cottage
 };
 
 class Game
