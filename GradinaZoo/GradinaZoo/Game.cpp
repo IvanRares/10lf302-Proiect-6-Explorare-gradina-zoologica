@@ -468,7 +468,7 @@ void Game::InitializeModels()
 
 		double position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
+		/*meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
@@ -504,7 +504,7 @@ void Game::InitializeModels()
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));*/
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material8], textures[texGrass1], textures[texGrass1], meshes, texGrass1));
 	models.back()->Move(glm::vec3(0.f, 0.12f, 0.f));
@@ -533,6 +533,7 @@ void Game::InitializeModels()
 
 	models.push_back(new Model("Models\\Bench\\Cgtuts_Wood_Bench_OBJ.obj", materials[material6], textures[texBench], textures[texBench], texBench));
 	models.back()->SetScale(glm::vec3(0.002f));
+	models.back()->SetRotation(glm::vec3(0.f, -90, 0.f));
 
 
 	models.push_back(new Model("Models\\45_cottage_free_other\\Cottage_FREE.obj", materials[material7], textures[texBarrack], textures[texBarrack], texBarrack));
@@ -668,31 +669,76 @@ void Game::Render()
 		i->Render(shaders[shaderCoreProgram]);
 	}
 
-	models[bird]->SetPosition(glm::vec3(2.5f, 0.f, 3.5f));
-	models[bird]->Render(shaders[shaderCoreProgram]);
-
-	models[bird]->SetPosition(glm::vec3(-3.5f, 0.f, 3.5f));
-	models[bird]->Render(shaders[shaderCoreProgram]);
-
-	models[tree]->SetPosition(glm::vec3(0.2f, 0.f, 3.5f));
+	models[tree]->SetPosition(glm::vec3(2.5f, 0.f, 3.5f));
 	models[tree]->Render(shaders[shaderCoreProgram]);
 
-	models[tree]->SetPosition(glm::vec3(0.2f, 0.f, -2.6f));
+	models[tree]->SetPosition(glm::vec3(-3.5f, 0.f, 3.5f));
 	models[tree]->Render(shaders[shaderCoreProgram]);
 
-	models[bird]->SetPosition(glm::vec3(-1.2f, 0.f, 3.5f));
+
+	models[bench]->SetRotation(glm::vec3(0.f, 90, 0.f));
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, 3.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -3.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -9.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -16.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -23.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -30.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -35.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -42.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -48.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(-1.2f, 0.f, -56.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetRotation(glm::vec3(0.f, -90, 0.f));
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, 3.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -3.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -9.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -16.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -23.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -30.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -35.5f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -42.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -48.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+	models[bench]->SetPosition(glm::vec3(0.2f, 0.f, -56.f));
+	models[bench]->Render(shaders[shaderCoreProgram]);
+
+
+	models[bird]->SetPosition(glm::vec3(-3.5f, 0.41f, 3.70f));
 	models[bird]->Render(shaders[shaderCoreProgram]);
 
-	/*models[9]->SetPosition(glm::vec3(-1.2f, 0.f, -2.6f));
-	models[9]->Render(shaders[shaderCoreProgram]);
+	models[bird]->SetPosition(glm::vec3(0.2f, 0.21f, 3.72f));
+	models[bird]->SetRotation(glm::vec3(-90.f, 0.f, 120.f));
+	models[bird]->Render(shaders[shaderCoreProgram]);
 
-	models[10]->SetPosition(glm::vec3(-3.5f, 0.41f, 3.70f));
-	models[10]->Render(shaders[shaderCoreProgram]);
-
-	models[10]->SetPosition(glm::vec3(0.2f, 0.21f, 3.72f));
-	models[10]->Render(shaders[shaderCoreProgram]);*/
-
-
+	models[bird]->SetPosition(glm::vec3(0.3f, 0.21f, 3.72f));
+	models[bird]->SetRotation(glm::vec3(-90.f, 0.f, 70.f));
+	models[bird]->Render(shaders[shaderCoreProgram]);
 
 	//sun.Render(shaders[shaderSun], currentFrame);
 
