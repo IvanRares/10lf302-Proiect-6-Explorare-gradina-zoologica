@@ -41,5 +41,7 @@ public:
 	void Rotate(const glm::vec3& rotation);
 
 	void Scale(const glm::vec3& scale);
+
+	Model(const Model &model);
 };
 

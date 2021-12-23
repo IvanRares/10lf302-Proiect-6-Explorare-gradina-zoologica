@@ -67,9 +67,9 @@ void main()
 		discard;
 	if(lightPos0.y<0.3)
 	{
-		ambientFinal = vec3(0.4f);
-		diffuseFinal = vec3(0.4f);
-		specularFinal = vec3(0.4f);
+		ambientFinal = vec3(0.01f);
+		diffuseFinal = vec3(0.1f);
+		specularFinal = vec3(0.1f);
 	}
 	fsColor = texColor
 	* (vec4(ambientFinal,1.f) + vec4(diffuseFinal,1.f) + vec4(specularFinal,1.f));

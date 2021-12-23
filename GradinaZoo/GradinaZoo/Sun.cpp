@@ -12,8 +12,8 @@ void Sun::Render(Shader* shader, double currentFrame)
 	glCullFace(GL_FRONT);
 	glDepthFunc(GL_LEQUAL);
 
-	lightPos.z = glm::sin(currentFrame)*0.001f;
-	lightPos.y = glm::cos(currentFrame) * 0.001f;
+	lightPos.z = glm::sin(currentFrame);
+	lightPos.y = glm::cos(currentFrame);
 
 	shader->Use();
 	glm::mat4 model = glm::translate(glm::mat4(1.0), lightPos);

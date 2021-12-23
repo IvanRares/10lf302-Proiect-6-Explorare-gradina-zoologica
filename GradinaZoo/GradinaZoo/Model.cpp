@@ -185,3 +185,14 @@ void Model::Scale(const glm::vec3& scale)
 		i->Scale(scale);
 	}
 }
+
+Model::Model(const Model& model)
+{
+	this->material = model.material;
+	for (auto& i : model.meshes)
+		this->meshes.push_back(new Mesh(*i));
+	this->overrideTextureDiffuse = model.overrideTextureDiffuse;
+	this->overrideTextureSpecular = model.overrideTextureSpecular;
+	this->position = model.position;
+	this->textureId = model.textureId;
+}
