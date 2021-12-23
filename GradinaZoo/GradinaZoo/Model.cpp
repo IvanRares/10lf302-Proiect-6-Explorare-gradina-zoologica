@@ -123,7 +123,7 @@ void Model::Render(Shader* shader)
 	for (auto& i : meshes)
 	{
 		//Activate texture
-		overrideTextureDiffuse->Bind(textureId);
+	    overrideTextureDiffuse->Bind(textureId);
 		overrideTextureSpecular->Bind(textureId);
 
 		i->Render(shader);

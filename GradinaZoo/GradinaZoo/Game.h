@@ -14,7 +14,8 @@ enum textureEnum {
 	texBars2,
 	texBird,
 	texTree1,
-	texBench
+	texBench,
+	texBarrack
 };
 
 enum materialEnum {
@@ -24,7 +25,8 @@ enum materialEnum {
 	material3,
 	material4,
 	material5,
-	material6
+	material6,
+	material7
 };
 
 

@@ -262,6 +262,9 @@ void Game::InitializeTextures()
 	//Texture 7
 	textures.push_back(new Texture("Models\\Bench\\Bench_2K_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 
+	//Texture 8
+	textures.push_back(new Texture("Models\\45_cottage_free_other\\Cottage_Clean_Base_Color.png", GL_TEXTURE_2D, GL_RGB));
+
 }
 
 void Game::InitializeMaterials()
@@ -273,6 +276,7 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 5, 5));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 6, 6));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 7, 7));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 8, 8));
 }
 
 void Game::InitializeSkybox()
@@ -287,11 +291,11 @@ void Game::InitializeModels()
 	std::vector<Mesh*> meshes;
 	QuadDown squareDown;
 	Quad square;
-	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++) 
+	for (unsigned int i = 0; i < sizeof(cubeGrassPositions) / sizeof(cubeGrassPositions[0]); i++)
 	{
 		meshes.push_back(new Mesh(&squareDown, cubeGrassPositions[i], glm::vec3(0.f), glm::vec3(1.f)));
 	}
-	models.push_back(new Model(glm::vec3(0.f), materials[material0], textures[texGrass0], textures[texGrass0], meshes,texGrass0));
+	models.push_back(new Model(glm::vec3(0.f), materials[material0], textures[texGrass0], textures[texGrass0], meshes, texGrass0));
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
@@ -305,7 +309,7 @@ void Game::InitializeModels()
 	meshes.clear();
 
 	for (unsigned int i = 0; i < 2; i++) {
-		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f,90.f,0.f), glm::vec3(1.f)));
+		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material3], textures[texBars2], textures[texBars2], meshes, texBars2));
 	for (auto*& i : meshes)
@@ -314,16 +318,16 @@ void Game::InitializeModels()
 
 	for (unsigned int i = 2; i < sizeof(barsDoorPositions) / sizeof(barsDoorPositions[0]); i++) {
 		meshes.push_back(new Mesh(&square, barsDoorPositions[i], glm::vec3(0.f, 90.f, 0.f), glm::vec3(1.f)));
-		}
+	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material2], textures[texBars1], textures[texBars1], meshes, texBars1));
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
 
-	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird],texBird));
-	models.back()->Move(glm::vec3(0.f,3.f,0.f));
+	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird], texBird));
+	models.back()->Move(glm::vec3(0.f, 3.f, 0.f));
 	models.back()->SetScale(glm::vec3(0.01f));
-	models.back()->SetRotation(glm::vec3(-90.f,0.f,0.f));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 
 	models.push_back(new Model("Models\\Tree2\\10445_Oak_Tree_v1_max2010_iteration-1.obj", materials[material5], textures[texTree1], textures[texTree1], texTree1));
 	models.back()->SetPosition(glm::vec3(1.0f, 0.0f, -5.0f));
@@ -333,6 +337,11 @@ void Game::InitializeModels()
 
 	models.push_back(new Model("Models\\Bench\\Cgtuts_Wood_Bench_OBJ.obj", materials[material6], textures[texBench], textures[texBench], texBench));
 	models.back()->SetScale(glm::vec3(0.002f));
+
+
+	models.push_back(new Model("Models\\45_cottage_free_other\\Cottage_FREE.obj", materials[material7], textures[texBarrack], textures[texBarrack], texBarrack));
+	models.back()->SetScale(glm::vec3(0.6f));
+	models.back()->Move(glm::vec3(-0.58f, 0.f, 9.f));
 
 }
 
@@ -373,7 +382,7 @@ Game::Game(const char* title, const int width, const int height, bool resizable)
 	window = nullptr;
 	framebufferWidth = 0;
 	framebufferHeight = 0;
-	camPosition = glm::vec3(0.5f, 0.5f, 10.f);
+	camPosition = glm::vec3(1.58f, 0.9f, 6.5f);
 	camera = new Camera(windowWidth, windowHeight, camPosition);
 
 	InitializeGLFW();
@@ -441,7 +450,7 @@ void Game::Render()
 	UpdateUniforms();
 
 	skybox->Render(shaders[shaderSkybox], camera);
-	
+
 
 	//Use a program
 	shaders[shaderCoreProgram]->Use();
