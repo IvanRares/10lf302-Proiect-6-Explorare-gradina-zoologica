@@ -117,15 +117,24 @@ void Model::Render(Shader* shader)
 
 	material->SendToShader(*shader);
 
-	//Use a program
-	shader->Use();
+	//Activate texture
+	overrideTextureDiffuse->Bind(textureId);
+	overrideTextureSpecular->Bind(textureId);
 
 	for (auto& i : meshes)
 	{
-		//Activate texture
-	    overrideTextureDiffuse->Bind(textureId);
-		overrideTextureSpecular->Bind(textureId);
 
+		i->Render(shader);
+	}
+
+	glActiveTexture(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Model::RenderShadow(Shader* shader)
+{
+	for (auto& i : meshes)
+	{
 		i->Render(shader);
 	}
 }

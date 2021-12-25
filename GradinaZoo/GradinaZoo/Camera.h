@@ -51,6 +51,7 @@ public:
 
 	const glm::mat4 GetProjectionMatrix() const;
 
+	const glm::vec3 GetPosition() const;
 
 	void ProcessKeyboard(ECameraMovementType direction, float deltaTime);
 

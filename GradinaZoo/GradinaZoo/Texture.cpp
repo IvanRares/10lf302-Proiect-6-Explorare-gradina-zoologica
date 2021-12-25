@@ -16,6 +16,15 @@ Texture::Texture(std::vector<std::string> filenames, GLenum type)
 	loadFromFile(filenames);
 }
 
+Texture::Texture(GLenum type, GLenum rgbType)
+{
+	this->type = type;
+	this->rgbType = rgbType;
+	width = 1024;
+	height = 1024;
+	load();
+}
+
 Texture::~Texture()
 {
 	glDeleteTextures(1, &id);
@@ -38,6 +47,19 @@ void Texture::Unbind()
 	glBindTexture(type, 0);
 }
 
+void Texture::load()
+{
+	glGenTextures(1, &id);
+	glBindTexture(type, id);
+	glTexImage2D(type, 0, rgbType, 1024, 1024, 0, rgbType, GL_FLOAT, NULL);
+	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+}
+
 void Texture::loadFromFile(std::vector<std::string> filename)
 {
 	glGenTextures(1, &id);
@@ -47,7 +69,6 @@ void Texture::loadFromFile(std::vector<std::string> filename)
 	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	int nrChannels;
 	for (unsigned int i = 0; i < filename.size(); i++)
 	{
 		unsigned char* data = stbi_load(filename[i].c_str(), &width, &height, &nrChannels, 0);
@@ -76,7 +97,9 @@ void Texture::loadFromFile(const char* filename)
 	{
 		glDeleteTextures(1, &id);
 	}
-	unsigned char* image = stbi_load(filename, &width, &height, NULL, 0);
+
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* image = stbi_load(filename, &width, &height, &nrChannels, 0);
 	glGenTextures(1, &id);
 	glBindTexture(type, id);
 

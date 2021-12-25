@@ -4,7 +4,7 @@
 enum shaderEnums {
 	shaderCoreProgram = 0,
 	shaderSkybox,
-	shaderSun
+	shaderShadow
 };
 
 enum textureEnum {
@@ -61,7 +61,7 @@ private:
 	std::vector<Model*> models;
 	std::vector<glm::vec3*> lights;
 	SkyBox* skybox;
-	Sun sun;
+	Shadow* shadow;
 
 	void InitializeGLFW();
 	void InitializeWindow(const char* title, bool resizable);
@@ -71,10 +71,10 @@ private:
 	void InitializeShaders();
 	void InitializeTextures();
 	void InitializeSkybox();
+	void InitializeShadows();
 	void InitializeMaterials();
 	void InitializeModels();
 	void InitializeLights();
-	void InitializeSun();
 	void InitializeUniforms();
 
 	void UpdateUniforms();
@@ -91,6 +91,7 @@ public:
 
 	void Update();
 	void Render();
+	void RenderModels(Shader* shader);
 
 	static void frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH);
 	static void MouseCallback(GLFWwindow* window, double xpos, double ypos);

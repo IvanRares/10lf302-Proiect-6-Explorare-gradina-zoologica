@@ -31,8 +31,9 @@ void SkyBox::Render(Shader* shader, Camera* camera)
 	glCullFace(GL_FRONT);
 	glDepthFunc(GL_LEQUAL);
 
-	Update(shader, camera);
+
 	shader->Use();
+	Update(shader, camera);
 
 	glBindVertexArray(VAO);
 	Bind();

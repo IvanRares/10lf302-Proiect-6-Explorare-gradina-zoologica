@@ -19,7 +19,7 @@ void Mesh::InitVAO()
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, nrOfIndices * sizeof(GLuint), indexArray.data(), GL_STATIC_DRAW);
 	}
 	//Position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	//Texcoord
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
@@ -154,8 +154,6 @@ void Mesh::Render(Shader* shader)
 	UpdateModelMatrix();
 	UpdateUniforms(shader);
 
-	shader->Use();
-
 	//Bind vertex array object
 	glBindVertexArray(this->VAO);
 
@@ -165,9 +163,6 @@ void Mesh::Render(Shader* shader)
 	}
 	else
 		glDrawElements(GL_TRIANGLES, nrOfIndices, GL_UNSIGNED_INT, 0);
-	
+
 	glBindVertexArray(0);
-	glUseProgram(0);
-	glActiveTexture(0);
-	glBindTexture(GL_TEXTURE_2D, 0);
 }

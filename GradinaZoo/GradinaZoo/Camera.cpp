@@ -64,6 +64,12 @@ const glm::mat4 Camera::GetProjectionMatrix() const
 	return Proj;
 }
 
+const glm::vec3 Camera::GetPosition() const
+{
+	std::cout << position.x << " " << position.y << " "<<position.z<<std::endl;
+	return position;
+}
+
 void Camera::ProcessKeyboard(ECameraMovementType direction, float deltaTime)
 {
 	float velocity = (float)(cameraSpeedFactor * deltaTime);

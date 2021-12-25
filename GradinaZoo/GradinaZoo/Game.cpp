@@ -305,7 +305,7 @@ void Game::InitializeShaders()
 {
 	shaders.push_back(new Shader("vertexCore.glsl", "fragmentCore.glsl"));
 	shaders.push_back(new Shader("skybox.vs", "skybox.fs"));
-	shaders.push_back(new Shader("sun.vs", "sun.fs"));
+	shaders.push_back(new Shader("depthMap.vs", "depthMap.fs"));
 }
 
 void Game::InitializeTextures()
@@ -358,6 +358,11 @@ void Game::InitializeMaterials()
 void Game::InitializeSkybox()
 {
 	skybox = new SkyBox(textures[texSkybox]);
+}
+
+void Game::InitializeShadows()
+{
+	shadow = new Shadow();
 }
 
 void Game::InitializeModels()
@@ -545,44 +550,50 @@ void Game::InitializeModels()
 void Game::InitializeLights()
 {
 	//Lights
-	lights.push_back(new glm::vec3(0.f, 100.f, 0.f));
-}
-
-void Game::InitializeSun()
-{
-	sun = Sun(*lights.back());
+	lights.push_back(new glm::vec3(-0.5f, 10.f, -26.f));
 }
 
 void Game::InitializeUniforms()
 {
 	//Init uniforms
+	shaders[shaderCoreProgram]->Use();
 	shaders[shaderCoreProgram]->SetMat4fv(ViewMatrix, "ViewMatrix");
 	shaders[shaderCoreProgram]->SetMat4fv(ProjectionMatrix, "ProjectionMatrix");
-
 	shaders[shaderCoreProgram]->SetVec3F(*lights[0], "lightPos0");
 	shaders[shaderCoreProgram]->SetVec3F(camPosition, "cameraPos");
+	//shaders[shaderCoreProgram]->Set1i(0, "material.diffuseTex");
+	shaders[shaderCoreProgram]->Set1i(textures.size(), "shadowMap");
 
+	shaders[shaderSkybox]->Use();
 	shaders[shaderSkybox]->SetMat4fv(ViewMatrix, "view");
 	shaders[shaderSkybox]->SetMat4fv(ProjectionMatrix, "projection");
 	shaders[shaderSkybox]->Set1i(texSkybox, "skybox");
-
 	shaders[shaderSkybox]->SetMat4fv(glm::mat4(1.f), "model");
 }
 
 void Game::UpdateUniforms()
 {
-	//Update framebuffer size and projection matrix
 	glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
+
+	float near_plane = 1.0f, far_plane = 7.5f;
+	glm::mat4 lightProjection = glm::ortho(-6.0f, 4.0f, -60.0f, 5.0f, near_plane, far_plane);
+	glm::mat4 lightView = glm::lookAt(*lights[0],
+		glm::vec3(-0.5f,0.f,-10.f),
+		glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 lightSpaceMatrix = glm::mat4(1.f);
+	lightSpaceMatrix = lightProjection * lightView * lightSpaceMatrix;
+	shaders[shaderCoreProgram]->Use();
 
 	ProjectionMatrix = camera->GetProjectionMatrix();
 	shaders[shaderCoreProgram]->SetMat4fv(ProjectionMatrix, "ProjectionMatrix");
 
 	ViewMatrix = camera->GetViewMatrix();
 	shaders[shaderCoreProgram]->SetMat4fv(ViewMatrix, "ViewMatrix");
-	shaders[shaderCoreProgram]->SetVec3F(sun.GetLightPos(), "lightPos0");
+	shaders[shaderCoreProgram]->SetMat4fv(lightSpaceMatrix, "lightSpaceMatrix");
+	shaders[shaderCoreProgram]->SetVec3F(camera->GetPosition(), "cameraPos");
 
-	shaders[shaderSun]->SetMat4fv(camera->GetProjectionMatrix(), "projection");
-	shaders[shaderSun]->SetMat4fv(camera->GetViewMatrix(), "view");
+	shaders[shaderShadow]->Use();
+	shaders[shaderShadow]->SetMat4fv(lightSpaceMatrix, "lightSpaceMatrix");
 }
 
 Game::Game(const char* title, const int width, const int height, bool resizable) :windowWidth(width), windowHeight(height)
@@ -599,12 +610,12 @@ Game::Game(const char* title, const int width, const int height, bool resizable)
 	InitializeOpenGLOptions();
 	InitializeMatrices();
 	InitializeShaders();
+	InitializeShadows();
 	InitializeTextures();
 	InitializeSkybox();
 	InitializeMaterials();
 	InitializeModels();
 	InitializeLights();
-	InitializeSun();
 	InitializeUniforms();
 }
 
@@ -627,6 +638,7 @@ Game::~Game()
 		delete i;
 	delete camera;
 	delete skybox;
+	delete shadow;
 }
 
 int Game::GetWindowShouldClose()
@@ -658,12 +670,34 @@ void Game::Render()
 
 	UpdateUniforms();
 
+	shadow->PrepareRender();
+	RenderModels(shaders[shaderShadow]);
+
+	glCullFace(GL_BACK);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glDisable(GL_CULL_FACE);
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glClearColor(0.f, 0.f, 0.f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	
 	skybox->Render(shaders[shaderSkybox], camera);
 
-	//Use a program
-	shaders[shaderCoreProgram]->Use();
+	RenderModels(shaders[shaderCoreProgram]);
 
+	glfwSwapBuffers(window);
+	glFlush();
 
+	glBindVertexArray(0);
+	glUseProgram(0);
+	glActiveTexture(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Game::RenderModels(Shader* shader)
+{
+	shader->Use();
 	for (auto& i : models)
 	{
 		i->Render(shaders[shaderCoreProgram]);
@@ -792,16 +826,6 @@ void Game::Render()
 	models[bird]->SetPosition(glm::vec3(0.3f, 0.21f, 3.72f));
 	models[bird]->SetRotation(glm::vec3(-90.f, 0.f, 70.f));
 	models[bird]->Render(shaders[shaderCoreProgram]);
-
-	//sun.Render(shaders[shaderSun], currentFrame);
-
-	glfwSwapBuffers(window);
-	glFlush();
-
-	glBindVertexArray(0);
-	glUseProgram(0);
-	glActiveTexture(0);
-	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)

@@ -114,50 +114,36 @@ void Shader::Unuse()
 
 void Shader::SetVec3F(glm::fvec3 value, const GLchar* name)
 {
-	Use();
 	glUniform3fv(glGetUniformLocation(id, name), 1, glm::value_ptr(value));
-	Unuse();
 }
 
 void Shader::SetVec2F(glm::fvec2 value, const GLchar* name)
 {
-	Use();
 	glUniform2fv(glGetUniformLocation(id, name), 1, glm::value_ptr(value));
-	Unuse();
 }
 
 void Shader::SetVec1F(GLfloat value, const GLchar* name)
 {
-	Use();
 	glUniform1f(glGetUniformLocation(id, name), value);
-	Unuse();
 }
 
 void Shader::SetMat4fv(glm::mat4 value, const GLchar* name, GLboolean transpose)
 {
-	Use();
 	glUniformMatrix4fv(glGetUniformLocation(id, name), 1, transpose, glm::value_ptr(value));
-	Unuse();
 }
 
 void Shader::SetMat3fv(glm::mat3 value, const GLchar* name, GLboolean transpose)
 {
-	Use();
 	glUniformMatrix3fv(glGetUniformLocation(id, name), 1, transpose, glm::value_ptr(value));
-	Unuse();
 }
 
 void Shader::Set1i(GLint value, const GLchar* name)
 {
-	Use();
 	glUniform1i(glGetUniformLocation(id, name), value);
-	Unuse();
 }
 
 void Shader::SetVec4f(glm::fvec4 value, const GLchar* name)
 {
-	Use();
 	glUniform4fv(glGetUniformLocation(id, name), 1, glm::value_ptr(value));
-	Unuse();
 }
 

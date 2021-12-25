@@ -19,7 +19,7 @@
 #include"Camera.h"
 #include "Model.h"
 #include "SkyBox.h"
-#include "Sun.h"
+#include "Shadow.h"
 
 #pragma comment (lib, "glfw3dll.lib")
 #pragma comment (lib, "glew32.lib")

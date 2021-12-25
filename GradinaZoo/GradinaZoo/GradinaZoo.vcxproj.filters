@@ -48,6 +48,9 @@
     <ClCompile Include="Sun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -86,6 +89,9 @@
     <ClInclude Include="Sun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentCore.glsl">
@@ -104,6 +110,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sun.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="depthMap.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="depthMap.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
