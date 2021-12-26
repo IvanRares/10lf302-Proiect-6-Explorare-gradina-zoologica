@@ -7,7 +7,9 @@ struct Vertex
 	glm::vec3 normal;
 };
 
-//struct Texture {
-//	unsigned int id;
-//	std::string type;
-//};
+struct SpacePositions 
+{
+	glm::vec3 position;
+	glm::vec3 rotation;
+	glm::vec3 scale;
+};

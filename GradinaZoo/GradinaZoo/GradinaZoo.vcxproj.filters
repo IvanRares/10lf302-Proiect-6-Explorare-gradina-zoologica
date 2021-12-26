@@ -92,6 +92,9 @@
     <ClInclude Include="Shadow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpacePositions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentCore.glsl">
