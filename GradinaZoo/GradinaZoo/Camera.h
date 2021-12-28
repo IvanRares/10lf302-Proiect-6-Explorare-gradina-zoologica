@@ -41,7 +41,7 @@ public:
 
 	void Set(const int width, const int height, const glm::vec3& position);
 
-	void SetFreeCamera();
+	void SetFreeCamera(const bool& value);
 
 	void Reset(const int width, const int height);
 

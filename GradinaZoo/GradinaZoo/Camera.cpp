@@ -29,9 +29,9 @@ void Camera::Set(const int width, const int height, const glm::vec3& position)
 	UpdateCameraVectors();
 }
 
-void Camera::SetFreeCamera()
+void Camera::SetFreeCamera(const bool& value)
 {
-	freeCamera = !freeCamera;
+	freeCamera = value;
 }
 
 void Camera::Reset(const int width, const int height)
