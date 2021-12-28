@@ -129,6 +129,7 @@ void Game::InitializeTextures()
 	textures.push_back(new Texture("Textures\\jungle.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Textures\\sand.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Textures\\savannah.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\shop3\\4321.jpg", GL_TEXTURE_2D, GL_RGB));
 }
 
 void Game::InitializeMaterials()
@@ -158,6 +159,7 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 23, 23));//jungle
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 24, 24));//sand
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 25, 25));//savannah
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 26, 26));//shop3
 }
 
 void Game::InitializeSkybox()
@@ -365,7 +367,10 @@ void Game::InitializeModels()
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
 	models.back()->SetPosition(glm::vec3(7.43f, 0.f, -19.5f));
 
-
+	models.push_back(new Model("Models\\shop3\\BUIDLING2.obj", materials[material25], textures[texShop3], textures[texShop3], texShop3));
+	models.back()->SetScale(glm::vec3(0.63));
+	models.back()->SetRotation(glm::vec3(0.f, 90.f, 0.f));
+	models.back()->SetPosition(glm::vec3(-7.43f, 0.6f, -19.5f));
 }
 
 void Game::InitializeLights()
@@ -654,7 +659,7 @@ void Game::RenderModels(Shader* shader)
 	}
 	models[shop1]->Render(shader);
 	models[shop2]->Render(shader);
-
+	models[shop3]->Render(shader);
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)
