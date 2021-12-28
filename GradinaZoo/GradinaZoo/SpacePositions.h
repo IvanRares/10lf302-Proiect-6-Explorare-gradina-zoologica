@@ -333,11 +333,13 @@ static std::vector<SpacePositions> GetLionPositions() {
 
 static std::vector<SpacePositions> GetMonkeyPositions() {
 	return{
-		{glm::vec3(-2.87647f, 2.f, -9.052f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.117f)},
-		{glm::vec3(-3.05808f, 2.f, -13.3399f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.101f)},
-		{glm::vec3(-2.05808f, 2.f, -14.3399f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.1012f)},
-		{glm::vec3(-3.05808f, 2.f, -12.3399f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.0016f)},
-		{glm::vec3(-2.08846f, 2.f, -9.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0007f)}
+		{glm::vec3(-3.61088f, 1.31056f, - 30.192f),glm::vec3(-120.f, 0.f, -80.f),glm::vec3(0.009f)},
+		{glm::vec3(-2.67748f, 0.f, - 26.7762f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.005f)},
+		{glm::vec3(-2.8685f, 0.f, - 22.7438f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.006f)},
+		{glm::vec3(-3.03727f, 0.772899f, - 29.8107f),glm::vec3(0.f, 30.f, 180.f),glm::vec3(0.006f)},
+		{glm::vec3(-3.46937f, 0.f, - 21.0213f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.007f)},
+		{glm::vec3(-4.87157f, 0.f, - 22.3631f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.004f)},
+		{glm::vec3(-1.91032f, 0.f, - 25.1719f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.007f)}
 	};
 }
 
