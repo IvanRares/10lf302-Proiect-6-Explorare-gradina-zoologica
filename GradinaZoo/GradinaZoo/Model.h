@@ -12,17 +12,15 @@ class Model
 private:
 	Material* material;
 	Texture* overrideTextureDiffuse;
-	Texture* overrideTextureSpecular;
 	std::vector<Mesh*> meshes;
-	glm::vec3 position;
 	unsigned int textureId;
 
 	void UpdateUniforms();
 	void ProcessNode(aiNode* node, const aiScene* scene);
 	Mesh* ProcessMesh(aiMesh* mesh, const aiScene* scene);
 public:
-	Model(const char* path,Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId);
-	Model(glm::vec3 position,Material* material,Texture* ovTexDif,Texture* ovTexSpec,std::vector<Mesh*> meshes, unsigned int textureId);
+	Model(const char* path,Material* material, Texture* ovTexDif, unsigned int textureId);
+	Model(Material* material,Texture* ovTexDif,std::vector<Mesh*> meshes, unsigned int textureId);
 	~Model();
 
 	void Update();
@@ -34,15 +32,13 @@ public:
 
 	void SetScale(const glm::vec3& scale);
 
-	void SetOrigin(const glm::vec3 origin);
-
 	void Move(const glm::vec3& position);
 
 	void Rotate(const glm::vec3& rotation);
 
 	void Scale(const glm::vec3& scale);
 
-	void SetMaterialAndTextures(Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId);
+	void SetMaterialAndTextures(Material* material, Texture* ovTexDif, unsigned int textureId);
 
 	Model(const Model &model);
 };

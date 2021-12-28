@@ -6,7 +6,6 @@ struct Material
 	vec3 diffuse;
 	vec3 specular;
 	sampler2D diffuseTex;
-	sampler2D specularTex;
 };
 
 in VS_OUT {
