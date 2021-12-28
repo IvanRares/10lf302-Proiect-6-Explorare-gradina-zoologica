@@ -96,7 +96,8 @@ enum modelEnum {
 	shop2,
 	shop3,
 	trashcan,
-	hedge
+	hedge,
+	movableBear
 };
 
 class Game

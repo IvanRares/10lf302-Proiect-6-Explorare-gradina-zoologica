@@ -361,7 +361,6 @@ void Game::InitializeModels()
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 	models.back()->SetPosition(glm::vec3(0.f, 0.05f, -19.5f));
 
-
 	positions = GetBarsPerpendicularPositions();
 	for (unsigned int i = 0; i < positions.size(); i++) {
 		meshes.push_back(new Mesh(&square, positions[i].position, glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.f)));
@@ -370,6 +369,11 @@ void Game::InitializeModels()
 	for (auto*& i : meshes)
 		delete i;
 	meshes.clear();
+
+	models.push_back(new Model("Models\\bear\\13576_Tibetan_Bear_v1_l3.obj", materials[material10], textures[texBear], texBear));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 60.f));
+	models.back()->SetPosition(glm::vec3(-2.64299f, 0.f, -1.62042f));
+	models.back()->SetScale(glm::vec3( 0.02f));
 }
 
 void Game::InitializeLights()
@@ -688,6 +692,7 @@ void Game::RenderModels(Shader* shader)
 	models[shop2]->Render(shader);
 	models[shop3]->Render(shader);
 	models[trashcan]->Render(shader);
+	models.back()->Render(shader);
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)
