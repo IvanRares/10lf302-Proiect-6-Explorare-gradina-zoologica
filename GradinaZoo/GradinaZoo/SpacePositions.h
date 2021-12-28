@@ -310,3 +310,53 @@ static std::vector<SpacePositions> GetCamelPositions() {
 		{glm::vec3(-2.08846f, 0.f, - 9.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0007f)}
 	};
 }
+
+static std::vector<SpacePositions> GetBearPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetDeerPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetKangarooPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetLionPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetMonkeyPositions() {
+	return{
+		{glm::vec3(-2.87647f, 2.f, -9.052f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.0017f)},
+		{glm::vec3(-3.05808f, 2.f, -13.3399f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.001f)},
+		{glm::vec3(-2.05808f, 2.f, -14.3399f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.0012f)},
+		{glm::vec3(-3.05808f, 2.f, -12.3399f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.0016f)},
+		{glm::vec3(-2.08846f, 2.f, -9.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0007f)}
+	};
+}
+
+static std::vector<SpacePositions> GetPenguinPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetSeaLionPositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetSeaTurtlePositions() {
+	return{
+	};
+}
+
+static std::vector<SpacePositions> GetTigerPositions() {
+	return{
+	};
+}

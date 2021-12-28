@@ -113,6 +113,16 @@ void Game::InitializeTextures()
 	textures.push_back(new Texture("Textures\\grass3d.png", GL_TEXTURE_2D, GL_RGBA));
 
 	textures.push_back(new Texture("Models\\camel\\10007_Camel_v03.jpg", GL_TEXTURE_2D, GL_RGB));
+
+	textures.push_back(new Texture("Models\\bear\\Tibetan_bear_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\deer\\12961_White_TailedDeer_diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Kangaroo\\Kangaroo_diff.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\lion\\12273_Lion_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\monkey\\12958_Spider_Monkey_diff.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Penguin\\Penguin_Diffuse_Color.png", GL_TEXTURE_2D, GL_RGBA));
+	textures.push_back(new Texture("Models\\Sea_lion\\10041_sealion_v1_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Sea_turtle\\10042_Sea_Turtle_V1_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\tiger\\Tiger_yellow.png", GL_TEXTURE_2D, GL_RGB));
 }
 
 void Game::InitializeMaterials()
@@ -127,6 +137,16 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 8, 8));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 9, 9));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 10, 10));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 11, 11));
+
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 12, 12));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 13, 13));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 14, 14));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 15, 15));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 16, 16));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 17, 17));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 18, 18));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 19, 19));
 }
 
 void Game::InitializeSkybox()
@@ -314,7 +334,16 @@ void Game::InitializeModels()
 
 	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
 	
-	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
+	models.push_back(new Model("Models\\bear\\13576_Tibetan_Bear_v1_l3.obj", materials[material11], textures[texBear], textures[texBear], texBear));
+
+	models.push_back(new Model("Models\\deer\\12961_White_Tailed_Deer_v1_l2.obj", materials[material12], textures[texDeer], textures[texDeer], texDeer));
+	models.push_back(new Model("Models\\kangaroo\\12271_Kangaroo_v1_L3.obj", materials[material13], textures[texKangaroo], textures[texKangaroo], texKangaroo));
+	models.push_back(new Model("Models\\lion\\12273_Lion_v1_l3.obj", materials[material14], textures[lion], textures[lion], lion));
+	models.push_back(new Model("Models\\monkey\\12958_Spider_Monkey_v1_l2.obj", materials[material15], textures[texMonkey], textures[texMonkey], texMonkey));
+	models.push_back(new Model("Models\\Penguin\\PenguinBaseMesh.obj", materials[material16], textures[texPenguin], textures[texPenguin], texPenguin));
+	models.push_back(new Model("Models\\Sea_lion\\10041_sealion_v1_L3.obj", materials[material17], textures[texSeaLion], textures[texSeaLion], texSeaLion));
+	models.push_back(new Model("Models\\Sea_turtle\\10042_Sea_Turtle_V2_iterations-2.obj", materials[material18], textures[texSeaTurtle], textures[texSeaTurtle], texSeaTurtle));
+	models.push_back(new Model("Models\\tiger\\uploads_files_893187_Tiger.obj", materials[material19], textures[texTiger], textures[texTiger], texTiger));
 }
 
 void Game::InitializeLights()
@@ -513,6 +542,93 @@ void Game::RenderModels(Shader* shader)
 		models[camel]->SetRotation(i.rotation);
 		models[camel]->SetScale(i.scale);
 		models[camel]->Render(shader);
+	}
+
+	positions = GetBearPositions();
+
+	for (auto& i : positions)
+	{
+		models[bear]->SetPosition(i.position);
+		models[bear]->SetRotation(i.rotation);
+		models[bear]->SetScale(i.scale);
+		models[bear]->Render(shader);
+	}
+
+	positions = GetDeerPositions();
+
+	for (auto& i : positions)
+	{
+		models[deer]->SetPosition(i.position);
+		models[deer]->SetRotation(i.rotation);
+		models[deer]->SetScale(i.scale);
+		models[deer]->Render(shader);
+	}
+
+	positions = GetKangarooPositions();
+
+	for (auto& i : positions)
+	{
+		models[kangaroo]->SetPosition(i.position);
+		models[kangaroo]->SetRotation(i.rotation);
+		models[kangaroo]->SetScale(i.scale);
+		models[kangaroo]->Render(shader);
+	}
+
+	positions = GetLionPositions();
+
+	for (auto& i : positions)
+	{
+		models[lion]->SetPosition(i.position);
+		models[lion]->SetRotation(i.rotation);
+		models[lion]->SetScale(i.scale);
+		models[lion]->Render(shader);
+	}
+
+	positions = GetMonkeyPositions();
+
+	for (auto& i : positions)
+	{
+		models[monkey]->SetPosition(i.position);
+		models[monkey]->SetRotation(i.rotation);
+		models[monkey]->SetScale(i.scale);
+		models[monkey]->Render(shader);
+	}
+
+	positions = GetPenguinPositions();
+
+	for (auto& i : positions)
+	{
+		models[penguin]->SetPosition(i.position);
+		models[penguin]->SetRotation(i.rotation);
+		models[penguin]->SetScale(i.scale);
+		models[penguin]->Render(shader);
+	}
+	positions = GetSeaLionPositions();
+
+	for (auto& i : positions)
+	{
+		models[seaLion]->SetPosition(i.position);
+		models[seaLion]->SetRotation(i.rotation);
+		models[seaLion]->SetScale(i.scale);
+		models[seaLion]->Render(shader);
+	}
+	positions = GetSeaTurtlePositions();
+
+	for (auto& i : positions)
+	{
+		models[seaTurtle]->SetPosition(i.position);
+		models[seaTurtle]->SetRotation(i.rotation);
+		models[seaTurtle]->SetScale(i.scale);
+		models[seaTurtle]->Render(shader);
+	}
+	positions = GetTigerPositions();
+
+	for (auto& i : positions)
+	{
+		models[tiger]->SetPosition(i.position);
+		models[tiger]->SetRotation(i.rotation);
+		models[tiger]->SetScale(i.scale);
+		models[tiger]->Render(shader);
 	}
 }
 

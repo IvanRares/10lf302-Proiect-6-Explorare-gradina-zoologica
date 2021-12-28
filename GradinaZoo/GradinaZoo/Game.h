@@ -19,7 +19,16 @@ enum textureEnum {
 	texBarrack,
 	texGrass1,
 	texCamel,
-	texForest
+	texForest,
+	texBear,
+	texDeer,
+	texKangaroo,
+	texLion,
+	texMonkey,
+	texPenguin,
+	texSeaLion,
+	texSeaTurtle,
+	texTiger
 };
 
 enum materialEnum {
@@ -33,7 +42,16 @@ enum materialEnum {
 	material7,
 	material8,
 	material9,
-	material10
+	material10,
+	material11,
+	material12,
+	material13,
+	material14,
+	material15,
+	material16,
+	material17,
+	material18,
+	material19
 };
 
 enum modelEnum {
@@ -49,7 +67,16 @@ enum modelEnum {
 	bench,
 	cottage,
 	camel,
-	forest
+	forest,
+	bear,
+	deer,
+	kangaroo,
+	lion,
+	monkey,
+	penguin,
+	seaLion,
+	seaTurtle,
+	tiger
 };
 
 class Game
