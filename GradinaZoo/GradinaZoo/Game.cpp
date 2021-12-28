@@ -374,6 +374,11 @@ void Game::InitializeModels()
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 60.f));
 	models.back()->SetPosition(glm::vec3(-2.64299f, 0.f, -1.62042f));
 	models.back()->SetScale(glm::vec3( 0.02f));
+
+	models.push_back(new Model("Models\\Penguin\\PenguinBaseMesh.obj", materials[material15], textures[texPenguin], texPenguin));
+	models.back()->SetPosition(glm::vec3(-3.66f, 0.02f, -36.5f));
+	models.back()->SetRotation(glm::vec3(70.f, 0.f, 0.f));
+	models.back()->SetScale(glm::vec3(0.3f));
 }
 
 void Game::InitializeLights()
