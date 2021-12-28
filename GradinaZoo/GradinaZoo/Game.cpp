@@ -372,8 +372,8 @@ void Game::InitializeModels()
 
 	models.push_back(new Model("Models\\bear\\13576_Tibetan_Bear_v1_l3.obj", materials[material10], textures[texBear], texBear));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 60.f));
-	models.back()->SetPosition(glm::vec3(-2.64299f, 0.f, -1.62042f));
-	models.back()->SetScale(glm::vec3( 0.02f));
+	models.back()->SetPosition(glm::vec3(-1.31f, 0.f, 4.9f));
+	models.back()->SetScale(glm::vec3( 0.015f));
 
 	models.push_back(new Model("Models\\Penguin\\PenguinBaseMesh.obj", materials[material15], textures[texPenguin], texPenguin));
 	models.back()->SetPosition(glm::vec3(-4.16f, 0.02f, -36.5f));
@@ -709,7 +709,7 @@ void Game::RenderModels(Shader* shader)
 	RenderMovablePenguin(shader);
 	RenderMovableKangaroo(shader);
 	RenderMovableMonkey(shader);
-
+	RenderMovableBear(shader);
 }
 
 void Game::RenderMovablePenguin(Shader* shader)
@@ -729,6 +729,25 @@ void Game::RenderMovablePenguin(Shader* shader)
 	models[movablePenguin]->Move(glm::vec3(0.f, 0.f, k * 0.05f));
 	posz = posz + k * 0.05f;
 	models[movablePenguin]->Render(shader);
+}
+
+void Game::RenderMovableBear(Shader* shader)
+{
+	static int k = 1;
+	static float posx = -1.31f;
+	if (posx + k * 0.005f < -4.5f)
+	{
+		k = 1;
+		models[movableBear]->SetRotation(glm::vec3(-90.f, 0.f, 90.f));
+	}
+	else if (posx + k * 0.005f > -2.25f)
+	{
+		k = -1;
+		models[movableBear]->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
+	}
+	models[movableBear]->Move(glm::vec3(k * 0.01f, 0.f, 0.f));
+	posx = posx + k * 0.01f;
+	models[movableBear]->Render(shader);
 }
 
 void Game::RenderMovableKangaroo(Shader* shader)

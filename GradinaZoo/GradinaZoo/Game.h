@@ -151,6 +151,7 @@ public:
 	void RenderModels(Shader* shader);
 
 	void RenderMovablePenguin(Shader* shader);
+	void RenderMovableBear(Shader* shader);
 	void RenderMovableKangaroo(Shader* shader);
 	void RenderMovableMonkey(Shader* shader);
 
