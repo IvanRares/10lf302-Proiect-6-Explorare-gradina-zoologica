@@ -16,21 +16,20 @@ private:
 
 	GLuint VAO, VBO, EBO;
 
-	glm::vec3 position, rotation, scale, origin;
+	glm::vec3 position, rotation, scale;
 	glm::mat4 ModelMatrix;
 	void InitVAO();
 	void UpdateUniforms(Shader* shader);
 	void UpdateModelMatrix();
 public:
-	Mesh(Vertex* vertexArray, const unsigned& nrOfVertices, GLuint* indexArray, const unsigned& nrOfIndices, glm::vec3 position = glm::vec3(0.f), glm::vec3 rotation = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f), glm::vec3 origin = glm::vec3(0.f));
-	Mesh(Primitives* primitive, glm::vec3 position = glm::vec3(0.f), glm::vec3 rotation = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f), glm::vec3 origin = glm::vec3(0.f));
+	Mesh(Vertex* vertexArray, const unsigned& nrOfVertices, GLuint* indexArray, const unsigned& nrOfIndices, glm::vec3 position = glm::vec3(0.f), glm::vec3 rotation = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f));
+	Mesh(Primitives* primitive, glm::vec3 position = glm::vec3(0.f), glm::vec3 rotation = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f));
 	Mesh(const Mesh& obj);
 	~Mesh();
 
 	void SetPosition(const glm::vec3& position);
 	void SetRotation(const glm::vec3& rotation);
 	void SetScale(const glm::vec3& scale);
-	void SetOrigin(const glm::vec3 origin);
 	void Move(const glm::vec3& position);
 	void Rotate(const glm::vec3& rotation);
 	void Scale(const glm::vec3& scale);

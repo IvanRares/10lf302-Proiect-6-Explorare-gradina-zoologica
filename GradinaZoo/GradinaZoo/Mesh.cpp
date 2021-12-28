@@ -49,12 +49,11 @@ void Mesh::UpdateModelMatrix()
 	ModelMatrix = glm::scale(ModelMatrix, scale);
 }
 
-Mesh::Mesh(Vertex* vertexArray, const unsigned& nrOfVertices, GLuint* indexArray, const unsigned& nrOfIndices, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, glm::vec3 origin)
+Mesh::Mesh(Vertex* vertexArray, const unsigned& nrOfVertices, GLuint* indexArray, const unsigned& nrOfIndices, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 {
 	this->position = position;
 	this->rotation = rotation;
 	this->scale = scale;
-	this->origin = origin;
 
 	this->nrOfIndices = nrOfIndices;
 	this->nrOfVertices = nrOfVertices;
@@ -68,12 +67,11 @@ Mesh::Mesh(Vertex* vertexArray, const unsigned& nrOfVertices, GLuint* indexArray
 	UpdateModelMatrix();
 }
 
-Mesh::Mesh(Primitives* primitive, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, glm::vec3 origin)
+Mesh::Mesh(Primitives* primitive, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 {
 	this->position = position;
 	this->rotation = rotation;
 	this->scale = scale;
-	this->origin = origin;
 
 	this->nrOfIndices = primitive->GetNrOfIndices();
 	this->nrOfVertices = primitive->GetNrOfVertices();
@@ -90,7 +88,6 @@ Mesh::Mesh(const Mesh& obj)
 	this->position = obj.position;
 	this->rotation = obj.rotation;
 	this->scale = obj.scale;
-	this->origin = obj.origin;
 
 	this->nrOfIndices = obj.nrOfIndices;
 	this->nrOfVertices = obj.nrOfVertices;
@@ -123,11 +120,6 @@ void Mesh::SetRotation(const glm::vec3& rotation)
 void Mesh::SetScale(const glm::vec3& scale)
 {
 	this->scale = scale;
-}
-
-void Mesh::SetOrigin(const glm::vec3 origin)
-{
-	this->origin = origin;
 }
 
 void Mesh::Move(const glm::vec3& position)
