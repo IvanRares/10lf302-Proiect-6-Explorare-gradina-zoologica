@@ -392,7 +392,12 @@ static std::vector<SpacePositions> GetDeerPositions() {
 
 static std::vector<SpacePositions> GetKangarooPositions() {
 	return{
-	};
+		{glm::vec3(1.5f, 0.f, - 21.f),glm::vec3(-90.f, 0.f, 210.f),glm::vec3(0.004f)},
+		{glm::vec3(2.5f, 0.f, - 22.f),glm::vec3(-90.f, 0.f, 180.f),glm::vec3(0.002f)},
+		{glm::vec3(3.5f, 0.f, - 23.f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.002f)},
+		{glm::vec3(1.f, 0.f, - 24.f),glm::vec3(-90.f, 0.f, 150.f),glm::vec3(0.002f)},
+		{glm::vec3(1.25f, 0.f, - 25.f),glm::vec3(-90.f, 0.f, 240.f),glm::vec3(0.004f)},
+	}; 
 }
 
 static std::vector<SpacePositions> GetLionPositions() {
