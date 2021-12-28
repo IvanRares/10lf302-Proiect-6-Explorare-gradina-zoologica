@@ -417,8 +417,8 @@ static std::vector<SpacePositions> GetMonkeyPositions() {
 		{glm::vec3(-2.8685f, 0.f, -22.7438f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.006f)},
 		{glm::vec3(-3.03727f, 0.772899f, -29.8107f),glm::vec3(0.f, 30.f, 180.f),glm::vec3(0.006f)},
 		{glm::vec3(-3.46937f, 0.f, -21.0213f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.007f)},
-		{glm::vec3(-4.87157f, 0.f, -22.3631f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.004f)},
-		{glm::vec3(-1.91032f, 0.f, -25.1719f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.007f)}
+		{glm::vec3(-4.87157f, 0.f, -22.3631f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.004f)},
+		{glm::vec3(-1.91032f, 0.f, -25.1719f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.007f)}
 	};
 }
 
