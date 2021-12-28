@@ -372,10 +372,9 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\shop3\\BUIDLING2.obj", materials[material25], textures[texShop3], textures[texShop3], texShop3));
 	models.back()->SetScale(glm::vec3(0.63));
 	models.back()->SetRotation(glm::vec3(0.f, 90.f, 0.f));
-	models.back()->SetPosition(glm::vec3(-7.43f, 0.6f, -19.5f));
+	models.back()->SetPosition(glm::vec3(-7.86f, 0.6f, -19.5f));
 
 	models.push_back(new Model("Models\\trash_can\\10896_Trash_can_v3_LOD3.obj", materials[material26], textures[texTrashCan], textures[texTrashCan], texTrashCan));
-	//models.back()->SetScale(glm::vec3(0.63));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 	models.back()->SetPosition(glm::vec3(0.f, 0.05f, -19.5f));
 }
@@ -556,6 +555,16 @@ void Game::RenderModels(Shader* shader)
 		models[bench]->SetRotation(i.rotation);
 		models[bench]->SetScale(i.scale);
 		models[bench]->Render(shader);
+	}
+
+	positions = GetTrashcanPositions();
+
+	for (auto& i : positions)
+	{
+		models[trashcan]->SetPosition(i.position);
+		models[trashcan]->SetRotation(i.rotation);
+		models[trashcan]->SetScale(i.scale);
+		models[trashcan]->Render(shader);
 	}
 
 	positions = GetBirdPositions();

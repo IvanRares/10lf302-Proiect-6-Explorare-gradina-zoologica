@@ -448,3 +448,26 @@ static std::vector<SpacePositions> GetTigerPositions() {
 	return{
 	};
 }
+
+static std::vector<SpacePositions> GetTrashcanPositions() {
+	return{
+		{glm::vec3(0.4f,0.05f,-5.6f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-5.6f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-7.4f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-7.4f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-18.6f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-18.6f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-20.4f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-20.4f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-31.6f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-31.6f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-33.4f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-33.4f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-44.6f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-44.6f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-46.4f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-46.4f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(0.4f,0.05f,-57.6f),glm::vec3(-90.f, 0.f, 45.f),glm::vec3(1.f)},
+		{glm::vec3(-1.4f,0.05f,-57.6f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(1.f)}
+	};
+}
