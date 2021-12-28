@@ -353,6 +353,11 @@ static std::vector<SpacePositions> GetBearPositions() {
 
 static std::vector<SpacePositions> GetDeerPositions() {
 	return{
+		{glm::vec3(1.44107f, 0.f, 3.84712f),glm::vec3(-90.f, 0.f, 200.f),glm::vec3(0.0122f)},
+		{glm::vec3(1.95808f, 0.f, -2.3399f),glm::vec3(-90.f, 0.f, 170.f),glm::vec3(0.0127f)},
+		{glm::vec3(2.08846f, 0.f, 1.99188f),glm::vec3(-90.f, 0.f, 165.f),glm::vec3(0.0125f)},
+		{glm::vec3(2.83846f, 0.f, 0.99188f),glm::vec3(-90.f, 0.f, 100.f),glm::vec3(0.007f)},
+		{glm::vec3(2.03846f, 0.f, 1.5f),glm::vec3(-90.f, 0.f, 150.f),glm::vec3(0.007f)}
 	};
 }
 
