@@ -72,7 +72,7 @@ const glm::mat4 Camera::GetProjectionMatrix() const
 
 const glm::vec3 Camera::GetPosition() const
 {
-	std::cout << position.x << " " << position.y << " " << position.z << std::endl;
+	//std::cout << position.x << " " << position.y << " " << position.z << std::endl;
 	return position;
 }
 
