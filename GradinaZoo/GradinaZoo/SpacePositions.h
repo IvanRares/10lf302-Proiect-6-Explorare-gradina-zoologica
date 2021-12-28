@@ -344,6 +344,10 @@ static std::vector<SpacePositions> GetCamelPositions() {
 
 static std::vector<SpacePositions> GetBearPositions() {
 	return{
+		{glm::vec3(-2.64299f, 0.f, - 1.62042f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.0122f)},
+		{glm::vec3(-3.05808f, 0.f, -2.3399f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.0127f)},
+		{glm::vec3(-2.08846f, 0.f, 1.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0125f)},
+		{glm::vec3(-2.03846f, 0.f, 0.99188f),glm::vec3(-90.f, 0.f, 35.f),glm::vec3(0.007f)}
 	};
 }
 
