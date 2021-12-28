@@ -207,8 +207,19 @@ static std::vector<SpacePositions> GetBarsPerpendicularPositions() {
 static std::vector<SpacePositions> GetTreePositions() {
 	return{
 	{glm::vec3(2.5f, 0.f, 3.5f),glm::vec3(-90.f, 0.f, 0.f),glm::vec3(0.005f)},
-	{glm::vec3(-3.5f, 0.f, 3.5f),glm::vec3(-90.f, 0.f, 0.f),glm::vec3(0.005f)}
-	};
+	{glm::vec3(-3.5f, 0.f, 3.5f),glm::vec3(-90.f, 0.f, 0.f),glm::vec3(0.005f)},
+	{glm::vec3(-5.175f, 0.f, -0.647f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.003f)},
+	{glm::vec3(3.975f, 0.f, -0.947f),glm::vec3(-90.f, 0.f, +35.f),glm::vec3(0.005f)},
+	{glm::vec3(-3.175f, 0.f, -3.647f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.013f)},
+	{glm::vec3(1.975f, 0.f, -3.947f),glm::vec3(-90.f, 0.f, +35.f),glm::vec3(0.003f)},
+	{glm::vec3(1.77414f, 0.f, - 8.76207f),glm::vec3(-90.f, 0.f, -75.f),glm::vec3(0.003f)},
+	{glm::vec3(3.49486f, 0.f, - 16.272f),glm::vec3(-90.f, 0.f, -25.f),glm::vec3(0.007f)},
+	{glm::vec3(3.79137f, 0.f, - 11.1775f),glm::vec3(-90.f, 0.f, -25.f),glm::vec3(0.009f)},
+	{glm::vec3(-5.10392f, 0.f, - 23.8644f),glm::vec3(-90.f, 0.f, -65.f),glm::vec3(0.007f)},
+	{glm::vec3(2.05981f, 0.f, - 27.7223f),glm::vec3(-90.f, 0.f, -65.f),glm::vec3(0.02f)},
+	{glm::vec3(-3.25985f, 0.f, - 30.0341f),glm::vec3(-90.f, 0.f, 115.f),glm::vec3(0.015f)},
+	{glm::vec3(3.58082f, 0.f, - 54.549f),glm::vec3(-90.f, 0.f, -140.f),glm::vec3(0.028f)}
+	}; 
 }
 
 static std::vector<SpacePositions> GetBenchPositions() {
