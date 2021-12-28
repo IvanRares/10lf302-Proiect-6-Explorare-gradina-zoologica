@@ -18,7 +18,8 @@ enum textureEnum {
 	texBench,
 	texBarrack,
 	texGrass1,
-	texCamel
+	texCamel,
+	texForest
 };
 
 enum materialEnum {
@@ -31,7 +32,8 @@ enum materialEnum {
 	material6,
 	material7,
 	material8,
-	material9
+	material9,
+	material10
 };
 
 enum modelEnum {
@@ -46,7 +48,8 @@ enum modelEnum {
 	tree,
 	bench,
 	cottage,
-	camel
+	camel,
+	forest
 };
 
 class Game
