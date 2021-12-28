@@ -29,7 +29,11 @@ enum textureEnum {
 	texSeaTurtle,
 	texTiger,
 	texShop1,
-	texShop2
+	texShop2,
+	texIce,
+	texJungle,
+	texSand,
+	texSavannah
 };
 
 enum materialEnum {
@@ -53,7 +57,11 @@ enum materialEnum {
 	material17,
 	material18,
 	material19,
-	material20
+	material20,
+	material21,
+	material22,
+	material23,
+	material24
 };
 
 enum modelEnum {
@@ -64,7 +72,7 @@ enum modelEnum {
 	bars=20,
 	barsPerpendicular=25,
 	grass3d=30,
-	bird=35,
+	bird=33,
 	tree,
 	bench,
 	cottage,

@@ -42,6 +42,8 @@ public:
 
 	void Scale(const glm::vec3& scale);
 
+	void SetMaterialAndTextures(Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId);
+
 	Model(const Model &model);
 };
 

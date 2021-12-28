@@ -125,6 +125,10 @@ void Game::InitializeTextures()
 	textures.push_back(new Texture("Models\\tiger\\Tiger_yellow.png", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\Shop\\110065_Corner_Grocery_Store_V2_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\Icecreambooth_obj\\Icecreambooth.jpeg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\ice.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\jungle.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\sand.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\savannah.jpg", GL_TEXTURE_2D, GL_RGB));
 }
 
 void Game::InitializeMaterials()
@@ -150,6 +154,10 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 19, 19)); //tiger
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 20, 20)); //shop1
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 21, 21)); //shop2
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 22, 22));//ice
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 23, 23));//jungle
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 24, 24));//sand
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 25, 25));//savannah
 }
 
 void Game::InitializeSkybox()
@@ -186,8 +194,11 @@ void Game::InitializeModels()
 		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
 		models.push_back(tempModel);
 	}
+	models[3]->SetMaterialAndTextures(materials[material21], textures[texIce], textures[texIce], texIce);
+	models[2]->SetMaterialAndTextures(materials[material22], textures[texJungle], textures[texJungle], texJungle);
+	models[1]->SetMaterialAndTextures(materials[material23], textures[texSand], textures[texSand], texSand);
+	models[4]->SetMaterialAndTextures(materials[material24], textures[texSavannah], textures[texSavannah], texSavannah);
 
-	
 	positions = GetCubeBricksPositions();
 	for (unsigned int i = 0; i < positions.size(); i++) {
 		meshes.push_back(new Mesh(&squareDown, positions[i].position, glm::vec3(0.f), glm::vec3(1.f)));
@@ -274,43 +285,35 @@ void Game::InitializeModels()
 
 		double position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(-position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
-		/*meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(-position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(-position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(-position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(+position, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(+position, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(+position, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
+		meshes.push_back(new Mesh(&square, positions[i].position + glm::vec3(+position, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
 
-		position = (float)distribution(generator) / 100;
+		/*position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(-0.35f, 0.f, -position), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, -0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));
 
 		position = (float)distribution(generator) / 100;
 		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(1.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));
-		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 45.f, 0.f), glm::vec3(0.5f)));*/
+		meshes.push_back(new Mesh(&square, cubeGrassPositions[i] + glm::vec3(+position, 0.f, 0.40f), glm::vec3(0.f, 90.f, 0.f), glm::vec3(0.5f)));*/
 	}
 	models.push_back(new Model(glm::vec3(0.f), materials[material8], textures[texGrass1], textures[texGrass1], meshes, texGrass1));
 	models.back()->Move(glm::vec3(0.f, 0.12f, 0.f));
@@ -321,9 +324,12 @@ void Game::InitializeModels()
 	meshes.clear();
 	for (int i = 0; i < numOfTiles; i++)
 	{
-		tempModel = new Model(*models.back());
-		tempModel->Move(glm::vec3(0.f, 0.f, -13.f));
-		models.push_back(tempModel);
+		if (i != 0 && i != 2)
+		{
+			tempModel = new Model(*models[grass3d]);
+			tempModel->Move(glm::vec3(0.f, 0.f, (i+1)*-13.f));
+			models.push_back(tempModel);
+		}
 	}
 
 	models.push_back(new Model("Models\\Bird\\12213_Bird_v1_l3.obj", materials[material4], textures[texBird], textures[texBird], texBird));
@@ -337,7 +343,7 @@ void Game::InitializeModels()
 	models.back()->Move(glm::vec3(-0.58f, 0.f, 9.f));
 
 	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
-	
+
 	models.push_back(new Model("Models\\bear\\13576_Tibetan_Bear_v1_l3.obj", materials[material10], textures[texBear], textures[texBear], texBear));
 
 	models.push_back(new Model("Models\\deer\\12961_White_Tailed_Deer_v1_l2.obj", materials[material11], textures[texDeer], textures[texDeer], texDeer));
@@ -518,10 +524,10 @@ void Game::RenderModels(Shader* shader)
 		models[i]->Render(shader);
 	}
 	models[cottage]->Render(shader);
-	
+
 	std::vector<SpacePositions> positions;
 	positions = GetTreePositions();
-	
+
 	for (auto& i : positions)
 	{
 		models[tree]->SetPosition(i.position);

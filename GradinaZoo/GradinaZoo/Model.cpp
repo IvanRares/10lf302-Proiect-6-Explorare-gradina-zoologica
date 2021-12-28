@@ -187,6 +187,14 @@ void Model::Scale(const glm::vec3& scale)
 	}
 }
 
+void Model::SetMaterialAndTextures(Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId)
+{
+	this->material = material;
+	this->overrideTextureDiffuse = ovTexDif;
+	this->overrideTextureSpecular = ovTexSpec;
+	this->textureId = textureId;
+}
+
 Model::Model(const Model& model)
 {
 	this->material = model.material;
