@@ -131,14 +131,6 @@ void Model::Render(Shader* shader)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Model::RenderShadow(Shader* shader)
-{
-	for (auto& i : meshes)
-	{
-		i->Render(shader);
-	}
-}
-
 void Model::SetPosition(const glm::vec3& position)
 {
 	for (auto& i : meshes)

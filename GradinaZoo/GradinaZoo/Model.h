@@ -27,7 +27,6 @@ public:
 
 	void Update();
 	void Render(Shader* shader);
-	void RenderShadow(Shader* shader);
 
 	void SetPosition(const glm::vec3& position);
 
