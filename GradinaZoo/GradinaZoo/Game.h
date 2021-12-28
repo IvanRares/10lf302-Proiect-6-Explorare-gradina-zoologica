@@ -34,7 +34,8 @@ enum textureEnum {
 	texJungle,
 	texSand,
 	texSavannah,
-	texShop3
+	texShop3,
+	texTrashCan
 };
 
 enum materialEnum {
@@ -63,7 +64,8 @@ enum materialEnum {
 	material22,
 	material23,
 	material24,
-	material25
+	material25,
+	material26
 };
 
 enum modelEnum {
@@ -90,7 +92,8 @@ enum modelEnum {
 	tiger,
 	shop1,
 	shop2,
-	shop3
+	shop3,
+	trashcan
 };
 
 class Game
