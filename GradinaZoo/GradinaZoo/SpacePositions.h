@@ -397,6 +397,11 @@ static std::vector<SpacePositions> GetKangarooPositions() {
 
 static std::vector<SpacePositions> GetLionPositions() {
 	return{
+		{glm::vec3(4.0f, 0.f, -48.3943f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.005f)},
+		{glm::vec3(2.7f, 0.f, -49.3943f),glm::vec3(-90.f, 0.f,65.f),glm::vec3(0.0038f)},
+		{glm::vec3(1.f, 0.f, -51.3943),glm::vec3(-90.f, 0.f, -80.f),glm::vec3(0.002f)},
+		{glm::vec3(2.1f, 0.f, -54.3943f),glm::vec3(-90.f, 0.f, -70.f),glm::vec3(0.006f)},
+		{glm::vec3(3.f, 2.2f, - 55.4f),glm::vec3(-90.f, 20.f, -70.f),glm::vec3(0.0035f)},
 	};
 }
 
