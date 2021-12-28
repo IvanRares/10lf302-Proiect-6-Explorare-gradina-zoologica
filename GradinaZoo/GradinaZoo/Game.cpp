@@ -360,14 +360,12 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\tiger\\uploads_files_893187_Tiger.obj", materials[material18], textures[texTiger], textures[texTiger], texTiger));
 
 	models.push_back(new Model("Models\\Shop\\10065_Corner_Grocery_Store_V2_L3.obj", materials[material19], textures[texShop1], textures[texShop1], texShop1));
-	models.back()->SetScale(glm::vec3(0.0048));
-	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
-	models.back()->SetPosition(glm::vec3(7.45f, 0.f, -8.f));
-
+	
 	models.push_back(new Model("Models\\Icecreambooth_obj\\Icecreambooth.obj", materials[material20], textures[texShop2], textures[texShop2], texShop2));
 	models.back()->SetScale(glm::vec3(0.63));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
 	models.back()->SetPosition(glm::vec3(7.43f, 0.f, -19.5f));
+<<<<<<< Updated upstream
 
 	models.push_back(new Model("Models\\shop3\\BUIDLING2.obj", materials[material25], textures[texShop3], textures[texShop3], texShop3));
 	models.back()->SetScale(glm::vec3(0.63));
@@ -377,6 +375,8 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\trash_can\\10896_Trash_can_v3_LOD3.obj", materials[material26], textures[texTrashCan], textures[texTrashCan], texTrashCan));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 	models.back()->SetPosition(glm::vec3(0.f, 0.05f, -19.5f));
+=======
+>>>>>>> Stashed changes
 }
 
 void Game::InitializeLights()
@@ -673,7 +673,16 @@ void Game::RenderModels(Shader* shader)
 		models[tiger]->SetScale(i.scale);
 		models[tiger]->Render(shader);
 	}
-	models[shop1]->Render(shader);
+	positions = GetShopPositions();
+
+	for (auto& i : positions)
+	{
+		models[shop1]->SetPosition(i.position);
+		models[shop1]->SetRotation(i.rotation);
+		models[shop1]->SetScale(i.scale);
+		models[shop1]->Render(shader);
+	}
+
 	models[shop2]->Render(shader);
 	models[shop3]->Render(shader);
 	models[trashcan]->Render(shader);
