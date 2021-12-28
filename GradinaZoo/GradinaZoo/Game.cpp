@@ -131,6 +131,7 @@ void Game::InitializeTextures()
 	textures.push_back(new Texture("Textures\\savannah.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\shop3\\4321.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\trash_can\\texture_plastic_gray.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Textures\\hedge.png", GL_TEXTURE_2D, GL_RGBA));
 }
 
 void Game::InitializeMaterials()
@@ -162,6 +163,7 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 25));//savannah
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 26));//shop3
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 27));//trashcan
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 28));//hedge
 }
 
 void Game::InitializeSkybox()
@@ -358,6 +360,16 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\trash_can\\10896_Trash_can_v3_LOD3.obj", materials[material26], textures[texTrashCan], texTrashCan));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 	models.back()->SetPosition(glm::vec3(0.f, 0.05f, -19.5f));
+
+
+	positions = GetBarsPerpendicularPositions();
+	for (unsigned int i = 0; i < positions.size(); i++) {
+		meshes.push_back(new Mesh(&square, positions[i].position, glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.f)));
+	}
+	models.push_back(new Model(materials[material27], textures[texHedge], meshes, texHedge));
+	for (auto*& i : meshes)
+		delete i;
+	meshes.clear();
 }
 
 void Game::InitializeLights()
@@ -556,6 +568,15 @@ void Game::RenderModels(Shader* shader)
 		models[bird]->SetRotation(i.rotation);
 		models[bird]->SetScale(i.scale);
 		models[bird]->Render(shader);
+	}
+	positions = GetHedgePositions();
+
+	for (auto& i : positions)
+	{
+		models[hedge]->SetPosition(i.position);
+		models[hedge]->SetRotation(i.rotation);
+		models[hedge]->SetScale(i.scale);
+		models[hedge]->Render(shader);
 	}
 
 	positions = GetCamelPositions();
