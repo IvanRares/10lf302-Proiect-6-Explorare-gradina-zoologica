@@ -20,11 +20,10 @@ private:
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 	GLint diffuseTex;
-	GLint specularTex;
 public:
-	Material(glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, GLint diffuseTex, GLint specularTex);
+	Material(glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, GLint diffuseTex);
 
 	void SendToShader(Shader& program);
-	Material(const Material& materia);
+	Material(const Material& material);
 };
 

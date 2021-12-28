@@ -62,11 +62,10 @@ Mesh* Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	return new Mesh(vertices.data(),vertices.size(),indices.data(),indices.size());
 }
 
-Model::Model(const char* path, Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId)
+Model::Model(const char* path, Material* material, Texture* ovTexDif, unsigned int textureId)
 {
 	this->material = material;
 	this->overrideTextureDiffuse = ovTexDif;
-	this->overrideTextureSpecular = ovTexSpec;
 	this->textureId = textureId;
 	Assimp::Importer import;
 	const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -79,13 +78,11 @@ Model::Model(const char* path, Material* material, Texture* ovTexDif, Texture* o
 	ProcessNode(scene->mRootNode, scene);
 }
 
-Model::Model(glm::vec3 position, Material* material, Texture* ovTexDif, Texture* ovTexSpec, std::vector<Mesh*> meshes, unsigned int textureId)
+Model::Model( Material* material, Texture* ovTexDif, std::vector<Mesh*> meshes, unsigned int textureId)
 {
-	this->position = position;
 	this->material = material;
 	this->textureId = textureId;
 	overrideTextureDiffuse = ovTexDif;
-	overrideTextureSpecular = ovTexSpec;
 	for (auto* i : meshes)
 	{
 		this->meshes.push_back(new Mesh(*i));
@@ -119,7 +116,6 @@ void Model::Render(Shader* shader)
 
 	//Activate texture
 	overrideTextureDiffuse->Bind(textureId);
-	overrideTextureSpecular->Bind(textureId);
 
 	for (auto& i : meshes)
 	{
@@ -187,11 +183,10 @@ void Model::Scale(const glm::vec3& scale)
 	}
 }
 
-void Model::SetMaterialAndTextures(Material* material, Texture* ovTexDif, Texture* ovTexSpec, unsigned int textureId)
+void Model::SetMaterialAndTextures(Material* material, Texture* ovTexDif,  unsigned int textureId)
 {
 	this->material = material;
 	this->overrideTextureDiffuse = ovTexDif;
-	this->overrideTextureSpecular = ovTexSpec;
 	this->textureId = textureId;
 }
 
@@ -201,7 +196,5 @@ Model::Model(const Model& model)
 	for (auto& i : model.meshes)
 		this->meshes.push_back(new Mesh(*i));
 	this->overrideTextureDiffuse = model.overrideTextureDiffuse;
-	this->overrideTextureSpecular = model.overrideTextureSpecular;
-	this->position = model.position;
 	this->textureId = model.textureId;
 }
