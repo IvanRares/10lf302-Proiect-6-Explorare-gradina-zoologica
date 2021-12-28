@@ -136,10 +136,10 @@ void Game::InitializeTextures()
 
 void Game::InitializeMaterials()
 {
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 1)); //grass
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 2)); //bricks
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 3)); //bars1
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 4)); //bars2
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 1)); //grass
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 2)); //bricks
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 3)); //bars1
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 4)); //bars2
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 5)); //bird
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 6)); //tree1
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 7)); //bench
@@ -157,10 +157,10 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 19)); //tiger
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 20)); //shop1
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 21)); //shop2
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 22));//ice
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 23));//jungle
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 24));//sand
-	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(2.f), 25));//savannah
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 22));//ice
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 23));//jungle
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 24));//sand
+	materials.push_back(new Material(glm::vec3(0.1f), glm::vec3(1.f), glm::vec3(1.f), 25));//savannah
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 26));//shop3
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 27));//trashcan
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 28));//hedge
@@ -355,7 +355,7 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\shop3\\BUIDLING2.obj", materials[material25], textures[texShop3], texShop3));
 	models.back()->SetScale(glm::vec3(0.63));
 	models.back()->SetRotation(glm::vec3(0.f, 90.f, 0.f));
-	models.back()->SetPosition(glm::vec3(-7.86f, 0.6f, -19.5f));
+	models.back()->SetPosition(glm::vec3(-7.74f, 0.6f, -19.5f));
 
 	models.push_back(new Model("Models\\trash_can\\10896_Trash_can_v3_LOD3.obj", materials[material26], textures[texTrashCan], texTrashCan));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
@@ -379,7 +379,7 @@ void Game::InitializeModels()
 void Game::InitializeLights()
 {
 	//Lights
-	lights.push_back(new glm::vec3(-0.5f, 10.f, -26.f));
+	lights.push_back(new glm::vec3(-7.5f, 10.f, -30.f));
 }
 
 void Game::InitializeUniforms()

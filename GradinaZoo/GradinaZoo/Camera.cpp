@@ -103,15 +103,32 @@ void Camera::ProcessKeyboard(ECameraMovementType direction, float deltaTime)
 	{
 		if (this->position.z > 5.2f || fmod(this->position.z, 13.f) < -5.5f && fmod(this->position.z, 13.f) > -7.5f)
 		{
-			if (this->position.z > 5.2f)
+			if (this->position.z > 5.4f)
+			{
 				this->position.y = 0.9f;
-			else if (fmod(this->position.z, 13.f) > -5.65f && (this->position.x > 0.35f || this->position.x < -1.35f))
+				if (this->position.z > 6.6f)
+					this->position.z = 6.6f;
+				if (this->position.x < -3.5f)
+					this->position.x = -3.5f;
+				else if (this->position.x > 2.6f)
+					this->position.x = 2.6f;
+			}
+			else if (this->position.z < 5.4f && this->position.z > 5.2f && (this->position.x > 0.35f || this->position.x < -1.35f))
+			{
+				this->position.z = 5.4f;
+				this->position.y = 0.9f;
+				if (this->position.x < -3.35f)
+					this->position.x = -3.35f;
+				else if (this->position.x > 2.45f)
+					this->position.x = 2.45f;
+			}
+			else if (fmod(this->position.z, 13.f) > -5.65f && ((this->position.x > 0.35f && this->position.x < 4.65f) || (this->position.x < -1.35f && this->position.x > -5.65f)))
 			{
 				int k = this->position.z / 13.f;
 				this->position.z = -5.65f + k * 13.f;
 				this->position.y = 0.65f;
 			}
-			else if (fmod(this->position.z, 13.f) < -7.35f && (this->position.x > 0.35f || this->position.x < -1.35f))
+			else if (fmod(this->position.z, 13.f) < -7.35f && ((this->position.x > 0.35f && this->position.x < 4.65f) || (this->position.x < -1.35f && this->position.x > -5.65f)))
 			{
 				int k = this->position.z / 13.f;
 				this->position.z = -7.35f + k * 13.f;
@@ -122,11 +139,25 @@ void Camera::ProcessKeyboard(ECameraMovementType direction, float deltaTime)
 		else
 		{
 			this->position.y = 0.65f;
-			if (this->position.x > 0.35f)
-				this->position.x = 0.35f;
-			else if (this->position.x < -1.35f)
-				this->position.x = -1.35f;
+			if (this->position.x > 0.35f && this->position.x < 4.65f)
+			{
+				if (abs(this->position.x - 4.65f) < abs(this->position.x - 0.35f))
+					this->position.x = 4.65f;
+				else this->position.x = 0.35f;
+			}
+			else if (this->position.x < -1.35f && this->position.x > -5.65f)
+			{
+				if (abs(this->position.x + 1.35f) < abs(this->position.x + 5.65f))
+					this->position.x = -1.35f;
+				else this->position.x = -5.65f;
+			}
 		}
+		if (this->position.x < -7.35f)
+			this->position.x = -7.35f;
+		else if (this->position.x > 6.35f)
+			this->position.x = 6.35f;
+		if (this->position.z < -59.2f)
+			this->position.z = -59.2f;
 	}
 }
 
