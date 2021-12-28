@@ -376,7 +376,7 @@ void Game::InitializeModels()
 	models.back()->SetScale(glm::vec3( 0.02f));
 
 	models.push_back(new Model("Models\\Penguin\\PenguinBaseMesh.obj", materials[material15], textures[texPenguin], texPenguin));
-	models.back()->SetPosition(glm::vec3(-3.66f, 0.02f, -36.5f));
+	models.back()->SetPosition(glm::vec3(-4.16f, 0.02f, -36.5f));
 	models.back()->SetRotation(glm::vec3(70.f, 0.f, 0.f));
 	models.back()->SetScale(glm::vec3(0.3f));
 }
@@ -697,7 +697,26 @@ void Game::RenderModels(Shader* shader)
 	models[shop2]->Render(shader);
 	models[shop3]->Render(shader);
 	models[trashcan]->Render(shader);
-	models.back()->Render(shader);
+	RenderMovablePenguin(shader);
+}
+
+void Game::RenderMovablePenguin(Shader* shader)
+{
+	static int k = 1;
+	static float posz=-36.5f;
+	if (posz + k * 0.005f < -44.5f)
+	{
+		k = 1;
+		models[movablePenguin]->SetRotation(glm::vec3(70.f, 0.f, 0.f));
+	}
+	else if (posz + k * 0.005f > -34.f)
+	{
+		k = -1;
+		models[movablePenguin]->SetRotation(glm::vec3(110.f, 0.f, 180.f));
+	}
+	models[movablePenguin]->Move(glm::vec3(0.f, 0.f, k * 0.05f));
+	posz = posz + k * 0.05f;
+	models[movablePenguin]->Render(shader);
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)

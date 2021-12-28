@@ -97,7 +97,8 @@ enum modelEnum {
 	shop3,
 	trashcan,
 	hedge,
-	movableBear
+	movableBear,
+	movablePenguin
 };
 
 class Game
@@ -146,6 +147,8 @@ public:
 	void Update();
 	void Render();
 	void RenderModels(Shader* shader);
+
+	void RenderMovablePenguin(Shader* shader);
 
 	static void frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH);
 	static void MouseCallback(GLFWwindow* window, double xpos, double ypos);
