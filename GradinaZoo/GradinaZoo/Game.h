@@ -27,7 +27,9 @@ enum textureEnum {
 	texPenguin,
 	texSeaLion,
 	texSeaTurtle,
-	texTiger
+	texTiger,
+	texShop1,
+	texShop2
 };
 
 enum materialEnum {
@@ -49,7 +51,9 @@ enum materialEnum {
 	material15,
 	material16,
 	material17,
-	material18
+	material18,
+	material19,
+	material20
 };
 
 enum modelEnum {
@@ -73,7 +77,9 @@ enum modelEnum {
 	penguin,
 	seaLion,
 	seaTurtle,
-	tiger
+	tiger,
+	shop1,
+	shop2
 };
 
 class Game

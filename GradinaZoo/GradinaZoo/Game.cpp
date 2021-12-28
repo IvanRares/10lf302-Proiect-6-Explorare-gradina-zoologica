@@ -123,6 +123,8 @@ void Game::InitializeTextures()
 	textures.push_back(new Texture("Models\\Sea_lion\\10041_sealion_v1_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\Sea_turtle\\10042_Sea_Turtle_V1_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
 	textures.push_back(new Texture("Models\\tiger\\Tiger_yellow.png", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Shop\\110065_Corner_Grocery_Store_V2_Diffuse.jpg", GL_TEXTURE_2D, GL_RGB));
+	textures.push_back(new Texture("Models\\Icecreambooth_obj\\Icecreambooth.jpeg", GL_TEXTURE_2D, GL_RGB));
 }
 
 void Game::InitializeMaterials()
@@ -136,7 +138,6 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 7, 7)); //bench
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 8, 8)); //barrack
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 9, 9)); //grass3d
-	////materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 10, 10)); //
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 10, 10)); //camel
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 11, 11)); //bear
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 12, 12)); //deer
@@ -147,6 +148,8 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 17, 17)); //sea lion
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 18, 18)); //sea turtle
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 19, 19)); //tiger
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 20, 20)); //shop1
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 21, 21)); //shop2
 }
 
 void Game::InitializeSkybox()
@@ -184,6 +187,7 @@ void Game::InitializeModels()
 		models.push_back(tempModel);
 	}
 
+	
 	positions = GetCubeBricksPositions();
 	for (unsigned int i = 0; i < positions.size(); i++) {
 		meshes.push_back(new Mesh(&squareDown, positions[i].position, glm::vec3(0.f), glm::vec3(1.f)));
@@ -344,6 +348,18 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\Sea_lion\\10041_sealion_v1_L3.obj", materials[material16], textures[texSeaLion], textures[texSeaLion], texSeaLion));
 	models.push_back(new Model("Models\\Sea_turtle\\10042_Sea_Turtle_V2_iterations-2.obj", materials[material17], textures[texSeaTurtle], textures[texSeaTurtle], texSeaTurtle));
 	models.push_back(new Model("Models\\tiger\\uploads_files_893187_Tiger.obj", materials[material18], textures[texTiger], textures[texTiger], texTiger));
+
+	models.push_back(new Model("Models\\Shop\\10065_Corner_Grocery_Store_V2_L3.obj", materials[material19], textures[texShop1], textures[texShop1], texShop1));
+	models.back()->SetScale(glm::vec3(0.0048));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
+	models.back()->SetPosition(glm::vec3(7.45f, 0.f, -8.f));
+
+	models.push_back(new Model("Models\\Icecreambooth_obj\\Icecreambooth.obj", materials[material20], textures[texShop2], textures[texShop2], texShop2));
+	models.back()->SetScale(glm::vec3(0.63));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
+	models.back()->SetPosition(glm::vec3(7.43f, 0.f, -19.5f));
+
+
 }
 
 void Game::InitializeLights()
@@ -630,6 +646,9 @@ void Game::RenderModels(Shader* shader)
 		models[tiger]->SetScale(i.scale);
 		models[tiger]->Render(shader);
 	}
+	models[shop1]->Render(shader);
+	models[shop2]->Render(shader);
+
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)
