@@ -426,6 +426,13 @@ static std::vector<SpacePositions> GetPenguinPositions() {
 
 static std::vector<SpacePositions> GetSeaLionPositions() {
 	return{
+		{glm::vec3(3.083368f, 0.f, -40.0953f),glm::vec3(-90.f, 0.f, 134.f),glm::vec3(0.006f)},
+		{glm::vec3(1.67748f, 0.f, -36.7762f),glm::vec3(-90.f, 0.f, 0.f),glm::vec3(0.005f)},
+		{glm::vec3(2.8685f, 0.f, -38.7438f),glm::vec3(-90.f, 0.f, -80.f),glm::vec3(0.002f)},
+		{glm::vec3(3.03727f, 0.02f, -41.8107f),glm::vec3(-90.f, 0.f, -50.f),glm::vec3(0.003f)},
+		{glm::vec3(1.46937f, 0.f, -42.0213f),glm::vec3(-90.f, 0.f, -94.f),glm::vec3(0.006f)},
+		{glm::vec3(3.87157f, 0.f, -43.3631f),glm::vec3(-90.f, 0.f, 90.f),glm::vec3(0.002f)},
+		{glm::vec3(2.91032f, 0.f, -39.1719f),glm::vec3(-90.f, 0.f, -46.f),glm::vec3(0.003f)}
 	};
 } 
 
