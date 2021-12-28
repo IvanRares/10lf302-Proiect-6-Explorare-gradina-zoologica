@@ -19,7 +19,6 @@ enum textureEnum {
 	texBarrack,
 	texGrass1,
 	texCamel,
-	texForest,
 	texBear,
 	texDeer,
 	texKangaroo,
@@ -50,8 +49,7 @@ enum materialEnum {
 	material15,
 	material16,
 	material17,
-	material18,
-	material19
+	material18
 };
 
 enum modelEnum {
@@ -67,7 +65,6 @@ enum modelEnum {
 	bench,
 	cottage,
 	camel,
-	forest,
 	bear,
 	deer,
 	kangaroo,
