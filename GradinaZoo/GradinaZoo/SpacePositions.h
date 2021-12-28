@@ -300,3 +300,13 @@ static std::vector<SpacePositions> GetBirdPositions() {
 	{glm::vec3(0.3f, 0.21f, 3.72f),glm::vec3(-90.f, 0.f, 70.f),glm::vec3(0.01f)}
 	};
 }
+
+static std::vector<SpacePositions> GetCamelPositions() {
+	return{
+		{glm::vec3(-2.87647f, 0.f, -9.052f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.0017f)},
+		{glm::vec3(-3.05808f, 0.f, - 13.3399f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.001f)},
+		{glm::vec3(-2.05808f, 0.f, - 14.3399f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.0012f)},
+		{glm::vec3(-3.05808f, 0.f, - 12.3399f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.0016f)},
+		{glm::vec3(-2.08846f, 0.f, - 9.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0007f)}
+	};
+}

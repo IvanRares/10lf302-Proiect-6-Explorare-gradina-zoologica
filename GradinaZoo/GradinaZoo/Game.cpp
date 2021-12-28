@@ -313,9 +313,8 @@ void Game::InitializeModels()
 	models.back()->Move(glm::vec3(-0.58f, 0.f, 9.f));
 
 	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
-	models.back()->SetScale(glm::vec3(0.0017));
-	models.back()->SetPosition(glm::vec3(-0.5f, 0.f, -26.f));
-	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
+	
+	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
 }
 
 void Game::InitializeLights()
@@ -506,7 +505,15 @@ void Game::RenderModels(Shader* shader)
 		models[bird]->Render(shader);
 	}
 
-	models[camel]->Render(shader);
+	positions = GetCamelPositions();
+
+	for (auto& i : positions)
+	{
+		models[camel]->SetPosition(i.position);
+		models[camel]->SetRotation(i.rotation);
+		models[camel]->SetScale(i.scale);
+		models[camel]->Render(shader);
+	}
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)
