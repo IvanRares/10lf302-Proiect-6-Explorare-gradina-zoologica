@@ -179,7 +179,29 @@ static std::vector<SpacePositions> GetBarsPositions() {
 	{glm::vec3(-1.5f,0.5f,2.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
 	{glm::vec3(-1.5f,0.5f,3.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
 	{glm::vec3(-1.5f,0.5f,4.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
-	{glm::vec3(-1.5f,0.5f,5.0f),	glm::vec3(0.f),		glm::vec3(0.f)}
+	{glm::vec3(-1.5f,0.5f,5.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,-5.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,-4.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,-3.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,-2.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,-1.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,1.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,0.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,2.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,3.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,4.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(-5.5f,0.5f,5.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,-5.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,-4.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,-3.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,-2.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,-1.0f),	glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,1.0f),		glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,0.0f),		glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,2.0f),		glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,3.0f),		glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,4.0f),		glm::vec3(0.f),		glm::vec3(0.f)},
+	{glm::vec3(4.5f,0.5f,5.0f),		glm::vec3(0.f),		glm::vec3(0.f)}
 	};
 };
 
@@ -200,7 +222,11 @@ static std::vector<SpacePositions> GetBarsPerpendicularPositions() {
 		{glm::vec3(4.0f,0.5f,-7.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
 		{glm::vec3(3.0f,0.5f,-7.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
 		{glm::vec3(2.0f,0.5f,-7.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
-		{glm::vec3(1.0f,0.5f,-7.5f),	glm::vec3(0.f),		glm::vec3(0.f)}
+		{glm::vec3(1.0f,0.5f,-7.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
+		{glm::vec3(-5.f,0.5f,5.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
+		{glm::vec3(-4.2f,0.5f,5.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
+		{glm::vec3(3.2f,0.5f,5.5f),	glm::vec3(0.f),		glm::vec3(0.f)},
+		{glm::vec3(4.f,0.5f,5.5f),	glm::vec3(0.f),		glm::vec3(0.f)}
 	};
 }
 

@@ -111,6 +111,8 @@ void Game::InitializeTextures()
 
 	//Texture 8
 	textures.push_back(new Texture("Textures\\grass3d.png", GL_TEXTURE_2D, GL_RGBA));
+
+	textures.push_back(new Texture("Models\\camel\\10007_Camel_v03.jpg", GL_TEXTURE_2D, GL_RGB));
 }
 
 void Game::InitializeMaterials()
@@ -124,6 +126,7 @@ void Game::InitializeMaterials()
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 7, 7));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 8, 8));
 	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 9, 9));
+	materials.push_back(new Material(glm::vec3(1.f), glm::vec3(1.f), glm::vec3(0.5f), 10, 10));
 }
 
 void Game::InitializeSkybox()
@@ -309,6 +312,10 @@ void Game::InitializeModels()
 	models.back()->SetScale(glm::vec3(0.6f));
 	models.back()->Move(glm::vec3(-0.58f, 0.f, 9.f));
 
+	models.push_back(new Model("Models\\camel\\Camel.obj", materials[material9], textures[texCamel], textures[texCamel], texCamel));
+	models.back()->SetScale(glm::vec3(0.0017));
+	models.back()->SetPosition(glm::vec3(-0.5f, 0.f, -26.f));
+	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 }
 
 void Game::InitializeLights()
@@ -498,6 +505,8 @@ void Game::RenderModels(Shader* shader)
 		models[bird]->SetScale(i.scale);
 		models[bird]->Render(shader);
 	}
+
+	models[camel]->Render(shader);
 }
 
 void Game::frameBufferResizeCallback(GLFWwindow* window, int fbW, int fbH)
