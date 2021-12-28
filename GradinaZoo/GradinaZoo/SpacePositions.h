@@ -373,7 +373,7 @@ static std::vector<SpacePositions> GetCamelPositions() {
 
 static std::vector<SpacePositions> GetBearPositions() {
 	return{
-		{glm::vec3(-2.64299f, 0.f, - 1.62042f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.0122f)},
+		{glm::vec3(-2.64299f, 0.f, -1.62042f),glm::vec3(-90.f, 0.f, 60.f),glm::vec3(0.0122f)},
 		{glm::vec3(-3.05808f, 0.f, -2.3399f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.0127f)},
 		{glm::vec3(-2.08846f, 0.f, 1.99188f),glm::vec3(-90.f, 0.f, 65.f),glm::vec3(0.0125f)},
 		{glm::vec3(-2.03846f, 0.f, 0.99188f),glm::vec3(-90.f, 0.f, 35.f),glm::vec3(0.007f)}
@@ -402,19 +402,19 @@ static std::vector<SpacePositions> GetLionPositions() {
 
 static std::vector<SpacePositions> GetMonkeyPositions() {
 	return{
-		{glm::vec3(-3.61088f, 1.31056f, - 30.192f),glm::vec3(-120.f, 0.f, -80.f),glm::vec3(0.009f)},
-		{glm::vec3(-2.67748f, 0.f, - 26.7762f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.005f)},
-		{glm::vec3(-2.8685f, 0.f, - 22.7438f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.006f)},
-		{glm::vec3(-3.03727f, 0.772899f, - 29.8107f),glm::vec3(0.f, 30.f, 180.f),glm::vec3(0.006f)},
-		{glm::vec3(-3.46937f, 0.f, - 21.0213f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.007f)},
-		{glm::vec3(-4.87157f, 0.f, - 22.3631f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.004f)},
-		{glm::vec3(-1.91032f, 0.f, - 25.1719f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.007f)}
+		{glm::vec3(-3.61088f, 1.31056f, -30.192f),glm::vec3(-120.f, 0.f, -80.f),glm::vec3(0.009f)},
+		{glm::vec3(-2.67748f, 0.f, -26.7762f),glm::vec3(-90.f, 0.f, 95.f),glm::vec3(0.005f)},
+		{glm::vec3(-2.8685f, 0.f, -22.7438f),glm::vec3(-90.f, 0.f, 10.f),glm::vec3(0.006f)},
+		{glm::vec3(-3.03727f, 0.772899f, -29.8107f),glm::vec3(0.f, 30.f, 180.f),glm::vec3(0.006f)},
+		{glm::vec3(-3.46937f, 0.f, -21.0213f),glm::vec3(-90.f, 0.f, -45.f),glm::vec3(0.007f)},
+		{glm::vec3(-4.87157f, 0.f, -22.3631f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.004f)},
+		{glm::vec3(-1.91032f, 0.f, -25.1719f),glm::vec3(0.f, 0.f, 65.f),glm::vec3(0.007f)}
 	};
 }
 
 static std::vector<SpacePositions> GetPenguinPositions() {
 	return{
-		{glm::vec3(-3.083368f, 0.f, - 40.0953f),glm::vec3(0.f, 25.f, 0.f),glm::vec3(0.6f)},
+		{glm::vec3(-3.083368f, 0.f, -40.0953f),glm::vec3(0.f, 25.f, 0.f),glm::vec3(0.6f)},
 		{glm::vec3(-2.67748f, 0.f, -36.7762f),glm::vec3(0.f, 55.f, 0.f),glm::vec3(0.5f)},
 		{glm::vec3(-2.8685f, 0.f, -38.7438f),glm::vec3(0.f, 80.f, 0.f),glm::vec3(0.2f)},
 		{glm::vec3(-3.03727f, 0.02f, -41.8107f),glm::vec3(70.f, 0.f, 0.f),glm::vec3(0.3f)},
@@ -434,7 +434,7 @@ static std::vector<SpacePositions> GetSeaLionPositions() {
 		{glm::vec3(3.87157f, 0.f, -43.3631f),glm::vec3(-90.f, 0.f, 90.f),glm::vec3(0.002f)},
 		{glm::vec3(2.91032f, 0.f, -39.1719f),glm::vec3(-90.f, 0.f, -46.f),glm::vec3(0.003f)}
 	};
-} 
+}
 
 static std::vector<SpacePositions> GetSeaTurtlePositions() {
 	return{
@@ -445,7 +445,7 @@ static std::vector<SpacePositions> GetSeaTurtlePositions() {
 		{glm::vec3(2.08846f, 0.f, -15.99188f),glm::vec3(-90.f, 0.f, 67.f),glm::vec3(0.006f)},
 		{glm::vec3(2.f,		 0.f, -16.052f),glm::vec3(-90.f, 0.f, -60.f),glm::vec3(0.007f)},
 		{glm::vec3(3.,		 0.f, -17.3399f),glm::vec3(-90.f, 0.f, -94.f),glm::vec3(0.008f)},
-		{glm::vec3(1.95808f, 0.f, -15.3399f),glm::vec3(-90.f, 0.f,- 134.f),glm::vec3(0.005f)},
+		{glm::vec3(1.95808f, 0.f, -15.3399f),glm::vec3(-90.f, 0.f,-134.f),glm::vec3(0.005f)},
 		{glm::vec3(1.45808f, 0.f, -11.3399f),glm::vec3(-90.f, 0.f, -178.f),glm::vec3(0.007f)},
 		{glm::vec3(3.38846f, 0.f, -9.99188f),glm::vec3(-90.f, 0.f, -58.f),glm::vec3(0.004f)}
 	};
@@ -453,6 +453,10 @@ static std::vector<SpacePositions> GetSeaTurtlePositions() {
 
 static std::vector<SpacePositions> GetTigerPositions() {
 	return{
+		{glm::vec3(-3.0f, 0.f, -50.3943f),glm::vec3(0.f, 150.f, 0.f),glm::vec3(0.15f)},
+		{glm::vec3(-2.7f, 0.f, -53.3943f),glm::vec3(0.f, 25.f, 0.f),glm::vec3(0.15f)},
+		{glm::vec3(-3.f, 0.f, -51.3943),glm::vec3(0.f, 120.f, 0.f),glm::vec3(0.1f)},
+		{glm::vec3(-3.1f, 0.f, -52.3943f),glm::vec3(0.f, 70.f, 0.f),glm::vec3(0.1f)},
 	};
 }
 
