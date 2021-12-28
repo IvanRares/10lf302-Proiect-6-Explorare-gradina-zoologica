@@ -365,7 +365,6 @@ void Game::InitializeModels()
 	models.back()->SetScale(glm::vec3(0.63));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, -90.f));
 	models.back()->SetPosition(glm::vec3(7.43f, 0.f, -19.5f));
-<<<<<<< Updated upstream
 
 	models.push_back(new Model("Models\\shop3\\BUIDLING2.obj", materials[material25], textures[texShop3], textures[texShop3], texShop3));
 	models.back()->SetScale(glm::vec3(0.63));
@@ -375,8 +374,6 @@ void Game::InitializeModels()
 	models.push_back(new Model("Models\\trash_can\\10896_Trash_can_v3_LOD3.obj", materials[material26], textures[texTrashCan], textures[texTrashCan], texTrashCan));
 	models.back()->SetRotation(glm::vec3(-90.f, 0.f, 0.f));
 	models.back()->SetPosition(glm::vec3(0.f, 0.05f, -19.5f));
-=======
->>>>>>> Stashed changes
 }
 
 void Game::InitializeLights()
