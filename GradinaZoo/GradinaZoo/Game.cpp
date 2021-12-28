@@ -666,6 +666,8 @@ void Game::UpdateInput(GLFWwindow* window)
 		camera->ProcessKeyboard(UP, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 		camera->ProcessKeyboard(DOWN, (float)deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
+		camera->SetFreeCamera();
 
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
 		int width, height;

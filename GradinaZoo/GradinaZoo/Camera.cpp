@@ -3,6 +3,7 @@
 Camera::Camera(const int width, const int height, const glm::vec3& position)
 {
 	startPosition = position;
+	freeCamera = false;
 	Set(width, height, position);
 }
 
@@ -26,6 +27,11 @@ void Camera::Set(const int width, const int height, const glm::vec3& position)
 	bFirstMouseMove = true;
 
 	UpdateCameraVectors();
+}
+
+void Camera::SetFreeCamera()
+{
+	freeCamera = !freeCamera;
 }
 
 void Camera::Reset(const int width, const int height)
@@ -66,7 +72,7 @@ const glm::mat4 Camera::GetProjectionMatrix() const
 
 const glm::vec3 Camera::GetPosition() const
 {
-	std::cout << position.x << " " << position.y << " "<<position.z<<std::endl;
+	std::cout << position.x << " " << position.y << " " << position.z << std::endl;
 	return position;
 }
 
@@ -92,6 +98,35 @@ void Camera::ProcessKeyboard(ECameraMovementType direction, float deltaTime)
 	case ECameraMovementType::DOWN:
 		position -= up * velocity;
 		break;
+	}
+	if (!freeCamera)
+	{
+		if (this->position.z > 5.2f || fmod(this->position.z, 13.f) < -5.5f && fmod(this->position.z, 13.f) > -7.5f)
+		{
+			if (this->position.z > 5.2f)
+				this->position.y = 0.9f;
+			else if (fmod(this->position.z, 13.f) > -5.65f && (this->position.x > 0.35f || this->position.x < -1.35f))
+			{
+				int k = this->position.z / 13.f;
+				this->position.z = -5.65f + k * 13.f;
+				this->position.y = 0.65f;
+			}
+			else if (fmod(this->position.z, 13.f) < -7.35f && (this->position.x > 0.35f || this->position.x < -1.35f))
+			{
+				int k = this->position.z / 13.f;
+				this->position.z = -7.35f + k * 13.f;
+				this->position.y = 0.65f;
+			}
+			else this->position.y = 0.65;
+		}
+		else
+		{
+			this->position.y = 0.65f;
+			if (this->position.x > 0.35f)
+				this->position.x = 0.35f;
+			else if (this->position.x < -1.35f)
+				this->position.x = -1.35f;
+		}
 	}
 }
 

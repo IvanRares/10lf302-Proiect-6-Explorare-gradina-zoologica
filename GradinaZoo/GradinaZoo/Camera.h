@@ -34,12 +34,14 @@ private:
 	const float PITCH = 0.0f;
 	const float FOV = 45.0f;
 	glm::vec3 startPosition;
+	bool freeCamera;
 
 public:
 	Camera(const int width, const int height, const glm::vec3& position);
 
 	void Set(const int width, const int height, const glm::vec3& position);
 
+	void SetFreeCamera();
 
 	void Reset(const int width, const int height);
 
