@@ -11,7 +11,7 @@ void ShowControls()
 int main()
 {
 	ShowControls();
-	Game game("Gradina Zoo", 1980, 1020, true);
+	Game game("Gradina Zoo", 1920, 1080, true);
 	//Main loop
 
 	while (!game.GetWindowShouldClose())
